@@ -1,0 +1,25 @@
+﻿
+
+<form id="myForm" action="@Url.Action("SayfaMultimediaEkle", "Panel",new {SayfaId=@ViewBag.SayfaId })" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+    <div id="listOfCustomers" style="height: 400px; overflow: auto;">
+
+
+        <div class="form-group">
+            <h3 class="sbold">Yüklemek istediğiniz görseli bu alana sürükleyin, yada dosya seçmek için tıklayın</h3>
+            <div class="dz-default dz-message">
+                <input class="form-control" type="file" name="resim" id="resim" placeholder="GÖRSEL" required="required">
+               
+            </div>
+        </div>
+
+        <div class="box-footer">
+            <button class="btn btn-xs btn-danger" id="btnSubmit" href="@Url.Action("SayfaMultimediaEkle", "Panel",new {SayfaId=@ViewBag.SayfaId })">
+                <span> EKLE</span>
+            </button>
+        </div>
+
+
+    </div>
+
+
+</form>

@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "BankInfo";
+    Layout = "~/Views/Shared/MasterPage.cshtml";
+}
+@Html.Action("HeaderIndex", "Home")
+<section class="flights-list flight-information mt-sm-5 mt-5 pt-sm-5">
+    <div class="container mt-sm-5 ">
+        <div class="row mt-sm-3">
+            <div class="col-sm-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="panel-head">
+
+                            <div role="alert">
+                                <strong style="display: block;padding-bottom: 10px;font-size: 18px;">
+                                    Bir hata oluştu
+                                </strong>
+                                <ul>
+                                    <li><strong>Banka Hatası</strong></li>
+                                    <li><i class="fa fa-angle-right"></i> Ödemeniz kartınızdan çekilemedi</li>
+                                    <li><i class="fa fa-angle-right"></i> @ViewBag.Message</li>
+                                </ul>
+                                <br><br>
+                                <a href="@Url.Action("Index","Home")" class="btn btn btn-primary">
+                                    <i class="fa fa-angle-double-left"></i>
+                                   Ana Sayfaya Dön
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div id="yourContainer"></div>
+@Html.Action("Footer", "Home")

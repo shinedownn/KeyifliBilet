@@ -1,0 +1,67 @@
+﻿
+
+@if (Session["UyeId"] == null)
+{
+    <header class="cd-header">
+        <div id="cd-logo"><a href="@Url.Action("Index","Home")"><img src="~/Content/assets/images/logo.png" alt="Adaş Turizm"></a></div>
+
+
+        <nav class="cd-main-nav">
+            <ul>
+                <li><a href="@Url.Action("IptalIade","tr")">İptal / İade</a></li>
+                <li class="divider"></li>
+                <li><a href="@Url.Action("OnlineCheckIn","tr")">Online Check-In</a></li>
+                <li class="divider"></li>
+                <li><a href="@Url.Action("iletisim","tr")">İletişim</a></li>
+                <li class="right dropdown">
+                    <a class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">TR</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="https://www.keyiflibilet.com/#">EN</a>
+                    </div>
+                </li>
+                <li class="right"><a href="https://www.keyiflibilet.com/#" data-toggle="modal" data-target=".bs-example-modal-sm" tabcontent="login" class="btnMember"><i class="icon-user"></i> Giriş Yap</a></li>
+                <li class="divider right"></li>
+                <li class="right"><a href="https://www.keyiflibilet.com/#" data-toggle="modal" data-target=".bs-example-modal-sm" tabcontent="register" class="btnMember">Üye Ol</a></li>
+                <li class="divider right"></li>
+                <li class="right phone"><a href="@Url.Action("iletisim","tr")"><i class="icon-phone3"></i> 0850 550 41 14</a></li>
+            </ul>
+        </nav>
+
+        <a href="https://www.keyiflibilet.com/#" data-toggle="modal" data-target=".bs-example-modal-sm" tabcontent="login" class="btnMember visible-xs"><i class="icon-user"></i> Giriş Yap</a>
+    </header>
+
+}
+else
+{
+    <header class="cd-header">
+        <div id="cd-logo"><a href="@Url.Action("Index","Home")"><img src="~/Content/assets/images/logo.png" alt="Adaş Turizm"></a></div>
+
+        <nav class="cd-main-nav">
+            <ul>
+                <li><a href="@Url.Action("IptalIade","tr")">İptal / İade</a></li>
+                <li class="divider"></li>
+                <li><a href="@Url.Action("OnlineCheckIn","tr")">Online Check In</a></li>
+                <li class="divider"></li>
+                <li><a href="@Url.Action("iletisim","tr")">İletişim</a></li>
+
+
+
+                <li class="right hidden-xs">
+                    <a class="dropdown-toggle no-text-underline" data-toggle="dropdown" href="#"><i class="flaticon-people"></i> <span class="hidden-xs">@Session["AdSoyad"]</span></a>
+                    <ul class="dropdown-menu pull-right">
+                        <li><a tabindex="-1" href="@Url.Action("Biletlerim","Home")">Biletlerim</a></li>
+                        <li class="divider"></li>
+                        <li><a tabindex="-1" href="@Url.Action("Profil","Home")">Profil Ayarlar</a></li>
+                        <li class="divider"></li>
+                        <li><a tabindex="-1" href="@Url.Action("Cikis","Home")">Güvenli Çıkış</a></li>
+                    </ul>
+                </li>
+
+
+            </ul>
+        </nav>
+        <a href="https://www.keyiflibilet.com/#" data-toggle="modal" data-target=".bs-example-modal-sm" tabcontent="login" class="btnMember visible-xs"><i class="icon-user"></i> Giriş Yap</a>
+    </header>
+}
+
+

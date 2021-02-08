@@ -1,0 +1,100 @@
+﻿@section css{
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+
+    <style>
+        body {
+            margin: 1em;
+        }
+
+        .jstree-table-wrapper {
+            border: 1px solid #ccc;
+        }
+    </style>
+}
+
+<form id="myForm" action="@Url.Action("SayfaKategoriEkle", "Panel")" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+    <div id="listOfCustomers" style="height: 600px; overflow: auto;">
+
+        <div class="panel-body">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <div id="jstree">
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="box-footer">
+            <button class="btn btn-xs btn-danger" id="btnSubmit" href="@Url.Action("SayfaKategoriEkle", "Panel" )">
+                <span> KAYDET </span>
+            </button>
+        </div>
+
+
+    </div>
+
+
+</form>
+
+
+@section js{
+
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="https://static.jstree.com/latest/assets/dist/jstree.min.js"></script>
+    <script src="https://rawgit.com/adamjimenez/jstree-table/master/jstreetable.js"></script>
+    <script src="~/Areas/Yonetim/Content/js/jstreegrid.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $("div#jstree").jstree({
+                plugins: ["themes", "json", "grid", "dnd"],
+                core: {
+                    data: {
+                        url: '/Panel/Nodes'
+                    }
+                },
+                grid: {
+                    columns: [
+                        { header: "Sayfalar", title: "_DATA_" },
+                        { cellClass: "col1", value: "multimedia", header: "Multimedya", valueClass: "spanclass" },
+                        { cellClass: "col2", value: "edit", header: "Düzenle", valueClass: "spanclass" },
+                        { cellClass: "col3", value: "delete", header: "Sil", valueClass: "spanclass" }
+
+                    ],
+                    resizable: true,
+                    draggable: true
+                },
+                dnd: {
+                    drop_finish: function () {
+                    },
+                    drag_finish: function () {
+                    },
+                    drag_check: function (data) {
+                        return {
+                            after: true,
+                            before: true,
+                            inside: true
+                        };
+                    }
+                }
+            })
+                .on('loaded.jstree', function () {
+                    // $("div#jstree").jstree('open_all');
+                });
+        })
+
+
+
+
+
+    </script>
+}

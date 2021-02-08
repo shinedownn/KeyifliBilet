@@ -1,0 +1,30 @@
+﻿<div class="engine-step tab-pane" id="tabQuickPNR" role="tabpanel" aria-labelledby="pnr-tab">
+
+
+    <form action="@Url.Action("PnrSorgulama","Home")" id="frmSearchPnr" method="post" novalidate="novalidate">
+        <div class="row">
+            <div class="col-md-5 tabs-type-a tabs-block">
+                <button class="btn btn-secondary btn-lg dropdown-toggle custom-input animated flipInX" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <input autocomplete="off" data-val="true" data-val-required="Lütfen yolcunun soyismini giriniz !" id="Surname" name="Surname" placeholder="Yolcunun Soyismi" style="text-transform:uppercase" type="text" value="">
+                </button>
+                <span class="field-validation-valid" data-valmsg-for="Surname" data-valmsg-replace="true"></span>
+            </div>
+            <div class="col-md-5 tabs-type-a tabs-block">
+                <button class="btn btn-secondary btn-lg dropdown-toggle custom-input animated flipInX" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <input autocomplete="off" data-val="true" data-val-required="Lütfen pnr numrasını giriniz !" id="PNR" name="PNR" placeholder="Bilet kodu (PNR)" style="text-transform:uppercase" type="text" value="">
+                </button>
+                <span class="field-validation-valid" data-valmsg-for="PNR" data-valmsg-replace="true"></span>
+            </div>
+            <div class="col-md-2 text-right">
+                <button type="submit" class="srch-btn animated flipInX"><i class="icon-angle-right"></i></button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 mt-10">
+                <div class="pull-left hidden-desktop">
+                    <a class="text-white" href="#yardim">Rezervasyon kodu (PNR) ve bilet numarası nedir?</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

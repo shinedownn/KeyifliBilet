@@ -1,0 +1,482 @@
+﻿@model KeyifliBilet.Areas.Yonetim.Models.IndexViewModel
+@{
+    ViewBag.Title = "Sistem";
+    Layout = "~/Areas/Yonetim/Views/Shared/MasterPage.cshtml";
+}
+
+<section id="main-content">
+    <section class="wrapper">
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h5 class="page-header">SİSTEM BİLGİLERİ</h5>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+
+                            <div class="tab">
+                                <button class="tablinks" onclick="openCity(event, 'tanimlar')" id="defaultOpen">TANIMLAR</button>
+                                <button class="tablinks" onclick="openCity(event, 'kullanicilar')">KULLANICILAR</button>
+                                <button class="tablinks" onclick="openCity(event, 'takip')">TAKİP KODLARI</button>
+                            </div>
+
+                            <div id="tanimlar" class="tabcontent">
+
+                                <h6>WEB SİTE BİLGİLERİ</h6>
+                                @foreach (var item in Model.tanimlar)
+                                {
+                                    <form id="myForm" action="@Url.Action("Tanimlar", "Panel",new { id = item.TanimId })" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+                                        <div id="listOfCustomers" style="height: 400px; overflow: auto;">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="panel panel-default">
+
+                                                        <!-- /.panel-heading -->
+                                                        <div class="panel-body">
+                                                            <div class="form-group">
+                                                                <label>WEB SİTE ADI</label>
+                                                                <input class="form-control" type="text" name="siteAdi" id="siteAdi" value="@item.SiteAdi" required="required">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>E-MAİL</label>
+                                                                <input class="form-control" type="text" name="mail" id="mail" value="@item.Mail" required="required">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>URL</label>
+                                                                <input class="form-control" type="text" name="url" id="url" value="@item.Url" required="required">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>TELEFON</label>
+                                                                <input class="form-control" type="text" name="telefon" id="telefon" value="@item.Telefon" required="required">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>FAX</label>
+                                                                <input class="form-control" type="text" name="fax" id="fax" value="@item.Fax" required="required">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>ADRES</label>
+                                                                <input class="form-control" type="text" name="adres" id="adres" value="@item.Adres" required="required">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>HARİTA</label>
+                                                                <input class="form-control" type="text" name="harita" id="harita" value="@item.Harita" required="required">
+                                                            </div>
+
+
+
+                                                            <div class="box-footer">
+                                                                <button class="btn btn-xs btn-danger" id="btnSubmit" href="@Url.Action("Tanimlar", "Panel",new { id = item.TanimId })">
+                                                                    <span> KAYDET</span>
+                                                                </button>
+                                                            </div>
+
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+
+                                    </form>
+                                }
+
+                            </div>
+
+                            <div id="kullanicilar" class="tabcontent">
+
+                                <div id="page-wrapper">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <h1 class="page-header">Kullanıcılar</h1>
+                                        </div>
+                                        <!-- /.col-lg-12 -->
+                                    </div>
+
+                                    <!-- /.row -->
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <a class="delete btn btn-info" onclick="KullaniciEkle()"> Kullanıcı Ekle</a>
+
+                                                </div>
+                                                <!-- /.panel-heading -->
+                                                <div class="panel-body">
+                                                    <div class="table-responsive">
+
+                                                        <table id="myTable" class="table table-striped table-bordered table-hover">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Adı</th>
+                                                                    <th>Soyadı</th>
+                                                                    <th>Mail</th>
+                                                                    <th>Şifre</th>
+                                                                    <th>Kayıt Tarihi</th>
+                                                                    <th>Düzenle</th>
+                                                                    <th>Durum</th>
+                                                                    <th>Yetkilendirme</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @if (Model.kullanicilar.Count() != 0)
+                                                                {
+                                                                    foreach (var item in Model.kullanicilar)
+                                                                    {
+                                                                        <tr class="odd gradeX" id="row_@item.KullaniciId">
+                                                                            <td>@item.Ad</td>
+                                                                            <td>@item.Soyad</td>
+                                                                            <td>@item.Mail</td>
+                                                                            <td>@item.Sifre</td>
+                                                                            <td>@item.KayitTarihi</td>
+                                                                            <td>   <a class="btn btn-success" onclick="KullaniciGuncelle(@item.KullaniciId)"><i class="glyphicon glyphicon-pencil"></i> </a></td>
+                                                                            <td class="center">
+                                                                                @if (item.Durum == true)
+                                                                                {
+                                                                                    <a class="btn btn-success" href="@Url.Action("KullaniciDurum", "Panel", new
+                                                                                            {
+                                                                                                id = @item.KullaniciId
+                                                                                            })">AKTİF</a>
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                                    <a class="btn btn-danger" href="@Url.Action("KullaniciDurum", "Panel", new
+                                                                                            {
+                                                                                                id = @item.KullaniciId
+                                                                                            })">PASİF</a>
+                                                                                }
+                                                                            </td>
+                                                                            <td class="center">
+
+                                                                                <a class="btn btn-warning" onclick="KullanıcıYetkilendirme(@item.KullaniciId)">YETKİLENDİRME</a>
+                                                                            </td>
+                                                                        </tr>
+                                                                    }
+                                                                }
+                                                                else
+                                                                {
+                                                                    <div class="alert alert-info">Kullanici bulunmamaktadır.</div>
+                                                                }
+                                                            </tbody>
+                                                        </table>
+
+                                                        @*<script>
+                                                                $('#myTable').DataTable();
+                                                            </script>*@
+                                                        <div class="pagination"></div>
+                                                    </div>
+                                                    <!-- /.table-responsive -->
+
+                                                </div>
+                                                <!-- /.panel-body -->
+                                            </div>
+                                            <!-- /.panel -->
+                                        </div>
+                                        <!-- /.col-lg-12 -->
+                                    </div>
+                                    <!-- /.row -->
+                                </div>
+
+
+
+                            </div>
+
+                            <div id="takip" class="tabcontent">
+
+
+                                <div id="page-wrapper">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <h1 class="page-header">Takip Kodları</h1>
+                                        </div>
+                                        <!-- /.col-lg-12 -->
+                                    </div>
+                                    <!-- /.row -->
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <a class="delete btn btn-info" onclick="TakipKoduEkle()"> Kod Ekle</a>
+
+                                                </div>
+                                                <!-- /.panel-heading -->
+                                                <div class="panel-body">
+                                                    <div class="table-responsive">
+
+                                                        <table id="myTable2" class="table table-striped table-bordered table-hover">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Servis</th>
+                                                                    <th>Script Kod</th>
+                                                                    <th>Lokasyon</th>
+                                                                    <th>Düzenle</th>
+                                                                    <th>Durum</th>
+
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @if (Model.takipKodlari.Count() != 0)
+                                                                {
+                                                                    foreach (var item in Model.takipKodlari)
+                                                                    {
+                                                                        <tr class="odd gradeX" id="row_@item.TakipId">
+                                                                            <td>@item.Servis</td>
+                                                                            <td>
+                                                                                <textarea id="script">@item.Script</textarea>
+
+                                                                            </td>
+                                                                            @if (item.Lokasyon == true)
+                                                                            {
+                                                                                <td>Header</td>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <td>
+                                                                                    Footer
+                                                                                </td>
+
+                                                                            }
+
+
+                                                                            <td>   <a class="btn btn-success" onclick="TakipDuzenle(@item.TakipId)"><i class="glyphicon glyphicon-pencil"></i> </a></td>
+                                                                            <td class="center">
+                                                                                @if (item.Durum == true)
+                                                                                {
+                                                                                    <a class="btn btn-success" href="@Url.Action("TakipDurum", "Panel", new
+                                                                                            {
+                                                                                                id = @item.TakipId
+                                                                                            })">AKTİF</a>
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                                    <a class="btn btn-danger" href="@Url.Action("TakipDurum", "Panel", new
+                                                                                            {
+                                                                                                id = @item.TakipId
+                                                                                            })">PASİF</a>
+                                                                                }
+                                                                            </td>
+
+                                                                        </tr>
+                                                                    }
+                                                                }
+                                                                else
+                                                                {
+                                                                    <div class="alert alert-info">Takip Kodu bulunmamaktadır.</div>
+                                                                }
+                                                            </tbody>
+                                                        </table>
+
+
+                                                        <div class="pagination"></div>
+                                                    </div>
+                                                    <!-- /.table-responsive -->
+
+                                                </div>
+                                                <!-- /.panel-body -->
+                                            </div>
+                                            <!-- /.panel -->
+                                        </div>
+                                        <!-- /.col-lg-12 -->
+                                    </div>
+                                    <!-- /.row -->
+                                </div>
+                            </div>
+
+                            <script>
+                                function openCity(evt, cityName) {
+                                    var i, tabcontent, tablinks;
+                                    tabcontent = document.getElementsByClassName("tabcontent");
+                                    for (i = 0; i < tabcontent.length; i++) {
+                                        tabcontent[i].style.display = "none";
+                                    }
+                                    tablinks = document.getElementsByClassName("tablinks");
+                                    for (i = 0; i < tablinks.length; i++) {
+                                        tablinks[i].className = tablinks[i].className.replace(" active", "");
+                                    }
+                                    document.getElementById(cityName).style.display = "block";
+                                    evt.currentTarget.className += " active";
+                                }
+
+                                // Get the element with id="defaultOpen" and click on it
+                                document.getElementById("defaultOpen").click();
+                            </script>
+
+
+
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+        </div>
+    </section>
+</section>
+
+
+<div class="modal fade" id="myModalkulek">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h3 class="modal-title">Kullanici Ekleme</h3>
+            </div>
+            <div class="modal-body" id="myModalBodyDivkulek">
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="modal fade" id="myModalgun">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h3 class="modal-title">Kullanici Düzenleme</h3>
+            </div>
+            <div class="modal-body" id="myModalBodyDivgun">
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+<div class="modal fade" id="myModalyet">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h3 class="modal-title">Kullanici Yetkilendirme</h3>
+            </div>
+            <div class="modal-body" id="myModalBodyDivyet">
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+<div class="modal fade" id="myModaltak">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h3 class="modal-title">Takip Kodu Ekle</h3>
+            </div>
+            <div class="modal-body" id="myModalBodyDivtak">
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+<div class="modal fade" id="myModaltakgun">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h3 class="modal-title">Takip Kodu Ekle</h3>
+            </div>
+            <div class="modal-body" id="myModalBodyDivtakgun">
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+<script>
+    var KullaniciEkle = function () {
+        var url = "/Yonetim/Panel/KullaniciEkle";
+        $("#myModalBodyDivkulek").load(url, function () {
+            $("#myModalkulek").modal("show");
+
+        })
+
+    }
+</script>
+<script>
+    var TakipKoduEkle = function () {
+        var url = "/Yonetim/Panel/TakipKoduEkle";
+        $("#myModalBodyDivtak").load(url, function () {
+            $("#myModaltak").modal("show");
+
+        })
+
+    }
+</script>
+<script>
+
+
+    var KullaniciGuncelle = function (KullaniciId) {
+
+        var url = "/Yonetim/Panel/KullaniciGuncelle?KullaniciId=" + KullaniciId;
+
+        $("#myModalBodyDivgun").load(url, function () {
+            $("#myModalgun").modal("show");
+
+        })
+
+    }
+</script>
+<script>
+
+
+    var TakipDuzenle = function (TakipId) {
+
+        var url = "/Yonetim/Panel/TakipDuzenle?TakipId=" + TakipId;
+
+        $("#myModalBodyDivtakgun").load(url, function () {
+            $("#myModaltakgun").modal("show");
+
+        })
+
+    }
+</script>
+<script>
+
+
+    var KullanıcıYetkilendirme = function (KullaniciId) {
+
+        var url = "/Yonetim/Panel/KullanıcıYetkilendirme?KullaniciId=" + KullaniciId;
+
+        $("#myModalBodyDivyet").load(url, function () {
+            $("#myModalyet").modal("show");
+
+        })
+
+    }
+</script>
+

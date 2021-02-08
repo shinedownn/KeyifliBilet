@@ -1,0 +1,214 @@
+﻿@model KeyifliBilet.Areas.Yonetim.Models.IndexViewModel
+@{
+    ViewBag.Title = "SatisListesi";
+    Layout = "~/Areas/Yonetim/Views/Shared/MasterPage.cshtml";
+}
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs-3.3.7/jq-2.2.4/jszip-3.1.3/pdfmake-0.1.27/dt-1.10.15/b-1.3.1/b-html5-1.3.1/b-print-1.3.1/r-2.1.1/rg-1.0.0/datatables.min.css" />
+
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs-3.3.7/jq-2.2.4/jszip-3.1.3/pdfmake-0.1.27/dt-1.10.15/b-1.3.1/b-html5-1.3.1/b-print-1.3.1/r-2.1.1/rg-1.0.0/datatables.min.js"></script>
+
+<section id="main-content">
+    <section class="wrapper">
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Üyeler</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="table-responsive">
+
+                                <div id="myTable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+
+                                    <div class="col-sm-12">
+                                        <table id="myTable" class="table table-striped table-bordered table-hover dataTable no-footer" role="grid" aria-describedby="myTable_info">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th class="sorting_asc" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Tipler: activate to sort column descending" style="width: 115px;">Tipler</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" aria-label="İletişim Bilgileri: activate to sort column ascending" style="width: 235px;">İletişim Bilgileri</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" aria-label="Güzergah: activate to sort column ascending" style="width: 91px;">Güzergah</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" aria-label="Yolcu Bilgileri: activate to sort column ascending" style="width: 161px;">Yolcu Bilgileri</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" aria-label="Net Fiyat: activate to sort column ascending" style="width: 88px;">Net Fiyat</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" aria-label="Vergi: activate to sort column ascending" style="width: 218px;">Vergi</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" aria-label="Servis Bedeli: activate to sort column ascending" style="width: 82px;">Servis Bedeli</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" aria-label="Toplam: activate to sort column ascending" style="width: 218px;">Toplam</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in Model.orderResult)
+                                                {
+                                                    <tr class="gradeX odd" id="row_@item.Id" role="row">
+
+                                                        <td style="min-width: 120px;" class="sorting_1" tabindex="0">
+
+
+                                                            @if (item.UyeId != null)
+                                                            {
+                                                                <strong>Kullanıcı </strong> @Model.uyeler.FirstOrDefault(w => w.UyeId == item.UyeId).AdSoyad<br>
+                                                                <strong>Hat</strong><span>İç Hat</span> <br>
+                                                                if (item.legs.Where(w => w.returnFlight == true).Count() > 0)
+                                                                {
+                                                                    <strong>Bilet</strong><span>ÇİFT YÖN</span>
+
+                                                                }
+                                                                else
+                                                                {
+                                                                    <strong>Bilet</strong><span>TEK YÖN</span>
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                <strong>Kullanıcı </strong> <span>Ziyaretçi</span><br>
+                                                                <strong>Hat</strong><span>İç Hat</span> <br>
+                                                                if (item.legs.Where(w => w.returnFlight == true).Count() > 0)
+                                                                {
+                                                                    <strong>Bilet</strong><span>ÇİFT YÖN</span>
+
+                                                                }
+                                                                else
+                                                                {
+                                                                    <strong>Bilet</strong><span>TEK YÖN</span>
+                                                                }
+                                                            }
+
+
+
+
+
+                                                        </td>
+
+                                                        <td>
+                                                            <strong>Email </strong> @item.contactEmail<br>
+                                                            <strong>Cep Tel </strong> @item.contactGsm
+                                                        </td>
+                                                        <td>
+                                                            <table>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                            </table>
+                                                            <table class="table">
+
+                                                                @foreach (var data in item.legs)
+                                                                {
+
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th tabindex="0">Gidiş : @data.localDepartureDate</th>
+                                                                            @if (data.returnFlight == true)
+                                                                            {
+                                                                            <th>Dönüş : @data.localArrivalDate</th>
+
+                                                                            }
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        
+                                                                        <tr>
+                                                                            <td tabindex="0">
+                                                                                <strong>Kalkış</strong> :  (@data.departureAirport), @data.departureCityName<br>
+                                                                                <strong>Varış</strong> :  (@data.arrivalAirport), @data.arrivalCityName<br>
+                                                                            </td>
+                                                                            @if (data.returnFlight == true)
+                                                                            {
+                                                                                <td>
+                                                                                    <strong>Kalkış</strong> :  (@data.departureAirport), @data.departureCityName<br>
+                                                                                    <strong>Varış</strong> :   (@data.arrivalAirport), @data.arrivalCityName<br>
+                                                                                </td>
+                                                                            }
+                                                                           
+                                                                        </tr>
+                                                                    </tbody>
+
+                                                                }
+                                                            </table>
+                                                        </td>
+                                                      
+                                                        <td>
+                                                            <table class="table">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th tabindex="0">PNR</th>
+                                                                        @foreach (var t in item.BookingInfo)
+                                                                        {
+                                                                            if (t.Id == item.Id)
+                                                                            {
+                                                                                <td>@t.pnr</td>
+                                                                            }
+
+                                                                        }
+
+                                                                        <th>Satış No</th>
+                                                                        <td>@item.Id</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th tabindex="0">Tip</th>
+                                                                        <th>İsim Soyisim</th>
+                                                                        <th>Cinsiyet</th>
+                                                                        <th>BiletNo</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    @foreach (var data in item.passengers)
+                                                                    {
+                                                                        <tr>
+                                                                            <td tabindex="0">@data.persontype</td>
+                                                                            <td>@data.name @data.surname</td>
+                                                                            <td>@data.gender</td>
+                                                                            <td>@data.eticket</td>
+                                                                        </tr>
+                                                                    }
+
+                                                                </tbody>
+                                                            </table>
+                                                        </td>
+                                                        <td>@item.passengers.Where(w => w.Id == item.Id).Sum(w => Convert.ToDecimal(w.totalPrice))</td>
+                                                        <td>@item.passengers.Where(w => w.Id == item.Id).Sum(w => Convert.ToDecimal(w.tax))</td>
+                                                        <td>
+
+                                                            @item.passengers.Where(w => w.Id == item.Id).Sum(w => Convert.ToDecimal(w.serviceFee))
+                                                        </td>
+                                                        <td>@item.passengers.Where(w => w.Id == item.Id).Sum(w => Convert.ToDecimal(w.totalPrice))</td>
+
+                                                    </tr>
+                                                }
+
+
+
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+
+                                <script>
+                                    $('#myTable').DataTable();
+                                </script>
+                                <div class="pagination"></div>
+                            </div>
+                            <!-- /.table-responsive -->
+
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+
+        </div>
+    </section>
+</section>
+
+

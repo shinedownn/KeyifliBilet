@@ -1,0 +1,85 @@
+﻿@model KeyifliBilet.Areas.Yonetim.Models.IndexViewModel
+
+
+<form id="myForm" action="@Url.Action("KutuEkle", "Panel")" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+    <div id="listOfCustomers" style="height: 400px; overflow: auto;">
+
+        <div class="portlet-title">
+            <div class="caption">
+                <select class="form-control" id="kutuKategori" name="kutuKategori">
+                    <option value="">Kategori Seçiniz</option>
+                    @foreach (var item in Model.kutuKategori)
+                    {
+                        <option value="@item.KategoriId">@item.Kategori</option>
+                    }
+
+
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>KALKIŞ YERİ</label>
+            <input class="form-control" type="text" name="kalkisYeri" id="kalkisYeri" placeholder="KALKIŞ YERİ" required="required">
+        </div>
+        <div class="form-group">
+            <label>VARIŞ YERİ</label>
+            <input class="form-control" type="text" name="varisYeri" id="varisYeri" placeholder="VARIŞ YERİ" required="required">
+        </div>
+        <div class="form-group">
+            <label>GÖRSEL</label>
+            <input class="form-control" type="file" name="resim" id="resim" placeholder="GÖRSEL" required="required">
+        </div>
+
+        <div class="box-footer">
+            <button class="btn btn-xs btn-danger" id="btnSubmit" href="@Url.Action("KutuEkle", "Panel" )">
+                <span> EKLE</span>
+            </button>
+        </div>
+
+
+    </div>
+
+
+</form>
+<script src="~/Scripts/jquery-ui.min.js"></script>
+<script type="text/javascript">
+
+    $("#kalkisYeri").keyup(function () {
+        this.value = this.value.toUpperCase();
+    });
+    $("#varisYeri").keyup(function () {
+        this.value = this.value.toUpperCase();
+    });
+    $(function () {
+
+        $("#kalkisYeri,#varisYeri").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: '/Panel/JsonGetir',
+                    data: "{ 'term': '" + request.term + "'}",
+                    dataType: "json",
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+
+                            return item.label;
+
+                        }))
+                    },
+
+                    error: function (response) {
+                        alert(response.responseText);
+                    }
+
+                });
+            },
+            select: function (e, i) {
+                var keyvalue = i.item.value;
+            },
+            minLength: 1
+        });
+        autofocus = true;
+    });
+
+</script>

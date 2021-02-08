@@ -1,0 +1,55 @@
+﻿@model KeyifliBilet.Areas.Yonetim.Models.IndexViewModel
+
+<form id="myForm" action="@Url.Action("MailEkle", "Panel")" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+    <div id="listOfCustomers" style="height: 400px; overflow: auto;">
+        <div class="portlet-title">
+            <div class="caption">
+                <select class="form-control" id="kategori" name="kategori">
+                    <option value="">Kategori Seçiniz</option>
+                    @foreach (var item in Model.mailKategori)
+                    {
+                        <option value="@item.MailKategoriId">@item.Aciklama</option>
+                    }
+
+
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>MAİL</label>
+            <input class="form-control" type="text" name="mail" id="mail" placeholder="MAİL" required="required">
+        </div>
+        <div class="form-group">
+            <label>MAİL BAŞLIĞI</label>
+            <input class="form-control" type="text" name="baslik" id="baslik" placeholder="MAİL BAŞLIĞI" required="required">
+        </div>
+        <div class="form-group">
+            <label>MAİL İÇERİĞİ</label>
+            <input class="form-control" type="text" name="icerik" id="icerik" placeholder="MAİL İÇERİĞİ" required="required">
+        </div>
+        <div class="form-group">
+            <label>SMTP ADRESİ</label>
+            <input class="form-control" type="text" name="adres" id="adres" placeholder="SMTP ADRESİ" required="required">
+        </div>
+        <div class="form-group">
+            <label>PORT</label>
+            <input class="form-control" type="text" name="port" id="port" placeholder="PORT" required="required">
+        </div>
+        <div class="form-group">
+            <label>ŞİFRE</label>
+            <input class="form-control" type="text" name="sifre" id="sifre" placeholder="ŞİFRE" required="required">
+        </div>
+
+
+        <div class="box-footer">
+            <button class="btn btn-xs btn-danger" id="btnSubmit" href="@Url.Action("MailEkle", "Panel" )">
+                <span> EKLE</span>
+            </button>
+        </div>
+
+
+    </div>
+
+
+</form>
+

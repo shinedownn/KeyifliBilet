@@ -1,0 +1,113 @@
+﻿<div id="flights-sidebar">
+    <div class="flights-select toggle-bordered-full clearfix" style="display: none;">
+        <div class="toggle active">
+            <div class="toggle-content" style="display: block;">
+                <h5>Seçiminiz</h5>
+                <div class="select-result">
+                </div>
+                <a id="btnGoPriceDetailPage" class="btn btn-primary" style="display:none;">İlerle <i class="fa fa-angle-right"></i> </a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <nav class="navbar navbar-expand-lg">
+                <h4 class="navbar-brand" href="#">Filtrelenmiş sonuçlar</h4>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation" style="">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="collapse" data-target="#divFilterCollapse" aria-controls="divFilterCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                                Filtreleri düzenle
+                            </a>
+                        </li>
+                    </ul>
+                    <span class="navbar-text">
+                        <label class="checkbox">
+                            <input type="checkbox" class="lblCabin" id="chkNoStopFilter">    <i></i> Sadece direkt uçuşları
+                        </label>
+                    </span>
+                    <span class="navbar-text hidden-xs">
+                        Sıralama kriteri
+                    </span>
+                    <ul class="nav nav-pills" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="pills-home-tab" data-toggle="pill" data-orderby="minPrice" data-sorttype="asc" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Ücret</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="pills-profile-tab" data-toggle="pill" data-orderby="totalTime" data-sorttype="asc" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Süre</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="pills-contact-tab" data-toggle="pill" data-orderby="departureTime" data-sorttype="asc" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Kalkış</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="col-md-3 toggle-transparent toggle-bordered-full clearfix" style="display: none">
+                <div class="toggle active">
+                    <div class="toggle-content" style="display: block;">
+                        <h5>Fiyat Aralığı</h5>
+                        <div class="clearfix">
+                            <strong id="slider-limit-value-min" class="pull-left">20.00</strong>
+                            <strong id="slider-limit-value-max" class="pull-right">80.00</strong>
+                        </div>
+                        <div id="slider-limit" class="noUi-target noUi-ltr noUi-horizontal noUi-background"><div class="noUi-base"><div class="noUi-origin noUi-connect" style="left: 2%;"><div class="noUi-handle noUi-handle-lower"></div></div><div class="noUi-origin noUi-background" style="left: 8%;"><div class="noUi-handle noUi-handle-upper"></div></div></div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 toggle-transparent toggle-bordered-full clearfix" style="display: none">
+                <div class="toggle active">
+                    <div class="toggle-content" style="display: block;">
+                        <h5>Kalkış Saati Aralığı</h5>
+                        <div class="clearfix">
+                            <strong id="slider-limit-value-min2" class="pull-left">00:00</strong>
+                            <strong id="slider-limit-value-max2" class="pull-right">23:59</strong>
+                        </div>
+                        <div id="slider-limit2" class="slider-limit noUi-target noUi-ltr noUi-horizontal noUi-background"><div class="noUi-base"><div class="noUi-origin noUi-connect" style="left: 0%;"><div class="noUi-handle noUi-handle-lower"></div></div><div class="noUi-origin noUi-background" style="left: 100%;"><div class="noUi-handle noUi-handle-upper"></div></div></div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 toggle-transparent toggle-bordered-full clearfix" style="display: none">
+                <div class="toggle active">
+                    <div class="toggle-content" style="display: block;">
+                        <h5>Varış Saati Aralığı</h5>
+                        <div class="clearfix">
+                            <strong id="slider-limit-value-min3" class="pull-left">00:00</strong>
+                            <strong id="slider-limit-value-max3" class="pull-right">23:59</strong>
+                        </div>
+                        <div id="slider-limit3" class="slider-limit noUi-target noUi-ltr noUi-horizontal noUi-background"><div class="noUi-base"><div class="noUi-origin noUi-connect" style="left: 0%;"><div class="noUi-handle noUi-handle-lower"></div></div><div class="noUi-origin noUi-background" style="left: 100%;"><div class="noUi-handle noUi-handle-upper"></div></div></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="navbar navbar-light bg-light">
+        <div class="container">
+            <div id="divFilterCollapse" class="collapse">
+                <div id="divFilterArea" class="row">
+                    <div class="col-md-6 toggle-transparent toggle-bordered-full clearfix">
+                        <div class="toggle active">
+                            <div class="toggle-content" style="display: block;">
+                                <h5>Hava Yolları</h5>
+                                <label class="checkbox"><input type="checkbox" class="lblAirline" checked="checked" value="TK"><i></i> Turkish Airlines</label>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 toggle-transparent toggle-bordered-full clearfix">
+                        <div class="toggle active">
+                            <div class="toggle-content" style="display: block;">
+                                <h5>Uçuş Sınıfı</h5>
+                                <label class="checkbox"><input type="checkbox" class="lblFareType" checked="checked" value="PROMO"><i></i> PROMO</label>
+                                <label class="checkbox"><input type="checkbox" class="lblFareType" checked="checked" value="ECONOMY"><i></i> ECONOMY</label>
+                                <label class="checkbox"><input type="checkbox" class="lblFareType" checked="checked" value="BUSINESS"><i></i> BUSINESS</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

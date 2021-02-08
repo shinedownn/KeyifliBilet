@@ -1,0 +1,238 @@
+﻿@model KeyifliBilet.Areas.Yonetim.Models.IndexViewModel
+@{
+    ViewBag.Title = "Kutular";
+    Layout = "~/Areas/Yonetim/Views/Shared/MasterPage.cshtml";
+}
+@section css{
+
+    <style>
+        .ui-autocomplete {
+            position: absolute;
+            z-index: 99999 !important;
+            cursor: default;
+            padding: 0;
+            margin-top: 2px;
+            list-style: none;
+            background-color: #ffffff;
+            border: 1px solid #ccc -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+            -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+            .ui-autocomplete > li {
+                padding: 3px 20px;
+            }
+
+                .ui-autocomplete > li.ui-state-focus {
+                    background-color: #DDD;
+                }
+
+        .ui-helper-hidden-accessible {
+            display: none;
+        }
+    </style>
+}
+<section id="main-content">
+    <section class="wrapper">
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Kutular</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="panel-heading">
+                                            <a class="delete btn btn-info" onclick="KutuEkle()"> Kutu Ekle</a>
+
+                                        </div>
+                                    </td>
+                                    <td>
+
+
+                                        <div class="portlet-title">
+                                            <div class="caption">
+                                                <select class="form-control" id="ddlCategory" name="ddlCategory">
+                                                    <option value="">Kategori Seçiniz</option>
+                                                    @foreach (var item in Model.kutuKategori)
+                                                    {
+                                                        if (item.KategoriId == Convert.ToInt16(Request.QueryString["KategoriId"]))
+                                                        {
+                                                            <option value="@item.KategoriId" selected>@item.Kategori</option>
+                                                        }
+                                                        else
+                                                        {
+                                                            <option value="@item.KategoriId">@item.Kategori</option>
+                                                        }
+
+                                                    }
+
+
+                                                </select>
+                                            </div>
+                                        </div>
+
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            @if (Model.kutu != null)
+                            {
+                                <div class="table-responsive">
+
+
+                                    <table id="myTable" class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Sıra</th>
+                                                <th>Kalkış</th>
+                                                <th>Varış</th>
+                                                <th>Görsel</th>
+                                                <th>Düzenleme</th>
+                                                <th>Durum</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            @foreach (var item in Model.kutu)
+                                            {
+                                                <tr class="odd gradeX" id="row_@item.KutuId">
+                                                    <td>@item.KutuId</td>
+                                                    <td>@item.DEP_Airport_CityName</td>
+                                                    <td>@item.ARR_Airport_CityName</td>
+                                                    <td><img src="@item.Resim" width="100" height="100" /></td>
+
+
+                                                    <td>   <a class="btn btn-success" onclick="KutuGuncelle(@item.KutuId)"><i class="glyphicon glyphicon-pencil"></i> </a></td>
+                                                    <td class="center">
+                                                        @if (item.Durum == true)
+                                                        {
+                                                            <a class="btn btn-success" href="@Url.Action("KutuDurum", "Panel", new
+                                                                                            {
+                                                                                                id = @item.KutuId
+                                                        })">Pasif Et</a>
+                                                        }
+                                                        else
+                                                        {
+                                                            <a class="btn btn-danger" href="@Url.Action("KutuDurum", "Panel", new
+                                                                                            {
+                                                                                                id = @item.KutuId
+                                                                                            })">Aktif Et</a>
+                                                        }
+                                                    </td>
+
+                                                </tr>
+                                            }
+
+
+                                        </tbody>
+                                    </table>
+
+
+
+                                    <div class="pagination"></div>
+                                </div>
+                                <!-- /.table-responsive -->
+                            }
+                            else
+                            {
+
+                                <div class="alert alert-info">Kutu bulunmamaktadır.</div>
+                            }
+                        </div>
+
+
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+        </div>
+    </section>
+</section>
+<div class="modal fade" id="myModal1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h3 class="modal-title">Kutu Düzenleme</h3>
+            </div>
+            <div class="modal-body" id="myModalBodyDiv1">
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+<div class="modal fade" id="myModal2">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h3 class="modal-title">Kutu Ekleme</h3>
+            </div>
+            <div class="modal-body" id="myModalBodyDiv2">
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+
+    var KutuEkle = function () {
+
+        var url = "/Yonetim/Panel/KutuEkle";
+
+        $("#myModalBodyDiv2").load(url, function () {
+            $("#myModal2").modal("show");
+
+        })
+
+    }
+</script>
+
+<script>
+
+
+    var KutuGuncelle = function (KutuId) {
+
+        var url = "/Yonetim/Panel/KutuGuncelle?KutuId=" + KutuId;
+
+        $("#myModalBodyDiv1").load(url, function () {
+            $("#myModal1").modal("show");
+
+        })
+
+    }
+</script>
+
+

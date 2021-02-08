@@ -1,0 +1,25 @@
+﻿<form id="myForm" action="@Url.Action("SmsKategoriEkle", "Panel")" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+    <div id="listOfCustomers" style="height: 400px; overflow: auto;">
+
+
+        <div class="form-group">
+            <label>AÇIKLAMA</label>
+            <input class="form-control" type="text" name="aciklama" id="aciklama" placeholder="AÇIKLAMA" required="required">
+        </div>
+        <div class="form-group">
+            <label>KOD</label>
+            <input class="form-control" type="text" name="kod" id="kod" placeholder="KOD" required="required">
+        </div>
+
+        <div class="box-footer">
+            <button class="btn btn-xs btn-danger" id="btnSubmit" href="@Url.Action("SmsKategoriEkle", "Panel" )">
+                <span> EKLE</span>
+            </button>
+        </div>
+
+
+    </div>
+
+
+</form>
+

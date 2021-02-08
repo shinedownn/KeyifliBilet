@@ -1,0 +1,184 @@
+﻿@model KeyifliBilet.Areas.Yonetim.Models.IndexViewModel
+@{
+    ViewBag.Title = "Sonuc";
+    Layout = "~/Views/Shared/MasterPage.cshtml";
+}
+@Html.Action("HeaderIndex", "Home")
+@if (Model.orderResult != null)
+{
+    <section class="flights-list flight-information mt-sm-5 mt-5 pt-sm-5">
+        <div class="container mt-sm-5 ">
+            <div class="row mt-sm-3">
+                <div class="col-sm-12">
+
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="panel-head">
+                                <i class="flaticon-transport"></i> <strong>Bilet Bilgileri</strong>
+                            </div>
+                        </div>
+                        @foreach (var item in Model.passenger)
+                        {
+                            <div class="row flights-price-table nomargin nopadding">
+                                <div class="col-4 col-md-4 col-sm-6 hidden-sm hidden-xs pricing-desc">
+                                    <ul class="list-unstyled">
+                                        <li class="size-12">İsim Soyisim</li>
+                                        <li class="weight-600 size-xs-15 elipsis">@item.name @item.surname</li>
+
+                                    </ul>
+                                </div>
+                                <div class="col-4 col-md-2 col-sm-6 block">
+                                    <div class="pricing">
+                                        <ul class="pricing-table list-unstyled">
+                                            <li class="size-12">
+                                                PNR
+                                            </li>
+
+                                            <li class="weight-600 size-xs-15">@Model.booking.FirstOrDefault().pnr</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-4 col-md-2 col-sm-6 block">
+                                    <div class="pricing">
+                                        <ul class="pricing-table list-unstyled">
+                                            <li class="size-12">
+                                                Bilet Numarası
+                                            </li>
+
+                                            <li class="weight-600 size-xs-15">@item.eticket</li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                        <div class="row flights-price-table nomargin nopadding">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th colspan="8" style="text-align:center"><strong>Gidiş Uçuş Bilgileri</strong></th>
+                                    </tr>
+                                    <tr>
+                                        <th><strong></strong></th>
+                                        <th><strong>Havayolları</strong></th>
+                                        <th><strong>Uçuş no</strong></th>
+                                        <th><strong></strong></th>
+                                        <th><strong>Kalkış Havalimanı</strong></th>
+                                        <th><strong>Kalkış Tarihi</strong></th>
+                                        <th><strong>Varış Havalimanı</strong></th>
+                                        <th><strong>Varış Tarihi</strong></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @foreach (var item in Model.leg)
+                                    {
+                                        if (item.returnFlight == false)
+                                        {
+                                            <tr>
+                                                <td></td>
+                                                <td>@item.operatorName</td>
+                                                <td>@item.flightNo</td>
+                                                <td></td>
+                                                <td>@item.departureAirportName</td>
+                                                <td>@Convert.ToDateTime(item.departureTime).ToShortDateString() @Convert.ToDateTime(item.departureTime).ToShortTimeString()</td>
+                                                <td>@item.arrivalAirportName</td>
+                                                <td>@Convert.ToDateTime(item.arrivalTime).ToShortDateString() @Convert.ToDateTime(item.arrivalTime).ToShortTimeString()</td>
+                                            </tr>
+                                        }
+
+                                    }
+
+
+                                </tbody>
+                            </table>
+
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th colspan="8" style="text-align:center"><strong>Dönüş Uçuş Bilgileri</strong></th>
+                                    </tr>
+                                    <tr>
+                                        <th><strong></strong></th>
+                                        <th><strong>Havayolları</strong></th>
+                                        <th><strong>Uçuş no</strong></th>
+                                        <th><strong></strong></th>
+                                        <th><strong>Kalkış Havalimanı</strong></th>
+                                        <th><strong>Kalkış Tarihi</strong></th>
+                                        <th><strong>Varış Havalimanı</strong></th>
+                                        <th><strong>Varış Tarihi</strong></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+
+
+                                    @foreach (var item in Model.leg)
+                                    {
+                                        if (item.returnFlight == true)
+                                        {
+                                            <tr>
+                                                <td></td>
+                                                <td>@item.operatorName</td>
+                                                <td>@item.flightNo</td>
+                                                <td></td>
+                                                <td>@item.departureAirportName</td>
+                                                <td>@Convert.ToDateTime(item.departureTime).ToShortDateString() @Convert.ToDateTime(item.departureTime).ToShortTimeString()</td>
+                                                <td>@item.arrivalAirportName</td>
+                                                <td>@Convert.ToDateTime(item.arrivalTime).ToShortDateString() @Convert.ToDateTime(item.arrivalTime).ToShortTimeString()</td>
+                                            </tr>}
+                                    }
+
+
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+}
+else
+{
+    <section class="flights-list flight-information mt-sm-5 mt-5 pt-sm-5">
+        <div class="container mt-sm-5 ">
+            <div class="row mt-sm-3">
+                <div class="col-sm-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="panel-head">
+
+                                <div role="alert">
+                                    <strong style="display: block;padding-bottom: 10px;font-size: 18px;">
+                                        Bir hata oluştu
+                                    </strong>
+                                    <ul>
+                                        <li><strong>Banka Hatası</strong></li>
+                                        <li><i class="fa fa-angle-right"></i> Ödemeniz kartınızdan çekilemedi</li>
+                                    </ul>
+                                    <br><br>
+                                    <a href="@Request[" okurl"]" class="btn btn btn-primary">
+                                        <i class="fa fa-angle-double-left"></i>
+                                        Geri Dön
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+
+@Html.Action("Footer", "Home")
+@Html.Action("PartialSignUp", "Home")

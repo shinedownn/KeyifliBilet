@@ -1,0 +1,1059 @@
+﻿<section class="result-title">
+    <div class="container">
+        <div class="row">
+            <div class="heading-title">
+                <h2><i class="icon-plane"></i> GİDİŞ</h2>
+                <p class="font-lato size-19">
+                    <strong>Istanbul - Erzincan</strong>, <strong class="text-black">22 Aralık Cumartesi</strong>
+                    <a class="nav-link weekly dropdown-toggle collapsed" href="#" data-toggle="collapse" data-target="#divGidisChartCollapse" aria-controls="divGidisChartCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fa fa-line-chart"></i> <text>Haftalık Fiyatlar</text>
+                    </a>
+                </p>
+                <span class="badge btn-group dropup">
+                    <button type="button" class="btn btn-link" id="btnFromPreviousDay"><span class="fa fa-angle-left"></span><span class="sr-only">Önceki Gün</span></button>
+                    <button type="button" class="btn btn-link"> <span id="fromChangeDateStr">22.12.2018</span> </button>
+                    <button type="button" class="btn btn-link" id="btnFromNextDay"><span class="fa fa-angle-right"></span><span class="sr-only">Sonraki Gün</span></button>
+                </span>
+            </div>
+            <div id="divGidisChartCollapse" class="collapse weekly-bars">
+                <div class="bars">
+                    <div class="clearfix">
+                        <div class="item " onclick="WDT.SearchBox.NewSearch(-1, false);">
+                            <div class="bar js-bar" data-date="2018-12-21">
+                                <div class="fill" style="height: 38.238%">
+                                    <div class="price-info">
+                                        <div class="price-price">382,38<span class="hidden-xs">&nbsp;TRY</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="date">
+                                <div class="dow">Cum</div>
+                                <div class="day">21</div>
+                            </div>
+                        </div>
+                        <div class="item selected" onclick="WDT.SearchBox.NewSearch(0, false);">
+                            <div class="bar js-bar" data-date="2018-12-22">
+                                <div class="fill" style="height: 23.339%">
+                                    <div class="price-info">
+                                        <div class="price-price">233,39<span class="hidden-xs">&nbsp;TRY</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="date">
+                                <div class="dow">Cmt</div>
+                                <div class="day">22</div>
+                            </div>
+                        </div>
+                        <div class="item " onclick="WDT.SearchBox.NewSearch(1, false);">
+                            <div class="bar js-bar" data-date="2018-12-23">
+                                <div class="fill" style="height: 20.639%">
+                                    <div class="price-info">
+                                        <div class="price-price">206,39<span class="hidden-xs">&nbsp;TRY</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="date">
+                                <div class="dow">Paz</div>
+                                <div class="day">23</div>
+                            </div>
+                        </div>
+                        <div class="item " onclick="WDT.SearchBox.NewSearch(2, false);">
+                            <div class="bar js-bar" data-date="2018-12-24">
+                                <div class="fill" style="height: 23.339%">
+                                    <div class="price-info">
+                                        <div class="price-price">233,39<span class="hidden-xs">&nbsp;TRY</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="date">
+                                <div class="dow">Pzt</div>
+                                <div class="day">24</div>
+                            </div>
+                        </div>
+                        <div class="item " onclick="WDT.SearchBox.NewSearch(3, false);">
+                            <div class="bar js-bar" data-date="2018-12-25">
+                                <div class="fill" style="height: 16.859%">
+                                    <div class="price-info">
+                                        <div class="price-price">168,59<span class="hidden-xs">&nbsp;TRY</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="date">
+                                <div class="dow">Sal</div>
+                                <div class="day">25</div>
+                            </div>
+                        </div>
+                        <div class="item " onclick="WDT.SearchBox.NewSearch(4, false);">
+                            <div class="bar js-bar" data-date="2018-12-26">
+                                <div class="fill" style="height: 16.859%">
+                                    <div class="price-info">
+                                        <div class="price-price">168,59<span class="hidden-xs">&nbsp;TRY</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="date">
+                                <div class="dow">Çar</div>
+                                <div class="day">26</div>
+                            </div>
+                        </div>
+                        <div class="item " onclick="WDT.SearchBox.NewSearch(5, false);">
+                            <div class="bar js-bar" data-date="2018-12-27">
+                                <div class="fill" style="height: 27.528%">
+                                    <div class="price-info">
+                                        <div class="price-price">275,28<span class="hidden-xs">&nbsp;TRY</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="date">
+                                <div class="dow">Per</div>
+                                <div class="day">27</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<section class="flights-list" id="sectionFlightContainer">
+    <div class="container">
+        <div class="tab-pane show active" id="tabFlights" role="tabpanel" aria-labelledby="oneway">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <ul class="navigate">
+                        <li class="nav-departure col-sm-2 col-xs-3 col-sm-push-0 col-xs-push-2">Kalkış</li>
+                        <li class="col-sm-1 col-xs-4 col-sm-push-0 col-xs-push-2">Aktarma</li>
+                        <li class="nav-arrival col-sm-2 col-xs-3 col-sm-push-0 col-xs-push-2">Varış</li>
+                        <li class="col-sm-1"></li>
+                        <li class="col-sm-2 col-xs-2 hidden-xs"><span class="" data-toggle="tooltip" data-placement="bottom" title="Bu ücret sınıfı promosyon sınıfıdır. İade ve değişiklik yapılamaz.Daha detaylı bilgi için kuralları okuyunuz."><i class="icon-question-sign"></i> Promosyonlu</span></li>
+                        <li class="col-sm-2 col-xs-2 hidden-xs"><span class="" data-toggle="tooltip" data-placement="bottom" title="Bu ücret sınıfı ekonomi sınıfıdır. İade ve değişiklik yapılır.Daha detaylı bilgi için kuralları okuyunuz."><i class="icon-question-sign"></i> Ekonomi</span></li>
+                        <li class="col-sm-2 col-xs-2 hidden-xs"><span class="" data-toggle="tooltip" data-placement="bottom" title="Bu ücret sınıfı business sınıfıdır. İade ve değişiklik yapılır.Daha detaylı bilgi için kuralları okuyunuz."><i class="icon-question-sign"></i> Business</span></li>
+                    </ul>
+                    <div id="selectedFlight"></div>
+
+
+
+
+                    <ul id="flight" class="models-list options-list">
+                        <li class="flight-itinerary" pricingtype="FREE_FORM" providerkey="THY B2C" packageid="0" data-hasstop="False" departuretime="636855759000000000" totaltime="125" minprice="300" airline="TK" data-toggle="collapse" data-target="#collapse-0" aria-expanded="false" aria-controls="collapse-0">
+                            <div class="airlines">
+                                <div class="content">
+                                    <span class="icon-carrier-TK"></span>
+                                    <br>
+                                </div>
+                            </div>
+                            <div class="departure col-sm-2 col-xs-3 col-sm-push-0 col-xs-push-2">
+                                <div class="content">
+                                    <div class="time">13:45</div>
+                                    <div class="airport"><span class="hidden-xs">Istanbul <br></span> IST</div>
+                                </div>
+                            </div>
+                            <div class="stops col-sm-1 col-xs-4 col-sm-push-0 col-xs-push-2">
+                                <div class="content">
+                                    <div class="date">2s 5d</div>
+                                    <div class="airport">
+                                        <div class="stop">
+                                            <div class="stop-row">DİREKT</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="arrival col-sm-2 col-xs-3 col-sm-push-0 col-xs-push-2">
+                                <div class="content">
+                                    <div class="time">15:50</div>
+                                    <div class="airport"><span class="hidden-xs">Erzincan <br></span> ERC</div>
+                                </div>
+                            </div>
+                            <div class="col-sm-1 "></div>
+                            <div class="pricing col-sm-2 col-xs-4" faretype="PROMO" status="active">
+                                <div class="content">
+                                    <div class="pricedata visible-xs">PROMO</div>
+                                    <div class="price">
+                                        <strong class="amount">
+                                            299
+                                            <span class="sup">
+                                                '98
+                                                <span class="desc">TRY</span>
+                                            </span>
+                                        </strong>
+                                    </div>
+                                    <div class="per-person">
+                                        vergi dahil
+                                    </div>
+                                    <div class="choose">
+                                        <label class="radio">
+                                            <input class="rbtnChooseJourney" type="button" onclick="WDT.SearchResult.SelectFlight('S:a515d59a-9a48-497c-bd6d-264d6acb4a1d','m:1k83:6isa:jpy5mlz7:IT:0661395BVnS6bO8A:7xghi','PROMO','Go','FREE_FORM','THY B2C','0')">  <i></i> SEÇ
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pricing col-sm-2 col-xs-4" faretype="ECONOMY" status="active">
+                                <div class="content">
+                                    <div class="pricedata visible-xs">ECONOMY</div>
+                                    <div class="price">
+                                        <strong class="amount">
+                                            463
+                                            <span class="sup">
+                                                '98
+                                                <span class="desc">TRY</span>
+                                            </span>
+                                        </strong>
+                                    </div>
+                                    <div class="per-person">
+                                        vergi dahil
+                                    </div>
+                                    <div class="choose">
+                                        <label class="radio">
+                                            <input class="rbtnChooseJourney" type="button" onclick="WDT.SearchResult.SelectFlight('S:a515d59a-9a48-497c-bd6d-264d6acb4a1d','m:1k83:6isa:jpy5mlz7:IT:0661395BVnS6bO8A:7xghi','ECONOMY','Go','FREE_FORM','THY B2C','0')">  <i></i> SEÇ
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pricing col-sm-2 col-xs-4" faretype="BUSINESS" status="full"><div class="content"> &nbsp; </div></div>
+
+                            <div id="collapse-0" class="detail-table collapse" aria-labelledby="heading-0" data-parent="#flight">
+                                <table border="0" cellpadding="0" cellspacing="0" class="table accordion-table table-bordered table-gray">
+                                    <thead>
+                                        <tr>
+                                            <th class="col-sm-3">UÇUŞ</th>
+                                            <th class="col-sm-3">KALKIŞ</th>
+                                            <th class="col-sm-3">VARIŞ</th>
+                                            <th class="col-sm-3">SÜRE</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="arrival">
+                                            <td class="flights-airlines">
+                                                <span class="icon-carrier-TK"></span>
+                                                <strong>Turkish Airlines</strong>
+                                                <br>TK2654
+                                            </td>
+                                            <td><strong class="time">13:45</strong> IST  <span>Istanbul</span></td>
+                                            <td><strong class="time">15:50</strong>  ERC        <span>Erzincan</span>    </td>
+                                            <td><strong>2sa. 5dk.</strong><br>        uçuş süresi    </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </li>
+                        <li class="flight-itinerary" pricingtype="FREE_FORM" providerkey="THY B2C" packageid="0" data-hasstop="True" departuretime="636855876000000000" totaltime="480" minprice="550" airline="TK" data-toggle="collapse" data-target="#collapse-6" aria-expanded="false" aria-controls="collapse-6">
+                            <div class="airlines">
+                                <div class="content">
+                                    <span class="icon-carrier-TK"></span>
+                                    <br>
+                                </div>
+                            </div>
+                            <div class="departure col-sm-2 col-xs-3 col-sm-push-0 col-xs-push-2">
+                                <div class="content">
+                                    <div class="time">17:00</div>
+                                    <div class="airport"><span class="hidden-xs">Istanbul <br></span> IST</div>
+                                </div>
+                            </div>
+                            <div class="stops col-sm-1 col-xs-4 col-sm-push-0 col-xs-push-2">
+                                <div class="content">
+                                    <div class="date">8s 0d</div>
+                                    <div class="airport">
+                                        <div class="stop">
+                                            <div class="stop-row-half">AKTARMA</div>
+                                            <span class="ball">  1 </span>
+                                            <div class="stop-row-half">AKTARMA</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="arrival col-sm-2 col-xs-3 col-sm-push-0 col-xs-push-2">
+                                <div class="content">
+                                    <div class="time">01:00</div>
+                                    <div class="airport"><span class="hidden-xs">Erzincan <br></span> ERC</div>
+                                </div>
+                            </div>
+                            <div class="col-sm-1 "></div>
+                            <div class="pricing col-sm-2 col-xs-4" faretype="PROMO" status="active">
+                                <div class="content">
+                                    <div class="pricedata visible-xs">PROMO</div>
+                                    <div class="price">
+                                        <strong class="amount">
+                                            549
+                                            <span class="sup">
+                                                '96
+                                                <span class="desc">TRY</span>
+                                            </span>
+                                        </strong>
+                                    </div>
+                                    <div class="per-person">
+                                        vergi dahil
+                                    </div>
+                                    <div class="choose">
+                                        <label class="radio">
+                                            <input class="rbtnChooseJourney" type="button" onclick="WDT.SearchResult.SelectFlight('S:a515d59a-9a48-497c-bd6d-264d6acb4a1d','m:1k83:6isa:jpy5mlz8:IT:066139i5sB6pqvKD:7xgho','PROMO','Go','FREE_FORM','THY B2C','0')">  <i></i> SEÇ
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pricing col-sm-2 col-xs-4" faretype="ECONOMY" status="active">
+                                <div class="content">
+                                    <div class="pricedata visible-xs">ECONOMY</div>
+                                    <div class="price">
+                                        <strong class="amount">
+                                            687
+                                            <span class="sup">
+                                                '96
+                                                <span class="desc">TRY</span>
+                                            </span>
+                                        </strong>
+                                    </div>
+                                    <div class="per-person">
+                                        vergi dahil
+                                    </div>
+                                    <div class="choose">
+                                        <label class="radio">
+                                            <input class="rbtnChooseJourney" type="button" onclick="WDT.SearchResult.SelectFlight('S:a515d59a-9a48-497c-bd6d-264d6acb4a1d','m:1k83:6isa:jpy5mlz8:IT:066139i5sB6pqvKD:7xgho','ECONOMY','Go','FREE_FORM','THY B2C','0')">  <i></i> SEÇ
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pricing col-sm-2 col-xs-4" faretype="BUSINESS" status="active">
+                                <div class="content">
+                                    <div class="pricedata visible-xs">BUSINESS</div>
+                                    <div class="price">
+                                        <strong class="amount">
+                                            1.107
+                                            <span class="sup">
+                                                '96
+                                                <span class="desc">TRY</span>
+                                            </span>
+                                        </strong>
+                                    </div>
+                                    <div class="per-person">
+                                        vergi dahil
+                                    </div>
+                                    <div class="choose">
+                                        <label class="radio">
+                                            <input class="rbtnChooseJourney" type="button" onclick="WDT.SearchResult.SelectFlight('S:a515d59a-9a48-497c-bd6d-264d6acb4a1d','m:1k83:6isa:jpy5mlz8:IT:066139i5sB6pqvKD:7xgho','BUSINESS','Go','FREE_FORM','THY B2C','0')">  <i></i> SEÇ
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="collapse-6" class="detail-table collapse" aria-labelledby="heading-6" data-parent="#flight">
+                                <table border="0" cellpadding="0" cellspacing="0" class="table accordion-table table-bordered table-gray">
+                                    <thead>
+                                        <tr>
+                                            <th class="col-sm-3">UÇUŞ</th>
+                                            <th class="col-sm-3">KALKIŞ</th>
+                                            <th class="col-sm-3">VARIŞ</th>
+                                            <th class="col-sm-3">SÜRE</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="arrival">
+                                            <td class="flights-airlines">
+                                                <span class="icon-carrier-TK"></span>
+                                                <strong>Turkish Airlines</strong>
+                                                <br>TK2166
+                                            </td>
+                                            <td><strong class="time">17:00</strong> IST  <span>Istanbul</span></td>
+                                            <td><strong class="time">18:10</strong>  ESB        <span>Ankara</span>    </td>
+                                            <td><strong>1sa. 10dk.</strong><br>        uçuş süresi    </td>
+                                        </tr>
+                                        <tr class="arrival">
+                                            <td colspan="4">
+                                                Bekleme Süresi : 5sa, 30dk
+                                            </td>
+                                        </tr>
+                                        <tr class="arrival">
+                                            <td class="flights-airlines">
+                                                <span class="icon-carrier-AJ"></span>
+                                                <strong>AnadoluJet</strong>
+                                                <br>TK7078
+                                            </td>
+                                            <td><strong class="time">23:40</strong> ESB  <span>Ankara</span></td>
+                                            <td><strong class="time">01:00</strong>  ERC        <span>Erzincan</span>    </td>
+                                            <td><strong>1sa. 20dk.</strong><br>        uçuş süresi    </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </li>
+                        <li class="flight-itinerary" pricingtype="FREE_FORM" providerkey="THY B2C" packageid="0" data-hasstop="True" departuretime="636855894000000000" totaltime="450" minprice="550" airline="TK" data-toggle="collapse" data-target="#collapse-5" aria-expanded="false" aria-controls="collapse-5">
+                            <div class="airlines">
+                                <div class="content">
+                                    <span class="icon-carrier-TK"></span>
+                                    <br>
+                                </div>
+                            </div>
+                            <div class="departure col-sm-2 col-xs-3 col-sm-push-0 col-xs-push-2">
+                                <div class="content">
+                                    <div class="time">17:30</div>
+                                    <div class="airport"><span class="hidden-xs">Istanbul <br></span> IST</div>
+                                </div>
+                            </div>
+                            <div class="stops col-sm-1 col-xs-4 col-sm-push-0 col-xs-push-2">
+                                <div class="content">
+                                    <div class="date">7s 30d</div>
+                                    <div class="airport">
+                                        <div class="stop">
+                                            <div class="stop-row-half">AKTARMA</div>
+                                            <span class="ball">  1 </span>
+                                            <div class="stop-row-half">AKTARMA</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="arrival col-sm-2 col-xs-3 col-sm-push-0 col-xs-push-2">
+                                <div class="content">
+                                    <div class="time">01:00</div>
+                                    <div class="airport"><span class="hidden-xs">Erzincan <br></span> ERC</div>
+                                </div>
+                            </div>
+                            <div class="col-sm-1 "></div>
+                            <div class="pricing col-sm-2 col-xs-4" faretype="PROMO" status="active">
+                                <div class="content">
+                                    <div class="pricedata visible-xs">PROMO</div>
+                                    <div class="price">
+                                        <strong class="amount">
+                                            549
+                                            <span class="sup">
+                                                '96
+                                                <span class="desc">TRY</span>
+                                            </span>
+                                        </strong>
+                                    </div>
+                                    <div class="per-person">
+                                        vergi dahil
+                                    </div>
+                                    <div class="choose">
+                                        <label class="radio">
+                                            <input class="rbtnChooseJourney" type="button" onclick="WDT.SearchResult.SelectFlight('S:a515d59a-9a48-497c-bd6d-264d6acb4a1d','m:1k83:6isa:jpy5mlz8:IT:066139FiihM2ktcU:7xghn','PROMO','Go','FREE_FORM','THY B2C','0')">  <i></i> SEÇ
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pricing col-sm-2 col-xs-4" faretype="ECONOMY" status="active">
+                                <div class="content">
+                                    <div class="pricedata visible-xs">ECONOMY</div>
+                                    <div class="price">
+                                        <strong class="amount">
+                                            687
+                                            <span class="sup">
+                                                '96
+                                                <span class="desc">TRY</span>
+                                            </span>
+                                        </strong>
+                                    </div>
+                                    <div class="per-person">
+                                        vergi dahil
+                                    </div>
+                                    <div class="choose">
+                                        <label class="radio">
+                                            <input class="rbtnChooseJourney" type="button" onclick="WDT.SearchResult.SelectFlight('S:a515d59a-9a48-497c-bd6d-264d6acb4a1d','m:1k83:6isa:jpy5mlz8:IT:066139FiihM2ktcU:7xghn','ECONOMY','Go','FREE_FORM','THY B2C','0')">  <i></i> SEÇ
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pricing col-sm-2 col-xs-4" faretype="BUSINESS" status="active">
+                                <div class="content">
+                                    <div class="pricedata visible-xs">BUSINESS</div>
+                                    <div class="price">
+                                        <strong class="amount">
+                                            1.107
+                                            <span class="sup">
+                                                '96
+                                                <span class="desc">TRY</span>
+                                            </span>
+                                        </strong>
+                                    </div>
+                                    <div class="per-person">
+                                        vergi dahil
+                                    </div>
+                                    <div class="choose">
+                                        <label class="radio">
+                                            <input class="rbtnChooseJourney" type="button" onclick="WDT.SearchResult.SelectFlight('S:a515d59a-9a48-497c-bd6d-264d6acb4a1d','m:1k83:6isa:jpy5mlz8:IT:066139FiihM2ktcU:7xghn','BUSINESS','Go','FREE_FORM','THY B2C','0')">  <i></i> SEÇ
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="collapse-5" class="detail-table collapse" aria-labelledby="heading-5" data-parent="#flight">
+                                <table border="0" cellpadding="0" cellspacing="0" class="table accordion-table table-bordered table-gray">
+                                    <thead>
+                                        <tr>
+                                            <th class="col-sm-3">UÇUŞ</th>
+                                            <th class="col-sm-3">KALKIŞ</th>
+                                            <th class="col-sm-3">VARIŞ</th>
+                                            <th class="col-sm-3">SÜRE</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="arrival">
+                                            <td class="flights-airlines">
+                                                <span class="icon-carrier-TK"></span>
+                                                <strong>Turkish Airlines</strong>
+                                                <br>TK2168
+                                            </td>
+                                            <td><strong class="time">17:30</strong> IST  <span>Istanbul</span></td>
+                                            <td><strong class="time">18:50</strong>  ESB        <span>Ankara</span>    </td>
+                                            <td><strong>1sa. 20dk.</strong><br>        uçuş süresi    </td>
+                                        </tr>
+                                        <tr class="arrival">
+                                            <td colspan="4">
+                                                Bekleme Süresi : 4sa, 50dk
+                                            </td>
+                                        </tr>
+                                        <tr class="arrival">
+                                            <td class="flights-airlines">
+                                                <span class="icon-carrier-AJ"></span>
+                                                <strong>AnadoluJet</strong>
+                                                <br>TK7078
+                                            </td>
+                                            <td><strong class="time">23:40</strong> ESB  <span>Ankara</span></td>
+                                            <td><strong class="time">01:00</strong>  ERC        <span>Erzincan</span>    </td>
+                                            <td><strong>1sa. 20dk.</strong><br>        uçuş süresi    </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </li>
+                        <li class="flight-itinerary" pricingtype="FREE_FORM" providerkey="THY B2C" packageid="0" data-hasstop="True" departuretime="636855912000000000" totaltime="420" minprice="550" airline="TK" data-toggle="collapse" data-target="#collapse-4" aria-expanded="false" aria-controls="collapse-4">
+                            <div class="airlines">
+                                <div class="content">
+                                    <span class="icon-carrier-TK"></span>
+                                    <br>
+                                </div>
+                            </div>
+                            <div class="departure col-sm-2 col-xs-3 col-sm-push-0 col-xs-push-2">
+                                <div class="content">
+                                    <div class="time">18:00</div>
+                                    <div class="airport"><span class="hidden-xs">Istanbul <br></span> IST</div>
+                                </div>
+                            </div>
+                            <div class="stops col-sm-1 col-xs-4 col-sm-push-0 col-xs-push-2">
+                                <div class="content">
+                                    <div class="date">7s 0d</div>
+                                    <div class="airport">
+                                        <div class="stop">
+                                            <div class="stop-row-half">AKTARMA</div>
+                                            <span class="ball">  1 </span>
+                                            <div class="stop-row-half">AKTARMA</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="arrival col-sm-2 col-xs-3 col-sm-push-0 col-xs-push-2">
+                                <div class="content">
+                                    <div class="time">01:00</div>
+                                    <div class="airport"><span class="hidden-xs">Erzincan <br></span> ERC</div>
+                                </div>
+                            </div>
+                            <div class="col-sm-1 "></div>
+                            <div class="pricing col-sm-2 col-xs-4" faretype="PROMO" status="active">
+                                <div class="content">
+                                    <div class="pricedata visible-xs">PROMO</div>
+                                    <div class="price">
+                                        <strong class="amount">
+                                            549
+                                            <span class="sup">
+                                                '96
+                                                <span class="desc">TRY</span>
+                                            </span>
+                                        </strong>
+                                    </div>
+                                    <div class="per-person">
+                                        vergi dahil
+                                    </div>
+                                    <div class="choose">
+                                        <label class="radio">
+                                            <input class="rbtnChooseJourney" type="button" onclick="WDT.SearchResult.SelectFlight('S:a515d59a-9a48-497c-bd6d-264d6acb4a1d','m:1k83:6isa:jpy5mlz7:IT:066139rptMG7FjnV:7xghm','PROMO','Go','FREE_FORM','THY B2C','0')">  <i></i> SEÇ
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pricing col-sm-2 col-xs-4" faretype="ECONOMY" status="active">
+                                <div class="content">
+                                    <div class="pricedata visible-xs">ECONOMY</div>
+                                    <div class="price">
+                                        <strong class="amount">
+                                            687
+                                            <span class="sup">
+                                                '96
+                                                <span class="desc">TRY</span>
+                                            </span>
+                                        </strong>
+                                    </div>
+                                    <div class="per-person">
+                                        vergi dahil
+                                    </div>
+                                    <div class="choose">
+                                        <label class="radio">
+                                            <input class="rbtnChooseJourney" type="button" onclick="WDT.SearchResult.SelectFlight('S:a515d59a-9a48-497c-bd6d-264d6acb4a1d','m:1k83:6isa:jpy5mlz7:IT:066139rptMG7FjnV:7xghm','ECONOMY','Go','FREE_FORM','THY B2C','0')">  <i></i> SEÇ
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pricing col-sm-2 col-xs-4" faretype="BUSINESS" status="active">
+                                <div class="content">
+                                    <div class="pricedata visible-xs">BUSINESS</div>
+                                    <div class="price">
+                                        <strong class="amount">
+                                            1.107
+                                            <span class="sup">
+                                                '96
+                                                <span class="desc">TRY</span>
+                                            </span>
+                                        </strong>
+                                    </div>
+                                    <div class="per-person">
+                                        vergi dahil
+                                    </div>
+                                    <div class="choose">
+                                        <label class="radio">
+                                            <input class="rbtnChooseJourney" type="button" onclick="WDT.SearchResult.SelectFlight('S:a515d59a-9a48-497c-bd6d-264d6acb4a1d','m:1k83:6isa:jpy5mlz7:IT:066139rptMG7FjnV:7xghm','BUSINESS','Go','FREE_FORM','THY B2C','0')">  <i></i> SEÇ
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="collapse-4" class="detail-table collapse" aria-labelledby="heading-4" data-parent="#flight">
+                                <table border="0" cellpadding="0" cellspacing="0" class="table accordion-table table-bordered table-gray">
+                                    <thead>
+                                        <tr>
+                                            <th class="col-sm-3">UÇUŞ</th>
+                                            <th class="col-sm-3">KALKIŞ</th>
+                                            <th class="col-sm-3">VARIŞ</th>
+                                            <th class="col-sm-3">SÜRE</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="arrival">
+                                            <td class="flights-airlines">
+                                                <span class="icon-carrier-TK"></span>
+                                                <strong>Turkish Airlines</strong>
+                                                <br>TK2170
+                                            </td>
+                                            <td><strong class="time">18:00</strong> IST  <span>Istanbul</span></td>
+                                            <td><strong class="time">19:20</strong>  ESB        <span>Ankara</span>    </td>
+                                            <td><strong>1sa. 20dk.</strong><br>        uçuş süresi    </td>
+                                        </tr>
+                                        <tr class="arrival">
+                                            <td colspan="4">
+                                                Bekleme Süresi : 4sa, 20dk
+                                            </td>
+                                        </tr>
+                                        <tr class="arrival">
+                                            <td class="flights-airlines">
+                                                <span class="icon-carrier-AJ"></span>
+                                                <strong>AnadoluJet</strong>
+                                                <br>TK7078
+                                            </td>
+                                            <td><strong class="time">23:40</strong> ESB  <span>Ankara</span></td>
+                                            <td><strong class="time">01:00</strong>  ERC        <span>Erzincan</span>    </td>
+                                            <td><strong>1sa. 20dk.</strong><br>        uçuş süresi    </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </li>
+                        <li class="flight-itinerary" pricingtype="FREE_FORM" providerkey="THY B2C" packageid="0" data-hasstop="True" departuretime="636855948000000000" totaltime="360" minprice="550" airline="TK" data-toggle="collapse" data-target="#collapse-3" aria-expanded="false" aria-controls="collapse-3">
+                            <div class="airlines">
+                                <div class="content">
+                                    <span class="icon-carrier-TK"></span>
+                                    <br>
+                                </div>
+                            </div>
+                            <div class="departure col-sm-2 col-xs-3 col-sm-push-0 col-xs-push-2">
+                                <div class="content">
+                                    <div class="time">19:00</div>
+                                    <div class="airport"><span class="hidden-xs">Istanbul <br></span> IST</div>
+                                </div>
+                            </div>
+                            <div class="stops col-sm-1 col-xs-4 col-sm-push-0 col-xs-push-2">
+                                <div class="content">
+                                    <div class="date">6s 0d</div>
+                                    <div class="airport">
+                                        <div class="stop">
+                                            <div class="stop-row-half">AKTARMA</div>
+                                            <span class="ball">  1 </span>
+                                            <div class="stop-row-half">AKTARMA</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="arrival col-sm-2 col-xs-3 col-sm-push-0 col-xs-push-2">
+                                <div class="content">
+                                    <div class="time">01:00</div>
+                                    <div class="airport"><span class="hidden-xs">Erzincan <br></span> ERC</div>
+                                </div>
+                            </div>
+                            <div class="col-sm-1 "></div>
+                            <div class="pricing col-sm-2 col-xs-4" faretype="PROMO" status="active">
+                                <div class="content">
+                                    <div class="pricedata visible-xs">PROMO</div>
+                                    <div class="price">
+                                        <strong class="amount">
+                                            549
+                                            <span class="sup">
+                                                '96
+                                                <span class="desc">TRY</span>
+                                            </span>
+                                        </strong>
+                                    </div>
+                                    <div class="per-person">
+                                        vergi dahil
+                                    </div>
+                                    <div class="choose">
+                                        <label class="radio">
+                                            <input class="rbtnChooseJourney" type="button" onclick="WDT.SearchResult.SelectFlight('S:a515d59a-9a48-497c-bd6d-264d6acb4a1d','m:1k83:6isa:jpy5mlz7:IT:066139WUXqaaCBvx:7xghl','PROMO','Go','FREE_FORM','THY B2C','0')">  <i></i> SEÇ
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pricing col-sm-2 col-xs-4" faretype="ECONOMY" status="active">
+                                <div class="content">
+                                    <div class="pricedata visible-xs">ECONOMY</div>
+                                    <div class="price">
+                                        <strong class="amount">
+                                            687
+                                            <span class="sup">
+                                                '96
+                                                <span class="desc">TRY</span>
+                                            </span>
+                                        </strong>
+                                    </div>
+                                    <div class="per-person">
+                                        vergi dahil
+                                    </div>
+                                    <div class="choose">
+                                        <label class="radio">
+                                            <input class="rbtnChooseJourney" type="button" onclick="WDT.SearchResult.SelectFlight('S:a515d59a-9a48-497c-bd6d-264d6acb4a1d','m:1k83:6isa:jpy5mlz7:IT:066139WUXqaaCBvx:7xghl','ECONOMY','Go','FREE_FORM','THY B2C','0')">  <i></i> SEÇ
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pricing col-sm-2 col-xs-4" faretype="BUSINESS" status="active">
+                                <div class="content">
+                                    <div class="pricedata visible-xs">BUSINESS</div>
+                                    <div class="price">
+                                        <strong class="amount">
+                                            1.107
+                                            <span class="sup">
+                                                '96
+                                                <span class="desc">TRY</span>
+                                            </span>
+                                        </strong>
+                                    </div>
+                                    <div class="per-person">
+                                        vergi dahil
+                                    </div>
+                                    <div class="choose">
+                                        <label class="radio">
+                                            <input class="rbtnChooseJourney" type="button" onclick="WDT.SearchResult.SelectFlight('S:a515d59a-9a48-497c-bd6d-264d6acb4a1d','m:1k83:6isa:jpy5mlz7:IT:066139WUXqaaCBvx:7xghl','BUSINESS','Go','FREE_FORM','THY B2C','0')">  <i></i> SEÇ
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="collapse-3" class="detail-table collapse" aria-labelledby="heading-3" data-parent="#flight">
+                                <table border="0" cellpadding="0" cellspacing="0" class="table accordion-table table-bordered table-gray">
+                                    <thead>
+                                        <tr>
+                                            <th class="col-sm-3">UÇUŞ</th>
+                                            <th class="col-sm-3">KALKIŞ</th>
+                                            <th class="col-sm-3">VARIŞ</th>
+                                            <th class="col-sm-3">SÜRE</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="arrival">
+                                            <td class="flights-airlines">
+                                                <span class="icon-carrier-TK"></span>
+                                                <strong>Turkish Airlines</strong>
+                                                <br>TK2174
+                                            </td>
+                                            <td><strong class="time">19:00</strong> IST  <span>Istanbul</span></td>
+                                            <td><strong class="time">20:20</strong>  ESB        <span>Ankara</span>    </td>
+                                            <td><strong>1sa. 20dk.</strong><br>        uçuş süresi    </td>
+                                        </tr>
+                                        <tr class="arrival">
+                                            <td colspan="4">
+                                                Bekleme Süresi : 3sa, 20dk
+                                            </td>
+                                        </tr>
+                                        <tr class="arrival">
+                                            <td class="flights-airlines">
+                                                <span class="icon-carrier-AJ"></span>
+                                                <strong>AnadoluJet</strong>
+                                                <br>TK7078
+                                            </td>
+                                            <td><strong class="time">23:40</strong> ESB  <span>Ankara</span></td>
+                                            <td><strong class="time">01:00</strong>  ERC        <span>Erzincan</span>    </td>
+                                            <td><strong>1sa. 20dk.</strong><br>        uçuş süresi    </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </li>
+                        <li class="flight-itinerary" pricingtype="FREE_FORM" providerkey="THY B2C" packageid="0" data-hasstop="True" departuretime="636856020000000000" totaltime="240" minprice="550" airline="TK" data-toggle="collapse" data-target="#collapse-1" aria-expanded="false" aria-controls="collapse-1">
+                            <div class="airlines">
+                                <div class="content">
+                                    <span class="icon-carrier-TK"></span>
+                                    <br>
+                                </div>
+                            </div>
+                            <div class="departure col-sm-2 col-xs-3 col-sm-push-0 col-xs-push-2">
+                                <div class="content">
+                                    <div class="time">21:00</div>
+                                    <div class="airport"><span class="hidden-xs">Istanbul <br></span> IST</div>
+                                </div>
+                            </div>
+                            <div class="stops col-sm-1 col-xs-4 col-sm-push-0 col-xs-push-2">
+                                <div class="content">
+                                    <div class="date">4s 0d</div>
+                                    <div class="airport">
+                                        <div class="stop">
+                                            <div class="stop-row-half">AKTARMA</div>
+                                            <span class="ball">  1 </span>
+                                            <div class="stop-row-half">AKTARMA</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="arrival col-sm-2 col-xs-3 col-sm-push-0 col-xs-push-2">
+                                <div class="content">
+                                    <div class="time">01:00</div>
+                                    <div class="airport"><span class="hidden-xs">Erzincan <br></span> ERC</div>
+                                </div>
+                            </div>
+                            <div class="col-sm-1 "></div>
+                            <div class="pricing col-sm-2 col-xs-4" faretype="PROMO" status="active">
+                                <div class="content">
+                                    <div class="pricedata visible-xs">PROMO</div>
+                                    <div class="price">
+                                        <strong class="amount">
+                                            549
+                                            <span class="sup">
+                                                '96
+                                                <span class="desc">TRY</span>
+                                            </span>
+                                        </strong>
+                                    </div>
+                                    <div class="per-person">
+                                        vergi dahil
+                                    </div>
+                                    <div class="choose">
+                                        <label class="radio">
+                                            <input class="rbtnChooseJourney" type="button" onclick="WDT.SearchResult.SelectFlight('S:a515d59a-9a48-497c-bd6d-264d6acb4a1d','m:1k83:6isa:jpy5mlz7:IT:066139ThzxmoZSzM:7xghj','PROMO','Go','FREE_FORM','THY B2C','0')">  <i></i> SEÇ
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pricing col-sm-2 col-xs-4" faretype="ECONOMY" status="active">
+                                <div class="content">
+                                    <div class="pricedata visible-xs">ECONOMY</div>
+                                    <div class="price">
+                                        <strong class="amount">
+                                            687
+                                            <span class="sup">
+                                                '96
+                                                <span class="desc">TRY</span>
+                                            </span>
+                                        </strong>
+                                    </div>
+                                    <div class="per-person">
+                                        vergi dahil
+                                    </div>
+                                    <div class="choose">
+                                        <label class="radio">
+                                            <input class="rbtnChooseJourney" type="button" onclick="WDT.SearchResult.SelectFlight('S:a515d59a-9a48-497c-bd6d-264d6acb4a1d','m:1k83:6isa:jpy5mlz7:IT:066139ThzxmoZSzM:7xghj','ECONOMY','Go','FREE_FORM','THY B2C','0')">  <i></i> SEÇ
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pricing col-sm-2 col-xs-4" faretype="BUSINESS" status="active">
+                                <div class="content">
+                                    <div class="pricedata visible-xs">BUSINESS</div>
+                                    <div class="price">
+                                        <strong class="amount">
+                                            1.107
+                                            <span class="sup">
+                                                '96
+                                                <span class="desc">TRY</span>
+                                            </span>
+                                        </strong>
+                                    </div>
+                                    <div class="per-person">
+                                        vergi dahil
+                                    </div>
+                                    <div class="choose">
+                                        <label class="radio">
+                                            <input class="rbtnChooseJourney" type="button" onclick="WDT.SearchResult.SelectFlight('S:a515d59a-9a48-497c-bd6d-264d6acb4a1d','m:1k83:6isa:jpy5mlz7:IT:066139ThzxmoZSzM:7xghj','BUSINESS','Go','FREE_FORM','THY B2C','0')">  <i></i> SEÇ
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="collapse-1" class="detail-table collapse" aria-labelledby="heading-1" data-parent="#flight">
+                                <table border="0" cellpadding="0" cellspacing="0" class="table accordion-table table-bordered table-gray">
+                                    <thead>
+                                        <tr>
+                                            <th class="col-sm-3">UÇUŞ</th>
+                                            <th class="col-sm-3">KALKIŞ</th>
+                                            <th class="col-sm-3">VARIŞ</th>
+                                            <th class="col-sm-3">SÜRE</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="arrival">
+                                            <td class="flights-airlines">
+                                                <span class="icon-carrier-TK"></span>
+                                                <strong>Turkish Airlines</strong>
+                                                <br>TK2182
+                                            </td>
+                                            <td><strong class="time">21:00</strong> IST  <span>Istanbul</span></td>
+                                            <td><strong class="time">22:20</strong>  ESB        <span>Ankara</span>    </td>
+                                            <td><strong>1sa. 20dk.</strong><br>        uçuş süresi    </td>
+                                        </tr>
+                                        <tr class="arrival">
+                                            <td colspan="4">
+                                                Bekleme Süresi : 1sa, 20dk
+                                            </td>
+                                        </tr>
+                                        <tr class="arrival">
+                                            <td class="flights-airlines">
+                                                <span class="icon-carrier-AJ"></span>
+                                                <strong>AnadoluJet</strong>
+                                                <br>TK7078
+                                            </td>
+                                            <td><strong class="time">23:40</strong> ESB  <span>Ankara</span></td>
+                                            <td><strong class="time">01:00</strong>  ERC        <span>Erzincan</span>    </td>
+                                            <td><strong>1sa. 20dk.</strong><br>        uçuş süresi    </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </li>
+                        <li class="flight-itinerary" pricingtype="FREE_FORM" providerkey="THY B2C" packageid="0" data-hasstop="True" departuretime="636855984000000000" totaltime="300" minprice="848" airline="TK" data-toggle="collapse" data-target="#collapse-2" aria-expanded="false" aria-controls="collapse-2">
+                            <div class="airlines">
+                                <div class="content">
+                                    <span class="icon-carrier-TK"></span>
+                                    <br>
+                                </div>
+                            </div>
+                            <div class="departure col-sm-2 col-xs-3 col-sm-push-0 col-xs-push-2">
+                                <div class="content">
+                                    <div class="time">20:00</div>
+                                    <div class="airport"><span class="hidden-xs">Istanbul <br></span> IST</div>
+                                </div>
+                            </div>
+                            <div class="stops col-sm-1 col-xs-4 col-sm-push-0 col-xs-push-2">
+                                <div class="content">
+                                    <div class="date">5s 0d</div>
+                                    <div class="airport">
+                                        <div class="stop">
+                                            <div class="stop-row-half">AKTARMA</div>
+                                            <span class="ball">  1 </span>
+                                            <div class="stop-row-half">AKTARMA</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="arrival col-sm-2 col-xs-3 col-sm-push-0 col-xs-push-2">
+                                <div class="content">
+                                    <div class="time">01:00</div>
+                                    <div class="airport"><span class="hidden-xs">Erzincan <br></span> ERC</div>
+                                </div>
+                            </div>
+                            <div class="col-sm-1 "></div>
+                            <div class="pricing col-sm-2 col-xs-4" faretype="PROMO" status="full"><div class="content"> &nbsp; </div></div>
+                            <div class="pricing col-sm-2 col-xs-4" faretype="ECONOMY" status="active">
+                                <div class="content">
+                                    <div class="pricedata visible-xs">ECONOMY</div>
+                                    <div class="price">
+                                        <strong class="amount">
+                                            847
+                                            <span class="sup">
+                                                '96
+                                                <span class="desc">TRY</span>
+                                            </span>
+                                        </strong>
+                                    </div>
+                                    <div class="per-person">
+                                        vergi dahil
+                                    </div>
+                                    <div class="choose">
+                                        <label class="radio">
+                                            <input class="rbtnChooseJourney" type="button" onclick="WDT.SearchResult.SelectFlight('S:a515d59a-9a48-497c-bd6d-264d6acb4a1d','m:1k83:6isa:jpy5mlz7:IT:066139aHOLwxl527:7xghk','ECONOMY','Go','FREE_FORM','THY B2C','0')">  <i></i> SEÇ
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pricing col-sm-2 col-xs-4" faretype="BUSINESS" status="active">
+                                <div class="content">
+                                    <div class="pricedata visible-xs">BUSINESS</div>
+                                    <div class="price">
+                                        <strong class="amount">
+                                            1.107
+                                            <span class="sup">
+                                                '96
+                                                <span class="desc">TRY</span>
+                                            </span>
+                                        </strong>
+                                    </div>
+                                    <div class="per-person">
+                                        vergi dahil
+                                    </div>
+                                    <div class="choose">
+                                        <label class="radio">
+                                            <input class="rbtnChooseJourney" type="button" onclick="WDT.SearchResult.SelectFlight('S:a515d59a-9a48-497c-bd6d-264d6acb4a1d','m:1k83:6isa:jpy5mlz7:IT:066139aHOLwxl527:7xghk','BUSINESS','Go','FREE_FORM','THY B2C','0')">  <i></i> SEÇ
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="collapse-2" class="detail-table collapse" aria-labelledby="heading-2" data-parent="#flight">
+                                <table border="0" cellpadding="0" cellspacing="0" class="table accordion-table table-bordered table-gray">
+                                    <thead>
+                                        <tr>
+                                            <th class="col-sm-3">UÇUŞ</th>
+                                            <th class="col-sm-3">KALKIŞ</th>
+                                            <th class="col-sm-3">VARIŞ</th>
+                                            <th class="col-sm-3">SÜRE</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="arrival">
+                                            <td class="flights-airlines">
+                                                <span class="icon-carrier-TK"></span>
+                                                <strong>Turkish Airlines</strong>
+                                                <br>TK2178
+                                            </td>
+                                            <td><strong class="time">20:00</strong> IST  <span>Istanbul</span></td>
+                                            <td><strong class="time">21:20</strong>  ESB        <span>Ankara</span>    </td>
+                                            <td><strong>1sa. 20dk.</strong><br>        uçuş süresi    </td>
+                                        </tr>
+                                        <tr class="arrival">
+                                            <td colspan="4">
+                                                Bekleme Süresi : 2sa, 20dk
+                                            </td>
+                                        </tr>
+                                        <tr class="arrival">
+                                            <td class="flights-airlines">
+                                                <span class="icon-carrier-AJ"></span>
+                                                <strong>AnadoluJet</strong>
+                                                <br>TK7078
+                                            </td>
+                                            <td><strong class="time">23:40</strong> ESB  <span>Ankara</span></td>
+                                            <td><strong class="time">01:00</strong>  ERC        <span>Erzincan</span>    </td>
+                                            <td><strong>1sa. 20dk.</strong><br>        uçuş süresi    </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="80b25756e7a44edbba40f56c301b0813" Name="Diagram1">
+        <EntityTypeShape EntityType="KeyifliBiletModel.BookingInfo" Width="1.5" PointX="5.25" PointY="11.25" />
+        <EntityTypeShape EntityType="KeyifliBiletModel.EBulten" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="KeyifliBiletModel.EkstraServis" Width="1.5" PointX="7.75" PointY="13.75" />
+        <EntityTypeShape EntityType="KeyifliBiletModel.IletisimFormu" Width="1.5" PointX="0.75" PointY="10.75" />
+        <EntityTypeShape EntityType="KeyifliBiletModel.Kullanicilar" Width="1.5" PointX="7.75" PointY="9.125" />
+        <EntityTypeShape EntityType="KeyifliBiletModel.Kutu" Width="1.5" PointX="3" PointY="15" />
+        <EntityTypeShape EntityType="KeyifliBiletModel.KutuKategori" Width="1.5" PointX="0.75" PointY="16" />
+        <EntityTypeShape EntityType="KeyifliBiletModel.legs" Width="1.5" PointX="5.25" PointY="1.375" />
+        <EntityTypeShape EntityType="KeyifliBiletModel.Log" Width="1.5" PointX="10" PointY="10.75" />
+        <EntityTypeShape EntityType="KeyifliBiletModel.MailKategori" Width="1.5" PointX="12.75" PointY="11.5" />
+        <EntityTypeShape EntityType="KeyifliBiletModel.Mailler" Width="1.5" PointX="15" PointY="11" />
+        <EntityTypeShape EntityType="KeyifliBiletModel.Menuler" Width="1.5" PointX="15" PointY="4.875" />
+        <EntityTypeShape EntityType="KeyifliBiletModel.MenuTipleri" Width="1.5" PointX="12.75" PointY="5.25" />
+        <EntityTypeShape EntityType="KeyifliBiletModel.OrderResult" Width="1.5" PointX="3" PointY="5.375" />
+        <EntityTypeShape EntityType="KeyifliBiletModel.passengers" Width="1.5" PointX="5.25" PointY="6.5" />
+        <EntityTypeShape EntityType="KeyifliBiletModel.Rol" Width="1.5" PointX="10" PointY="8.125" />
+        <EntityTypeShape EntityType="KeyifliBiletModel.SayfaIcerigi" Width="1.5" PointX="10" PointY="3.625" />
+        <EntityTypeShape EntityType="KeyifliBiletModel.Sayfalar" Width="1.5" PointX="7.75" PointY="2.125" />
+        <EntityTypeShape EntityType="KeyifliBiletModel.SayfaMultiMedia" Width="1.5" PointX="10" PointY="1.125" />
+        <EntityTypeShape EntityType="KeyifliBiletModel.Siniflar" Width="1.5" PointX="9.75" PointY="13.75" />
+        <EntityTypeShape EntityType="KeyifliBiletModel.Sms" Width="1.5" PointX="15" PointY="1" />
+        <EntityTypeShape EntityType="KeyifliBiletModel.SmsKategori" Width="1.5" PointX="12.75" PointY="1.5" />
+        <EntityTypeShape EntityType="KeyifliBiletModel.SosyalMedya" Width="1.5" PointX="11.75" PointY="14.75" />
+        <EntityTypeShape EntityType="KeyifliBiletModel.TakipKodlari" Width="1.5" PointX="13.75" PointY="14.75" />
+        <EntityTypeShape EntityType="KeyifliBiletModel.Tanimlar" Width="1.5" PointX="15.75" PointY="14.75" />
+        <EntityTypeShape EntityType="KeyifliBiletModel.Uyeler" Width="1.5" PointX="0.75" PointY="5.875" />
+        <EntityTypeShape EntityType="KeyifliBiletModel.Yetki" Width="1.5" PointX="12.25" PointY="8.125" />
+        <EntityTypeShape EntityType="KeyifliBiletModel.Yetkiler" Width="1.5" PointX="14.75" PointY="8.75" />
+        <AssociationConnector Association="KeyifliBiletModel.FK_BookingInfo_OrderResult" />
+        <AssociationConnector Association="KeyifliBiletModel.FK_Log_Kullanicilar" />
+        <AssociationConnector Association="KeyifliBiletModel.FK_Rol_Kullanicilar" />
+        <AssociationConnector Association="KeyifliBiletModel.FK_Kutu_KutuKategori" />
+        <AssociationConnector Association="KeyifliBiletModel.FK_legs_OrderResult" />
+        <AssociationConnector Association="KeyifliBiletModel.FK_Mailler_MailKategori" />
+        <AssociationConnector Association="KeyifliBiletModel.FK_Menuler_MenuTipleri" />
+        <AssociationConnector Association="KeyifliBiletModel.FK_OrderResult_Uyeler1" />
+        <AssociationConnector Association="KeyifliBiletModel.FK_passengers_OrderResult" />
+        <AssociationConnector Association="KeyifliBiletModel.FK_Yetki_Rol" />
+        <AssociationConnector Association="KeyifliBiletModel.FK_SayfaIcerigi_Sayfalar" />
+        <AssociationConnector Association="KeyifliBiletModel.FK_SayfaMultiMedia_Sayfalar1" />
+        <AssociationConnector Association="KeyifliBiletModel.FK_Sms_SmsKategori" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

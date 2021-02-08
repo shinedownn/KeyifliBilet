@@ -1,0 +1,476 @@
+﻿@*@model KeyifliBilet.Areas.Yonetim.Models.IndexViewModel
+<section id="yurtdisi" class="">
+    <div class="vector">
+        <i class="flaticon-mountain"></i>
+    </div>
+    <div class="vector">
+        <i class="flaticon-monument"></i>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="featured-grid">
+                <div class="featured-title">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        @{ int i = 0;}
+                        @foreach (var item in Model.kutuKategori)
+                        {
+                            if (i == 0)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="@i-tab" data-toggle="tab" href="#@i-Tab" role="tab" aria-controls="@i-Tab" aria-selected="true">@item.Kategori</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" id="@i-tab" data-toggle="tab" href="#@i-Tab" role="tab" aria-controls="@i-Tab" aria-selected="false">@item.Kategori</a>
+                                </li>
+                            }
+                            @(i++)
+                        }
+
+
+                    </ul>
+                </div>
+                @{ int k = 0;}
+                @{ int t = 0;}
+                <div class="tab-content" id="myTabContent">
+                    @foreach (var item in Model.kutuKategori)
+                    {
+                        if (k == 0)
+                        {
+                            <div class="tab-pane show active" id="@k-Tab" role="tabpanel" aria-labelledby="@k-Tab-tab">
+                                <div class="row">
+                                    @foreach (var data in Model.kutu.Where(w => w.KategoriId == item.KategoriId))
+                                    {
+                                        if (t == 0)
+                                        {
+                                            <div class="col-md-6 col-sm-6 col-12" deneme="2,163,22">
+                                                <div class="teklif">
+
+                                                    <img class="image img-responsive" src="@data.Resim" alt="@data.DEP_Airport_CityName (@data.DEP_Airport_Code), @data.ARR_Airport_CityName uçak bileti">
+                                                    <span class="cover"></span>
+                                                    <div class="content ">
+                                                        <div class="content-inner">
+                                                            <div class="title">
+                                                                <div class="departure">Kalkış: @data.ARR_Airport_CityName (@data.DEP_Airport_Code)</div>
+                                                            </div>
+                                                            <div class="arrival">Marakeş <i class="flaticon-transport"></i></div>
+                                                            <span class="btn btn-primary"><a onclick="WDT.SearchBox.SearchFlightFromBox(7)" style="color:white">İncele</a></span>
+                                                            <div class="price">
+                                                                <strong class="amount">
+                                                                    2,163
+                                                                    <span class="sup">
+                                                                        '
+                                                                        22
+                                                                        <span class="desc">TRY</span>
+                                                                    </span>
+                                                                </strong>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <a onclick="WDT.SearchBox.SearchFlightFromBox(7)" class="teklif-href visible-xs"> </a>
+                                                </div>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="col-md-3 col-sm-6 col-6" deneme="1,598,00">
+                                                <div class="teklif">
+
+                                                    <img class="image img-responsive" src="@data.Resim" alt="@data.DEP_Airport_CityName (@data.DEP_Airport_Code), @data.ARR_Airport_CityName uçak bileti">
+                                                    <span class="cover"></span>
+                                                    <div class="content ">
+                                                        <div class="content-inner">
+                                                            <div class="title">
+                                                                <div class="departure">Kalkış: @data.ARR_Airport_CityName (@data.DEP_Airport_Code)</div>
+                                                            </div>
+                                                            <div class="arrival">Marakeş <i class="flaticon-transport"></i></div>
+                                                            <span class="btn btn-primary"><a onclick="WDT.SearchBox.SearchFlightFromBox(7)" style="color:white">İncele</a></span>
+                                                            <div class="price">
+                                                                <strong class="amount">
+                                                                    2,163
+                                                                    <span class="sup">
+                                                                        '
+                                                                        22
+                                                                        <span class="desc">TRY</span>
+                                                                    </span>
+                                                                </strong>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <a onclick="WDT.SearchBox.SearchFlightFromBox(7)" class="teklif-href visible-xs"> </a>
+                                                </div>
+                                            </div>
+                                        }
+
+                                    }
+
+                                </div>
+
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="tab-pane" id="@k-Tab" role="tabpanel" aria-labelledby="@k-Tab-tab">
+                                <div class="row">
+                                    @foreach (var data in Model.kutu.Where(w => w.KategoriId == item.KategoriId))
+                                    {
+                                        if (t == 0)
+                                        {
+                                            <div class="col-md-6 col-sm-6 col-12" deneme="2,163,22">
+                                                <div class="teklif">
+
+                                                    <img class="image img-responsive" src="@data.Resim" alt="@data.DEP_Airport_CityName (@data.DEP_Airport_Code), @data.ARR_Airport_CityName uçak bileti">
+                                                    <span class="cover"></span>
+                                                    <div class="content ">
+                                                        <div class="content-inner">
+                                                            <div class="title">
+                                                                <div class="departure">Kalkış: @data.ARR_Airport_CityName (@data.DEP_Airport_Code)</div>
+                                                            </div>
+                                                            <div class="arrival">Marakeş <i class="flaticon-transport"></i></div>
+                                                            <span class="btn btn-primary"><a onclick="WDT.SearchBox.SearchFlightFromBox(7)" style="color:white">İncele</a></span>
+                                                            <div class="price">
+                                                                <strong class="amount">
+                                                                    2,163
+                                                                    <span class="sup">
+                                                                        '
+                                                                        22
+                                                                        <span class="desc">TRY</span>
+                                                                    </span>
+                                                                </strong>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <a onclick="WDT.SearchBox.SearchFlightFromBox(7)" class="teklif-href visible-xs"> </a>
+                                                </div>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="col-md-3 col-sm-6 col-6" deneme="1,598,00">
+                                                <div class="teklif">
+
+                                                    <img class="image img-responsive" src="@data.Resim" alt="@data.DEP_Airport_CityName (@data.DEP_Airport_Code), @data.ARR_Airport_CityName uçak bileti">
+                                                    <span class="cover"></span>
+                                                    <div class="content ">
+                                                        <div class="content-inner">
+                                                            <div class="title">
+                                                                <div class="departure">Kalkış: @data.ARR_Airport_CityName (@data.DEP_Airport_Code)</div>
+                                                            </div>
+                                                            <div class="arrival">Marakeş <i class="flaticon-transport"></i></div>
+                                                            <span class="btn btn-primary"><a onclick="WDT.SearchBox.SearchFlightFromBox(7)" style="color:white">İncele</a></span>
+                                                            <div class="price">
+                                                                <strong class="amount">
+                                                                    2,163
+                                                                    <span class="sup">
+                                                                        '
+                                                                        22
+                                                                        <span class="desc">TRY</span>
+                                                                    </span>
+                                                                </strong>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <a onclick="WDT.SearchBox.SearchFlightFromBox(7)" class="teklif-href visible-xs"> </a>
+                                                </div>
+                                            </div>
+                                        }
+
+                                    }
+
+                                </div>
+
+                            </div>
+                        }
+                        @(k++)
+                    }
+
+                  
+                </div>
+            </div>
+        </div>
+    </div>
+</section>*@
+<section id="yurtdisi" class="">
+    <div class="vector">
+        <i class="flaticon-mountain"></i>
+    </div>
+    <div class="vector">
+        <i class="flaticon-monument"></i>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="featured-grid">
+                <div class="featured-title">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="3-tab" data-toggle="tab" href="#3-Tab" role="tab" aria-controls="3-Tab" aria-selected="true">Kampanyalı Uçuşlar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " id="1-tab" data-toggle="tab" href="#1-Tab" role="tab" aria-controls="1-Tab" aria-selected="false">Yurt İçi Popüler Uçuşlar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " id="2-tab" data-toggle="tab" href="#2-Tab" role="tab" aria-controls="2-Tab" aria-selected="false">Yurt Dışı Popüler Uçuşlar</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane show active" id="3-Tab" role="tabpanel" aria-labelledby="3-Tab-tab">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6 col-12" deneme="2,163,22">
+                                <div class="teklif">
+
+                                    <img class="image img-responsive" src="/Uploaded/Media_Box_75857203-ea3e-4af7-b29a-10f8834f07e7X.jpg" alt="İstanbul (IST), Marakeş uçak bileti">
+                                    <span class="cover"></span>
+                                    <div class="content ">
+                                        <div class="content-inner">
+                                            <div class="title">
+                                                <div class="departure">Kalkış: İstanbul (IST)</div>
+                                            </div>
+                                            <div class="arrival">Marakeş <i class="flaticon-transport"></i></div>
+                                            <span class="btn btn-primary"><a onclick="" style="color:white">İncele</a></span>
+                                            <div class="price">
+                                                <strong class="amount">
+                                                    2,163
+                                                    <span class="sup">
+                                                        '
+                                                        22
+                                                        <span class="desc">TRY</span>
+                                                    </span>
+                                                </strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a onclick="" class="teklif-href visible-xs"> </a>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-6" deneme="1,598,00">
+                                <div class="teklif">
+                                    <img class="image img-responsive" src="/Uploaded/Media_Box_b352fb10-46bf-43cb-933a-e44e27240dcaX.jpg" alt="İstanbul (IST), Köln uçak bileti">
+                                    <span class="cover"></span>
+                                    <div class="content ">
+                                        <div class="content-inner">
+                                            <div class="title">
+                                                <div class="departure">Kalkış: İstanbul (IST)</div>
+                                            </div>
+                                            <div class="arrival">Köln <i class="flaticon-transport"></i></div>
+                                            <span class="btn btn-primary"><a onclick="" style="color:white">İncele</a></span>
+                                            <div class="price">
+                                                <strong class="amount">
+                                                    1,598
+                                                    <span class="sup">
+                                                        '
+                                                        00
+                                                        <span class="desc">TRY</span>
+                                                    </span>
+                                                </strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a onclick="" class="teklif-href visible-xs"> </a>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-6" deneme="1,898,21">
+                                <div class="teklif">
+                                    <img class="image img-responsive" src="/Uploaded/Media_Box_0996c012-d512-4c1a-9c9c-672cd12cee60X.jpg" alt="İstanbul (IST), Doha uçak bileti">
+                                    <span class="cover"></span>
+                                    <div class="content ">
+                                        <div class="content-inner">
+                                            <div class="title">
+                                                <div class="departure">Kalkış: İstanbul (IST)</div>
+                                            </div>
+                                            <div class="arrival">Doha <i class="flaticon-transport"></i></div>
+                                            <span class="btn btn-primary"><a onclick="" style="color:white">İncele</a></span>
+                                            <div class="price">
+                                                <strong class="amount">
+                                                    1,898
+                                                    <span class="sup">
+                                                        '
+                                                        21
+                                                        <span class="desc">TRY</span>
+                                                    </span>
+                                                </strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a onclick="" class="teklif-href visible-xs"> </a>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="tab-pane " id="1-Tab" role="tabpanel" aria-labelledby="1-Tab-tab">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6 col-12" deneme="121,99">
+                                <div class="teklif">
+                                    <img class="image img-responsive" src="/Uploaded/Media_Box_568bdef6-04cb-4401-a451-13a370af6dfeX.jpg" alt="İstanbul (IST), İzmir uçak bileti">
+                                    <span class="cover"></span>
+                                    <div class="content ">
+                                        <div class="content-inner">
+                                            <div class="title">
+                                                <div class="departure">Kalkış: İstanbul (IST)</div>
+                                            </div>
+                                            <div class="arrival">İzmir <i class="flaticon-transport"></i></div>
+                                            <span class="btn btn-primary"><a onclick="" style="color:white">İncele</a></span>
+                                            <div class="price">
+                                                <strong class="amount">
+                                                    121
+                                                    <span class="sup">
+                                                        '
+                                                        99
+                                                        <span class="desc">TRY</span>
+                                                    </span>
+                                                </strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a onclick="" class="teklif-href visible-xs"> </a>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-6" deneme="121,99">
+                                <div class="teklif">
+                                    <img class="image img-responsive" src="/Uploaded/Media_Box_3c656725-6e5e-4de6-ac93-66a39a706a06X.jpg" alt="İstanbul (IST), Antalya uçak bileti">
+                                    <span class="cover"></span>
+                                    <div class="content ">
+                                        <div class="content-inner">
+                                            <div class="title">
+                                                <div class="departure">Kalkış: İstanbul (IST)</div>
+                                            </div>
+                                            <div class="arrival">Antalya <i class="flaticon-transport"></i></div>
+                                            <span class="btn btn-primary"><a onclick="" style="color:white">İncele</a></span>
+                                            <div class="price">
+                                                <strong class="amount">
+                                                    121
+                                                    <span class="sup">
+                                                        '
+                                                        99
+                                                        <span class="desc">TRY</span>
+                                                    </span>
+                                                </strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a onclick="" class="teklif-href visible-xs"> </a>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-6" deneme="181,99">
+                                <div class="teklif">
+                                    <img class="image img-responsive" src="/Uploaded/Media_Box_b957d3af-b645-4c35-9989-2f9a634225f2X.jpg" alt="İstanbul (IST), Trabzon uçak bileti">
+                                    <span class="cover"></span>
+                                    <div class="content ">
+                                        <div class="content-inner">
+                                            <div class="title">
+                                                <div class="departure">Kalkış: İstanbul (IST)</div>
+                                            </div>
+                                            <div class="arrival">Trabzon <i class="flaticon-transport"></i></div>
+                                            <span class="btn btn-primary"><a onclick="" style="color:white">İncele</a></span>
+                                            <div class="price">
+                                                <strong class="amount">
+                                                    181
+                                                    <span class="sup">
+                                                        '
+                                                        99
+                                                        <span class="desc">TRY</span>
+                                                    </span>
+                                                </strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a onclick="" class="teklif-href visible-xs"> </a>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="tab-pane " id="2-Tab" role="tabpanel" aria-labelledby="2-Tab-tab">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6 col-12" deneme="898,23">
+                                <div class="teklif">
+                                    <img class="image img-responsive" src="/Uploaded/Media_Box_ed38f046-3d4a-4897-81fb-104ceb897ae9X.jpg" alt="İstanbul (IST), Frankfurt uçak bileti">
+                                    <span class="cover"></span>
+                                    <div class="content ">
+                                        <div class="content-inner">
+                                            <div class="title">
+                                                <div class="departure">Kalkış: İstanbul (IST)</div>
+                                            </div>
+                                            <div class="arrival">Frankfurt <i class="flaticon-transport"></i></div>
+                                            <span class="btn btn-primary"><a onclick="" style="color:white">İncele</a></span>
+                                            <div class="price">
+                                                <strong class="amount">
+                                                    898
+                                                    <span class="sup">
+                                                        '
+                                                        23
+                                                        <span class="desc">TRY</span>
+                                                    </span>
+                                                </strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a onclick="" class="teklif-href visible-xs"> </a>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-6" deneme="876,63">
+                                <div class="teklif">
+                                    <img class="image img-responsive" src="/Uploaded/Media_Box_7973e18b-b7fb-4f0a-bd28-6a0619fb0c1eX.jpg" alt="İstanbul (IST), Prag uçak bileti">
+                                    <span class="cover"></span>
+                                    <div class="content ">
+                                        <div class="content-inner">
+                                            <div class="title">
+                                                <div class="departure">Kalkış: İstanbul (IST)</div>
+                                            </div>
+                                            <div class="arrival">Prag <i class="flaticon-transport"></i></div>
+                                            <span class="btn btn-primary"><a onclick="" style="color:white">İncele</a></span>
+                                            <div class="price">
+                                                <strong class="amount">
+                                                    876
+                                                    <span class="sup">
+                                                        '
+                                                        63
+                                                        <span class="desc">TRY</span>
+                                                    </span>
+                                                </strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a onclick="" class="teklif-href visible-xs"> </a>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-6" deneme="931,87">
+                                <div class="teklif">
+                                    <img class="image img-responsive" src="/Uploaded/Media_Box_5f29bf71-d2a6-413a-b688-91f7a04ec14fX.jpg" alt="İstanbul (IST), Madrid uçak bileti">
+                                    <span class="cover"></span>
+                                    <div class="content ">
+                                        <div class="content-inner">
+                                            <div class="title">
+                                                <div class="departure">Kalkış: İstanbul (IST)</div>
+                                            </div>
+                                            <div class="arrival">Madrid <i class="flaticon-transport"></i></div>
+                                            <span class="btn btn-primary"><a onclick="" style="color:white">İncele</a></span>
+                                            <div class="price">
+                                                <strong class="amount">
+                                                    931
+                                                    <span class="sup">
+                                                        '
+                                                        87
+                                                        <span class="desc">TRY</span>
+                                                    </span>
+                                                </strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a onclick="" class="teklif-href visible-xs"> </a>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

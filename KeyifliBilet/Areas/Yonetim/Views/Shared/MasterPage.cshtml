@@ -1,0 +1,361 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Mosaddek">
+    <meta name="keyword" content="Keyifli Bilet,Uçak Bileti">
+    <link rel="shortcut icon" href="~/Areas/Yonetim/Content/img/favicon.jpg">
+
+    <title>Keyifli Bilet</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/Areas/Yonetim/Content/admin-assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Areas/Yonetim/Content/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Areas/Yonetim/Content/css/bootstrap-reset.css" rel="stylesheet">
+    <!--external css-->
+
+    <link href="~/Areas/Yonetim/Content/toastr.css" rel="stylesheet" />
+    <script src="~/Areas/Yonetim/Scripts/toastr.js"></script>
+
+    <link href="~/Areas/Yonetim/Content/admin-assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/Areas/Yonetim/Content/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css" media="screen" />
+    <link rel="stylesheet" href="~/Areas/Yonetim/Content/css/owl.carousel.css" type="text/css">
+    <!-- Custom styles for this template -->
+    <link href="~/Areas/Yonetim/Content/css/style.css" rel="stylesheet">
+    <link href="~/Areas/Yonetim/Content/css/style-responsive.css" rel="stylesheet" />
+    <link href="~/Areas/Yonetim/Content/Scripts/jquery.autocomplete.css" rel="stylesheet" />
+    <link href="~/Areas/Yonetim/Content/toastr.css" rel="stylesheet" />
+    <script src="~/Areas/Yonetim/Scripts/toastr.js"></script>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+    @RenderSection("css", false)
+</head>
+
+<body>
+
+    <section id="container">
+        <!--header start-->
+        <header class="header white-bg">
+            <div class="sidebar-toggle-box">
+                <div data-original-title="Toggle Navigation" data-placement="right" class="icon-reorder tooltips"></div>
+            </div>
+            <!--logo start-->
+            <a href="index.html" class="logo">ADAŞ TURİZM<span>Panel</span></a>
+            <!--logo end-->
+            <div class="nav notify-row" id="top_menu">
+                <!--  notification start -->
+                <ul class="nav top-menu">
+
+                    <li id="header_notification_bar" class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+
+                            <i class="icon-bell-alt"></i>
+                            <span class="badge bg-warning">7</span>
+                        </a>
+                        <ul class="dropdown-menu extended notification">
+                            <div class="notify-arrow notify-arrow-yellow"></div>
+                            <li>
+                                <p class="yellow">You have 7 new notifications</p>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="label label-danger"><i class="icon-bolt"></i></span>
+                                    Server #3 overloaded.
+                                    <span class="small italic">34 mins</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="label label-warning"><i class="icon-bell"></i></span>
+                                    Server #10 not respoding.
+                                    <span class="small italic">1 Hours</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="label label-danger"><i class="icon-bolt"></i></span>
+                                    Database overloaded 24%.
+                                    <span class="small italic">4 hrs</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="label label-success"><i class="icon-plus"></i></span>
+                                    New user registered.
+                                    <span class="small italic">Just now</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="label label-info"><i class="icon-bullhorn"></i></span>
+                                    Application error.
+                                    <span class="small italic">10 mins</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">See all notifications</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- notification dropdown end -->
+                </ul>
+                <!--  notification end -->
+            </div>
+            @RenderSection("scripts", false)
+            @*@Html.Action("UserName", "Areas/Yonetim/Panel")*@
+
+        </header>
+        <!--header end-->
+        <!--sidebar start-->
+        <aside>
+            <div id="sidebar" class="nav-collapse ">
+                <!-- sidebar menu start-->
+                <ul class="sidebar-menu" id="nav-accordion">
+                    <li>
+                        <a class="active" href="@Url.Action("Index","Panel")">
+                            <i class="icon-dashboard"></i>
+                            <span>Panel</span>
+                        </a>
+                    </li>
+
+                    <li class="sub-menu">
+                        <a href="#">
+                            <i class="icon-laptop"></i>
+                            <span>Üye Yönetimi</span>
+                        </a>
+                        <span class="dcjq-icon"></span>
+                        <ul class="sub" style="overflow: hidden; display: block;">
+                            <li><a href="@Url.Action("Uyeler","Panel")">Üyeler</a></li>
+
+                        </ul>
+
+                    </li>
+
+                    <li class="sub-menu">
+                        <a href="#">
+                            <i class="icon-laptop"></i>
+                            <span>Servis Bedelleri Yönetimi</span>
+                        </a>
+                        <span class="dcjq-icon"></span>
+                        <ul class="sub" style="overflow: hidden; display: block;">
+                            <li><a href="@Url.Action("EkstraServisBedeli","Panel")">Ekstra Servis Bedeli</a></li>
+
+                        </ul>
+                        <ul class="sub" style="overflow: hidden; display: block;">
+                            <li><a href="@Url.Action("Siniflar","Panel")">Sınıflar Servis Bedeli</a></li>
+
+                        </ul>
+                    </li>
+
+                    <li class="sub-menu">
+                        <a href="#">
+                            <i class="icon-laptop"></i>
+                            <span>Sayfalar Yönetimi</span>
+                        </a>
+                        <span class="dcjq-icon"></span>
+                        <ul class="sub" style="overflow: hidden; display: block;">
+                            <li><a href="@Url.Action("Kategoriler","Panel")">Sayfa Listesi</a></li>
+
+                        </ul>
+                        <ul class="sub" style="overflow: hidden; display: block;">
+                            <li><a href="@Url.Action("YeniSayfa","Panel")">Yeni Sayfa</a></li>
+
+                        </ul>
+                    </li>
+
+                    <li class="sub-menu">
+                        <a href="#">
+                            <i class="icon-laptop"></i>
+                            <span>Kutular Yönetimi</span>
+                        </a>
+                        <span class="dcjq-icon"></span>
+                        <ul class="sub" style="overflow: hidden; display: block;">
+                            <li><a href="@Url.Action("KutuKategorileri","Panel")">Kutu Kategorileri</a></li>
+
+                        </ul>
+
+                        <ul class="sub" style="overflow: hidden; display: block;">
+                            <li><a href="@Url.Action("Kutular","Panel")">Kutular</a></li>
+
+                        </ul>
+
+                    </li>
+
+                    <li class="sub-menu">
+                        <a href="#">
+                            <i class="icon-laptop"></i>
+                            <span>İletişim Formu Yönetimi</span>
+                        </a>
+                        <span class="dcjq-icon"></span>
+                        <ul class="sub" style="overflow: hidden; display: block;">
+                            <li><a href="@Url.Action("IletisimFormu","Panel")">İletişim Formu</a></li>
+
+                        </ul>
+
+                    </li>
+
+                    <li class="sub-menu">
+                        <a href="#">
+                            <i class="icon-laptop"></i>
+                            <span>E-Bülten Yönetimi</span>
+                        </a>
+                        <span class="dcjq-icon"></span>
+                        <ul class="sub" style="overflow: hidden; display: block;">
+                            <li><a href="@Url.Action("Bulten","Panel")">E-Bulten</a></li>
+
+                        </ul>
+
+                    </li>
+
+                    <li class="sub-menu">
+                        <a href="#">
+                            <i class="icon-laptop"></i>
+                            <span>Sistem Yönetimi</span>
+                        </a>
+                        <span class="dcjq-icon"></span>
+                        <ul class="sub" style="overflow: hidden; display: block;">
+                            <li><a href="@Url.Action("Sistem","Panel")">Sistem</a></li>
+
+                        </ul>
+                        <ul class="sub" style="overflow: hidden; display: block;">
+                            <li><a href="@Url.Action("SosyalMedya","Panel")">Sosyal Medya</a></li>
+
+                        </ul>
+
+                    </li>
+
+                    <li class="sub-menu">
+                        <a href="#">
+                            <i class="icon-laptop"></i>
+                            <span>MAİL VE SMS YÖNETİMİ</span>
+                        </a>
+                        <span class="dcjq-icon"></span>
+                        <ul class="sub" style="overflow: hidden; display: block;">
+                            <li><a href="@Url.Action("MailPanel","Panel")">Mail Panel</a></li>
+
+                        </ul>
+                        <ul class="sub" style="overflow: hidden; display: block;">
+                            <li><a href="@Url.Action("MailKategori","Panel")">Mail Kategori Panel</a></li>
+
+                        </ul>
+                        <ul class="sub" style="overflow: hidden; display: block;">
+                            <li><a href="@Url.Action("SmsPanel","Panel")">Sms Panel</a></li>
+
+                        </ul>
+                        <ul class="sub" style="overflow: hidden; display: block;">
+                            <li><a href="@Url.Action("SmsKategori","Panel")">SMS Kategori Panel</a></li>
+
+                        </ul>
+
+                    </li>
+
+                    <li class="sub-menu">
+                        <a href="#">
+                            <i class="icon-laptop"></i>
+                            <span>UÇUŞ GÖZLEMLEME</span>
+                        </a>
+                        <span class="dcjq-icon"></span>
+                        <ul class="sub" style="overflow: hidden; display: block;">
+                            <li><a href="@Url.Action("DegisenBiletlerListesi","Panel")">Değişen Biletler Listesi</a></li>
+
+                        </ul>
+                        <ul class="sub" style="overflow: hidden; display: block;">
+                            <li><a href="@Url.Action("CharterUcuslarListesi","Panel")">Charter Uçuş Listesi</a></li>
+
+                        </ul>
+
+                    </li>
+                    <li class="sub-menu">
+                        <a href="#">
+                            <i class="icon-laptop"></i>
+                            <span>RAPORLAR</span>
+                        </a>
+                        <span class="dcjq-icon"></span>
+                        <ul class="sub" style="overflow: hidden; display: block;">
+                            <li><a href="@Url.Action("SatisListesi","Panel")">Satış Listesi</a></li>
+
+                        </ul>
+                        <ul class="sub" style="overflow: hidden; display: block;">
+                            <li><a href="@Url.Action("KomisyonRaporlari","Panel")">Satış Listesi</a></li>
+
+                        </ul>
+                    </li>
+
+                </ul>
+                <!-- sidebar menu end-->
+            </div>
+        </aside>
+        <!--sidebar end-->
+        <!--main content start-->
+        @RenderSection("featured", required: false)
+
+        @RenderBody()
+        <!--main content end-->
+        <!--footer start-->
+        <footer class="site-footer">
+            <div class="text-center">
+                2018 &copy; Keyifli Bilet
+                <a href="#" class="go-top">
+                    <i class="icon-angle-up"></i>
+                </a>
+            </div>
+        </footer>
+        <!--footer end-->
+    </section>
+
+    <!-- js placed at the end of the document so the pages load faster -->
+    @*<script src="~/Content/js/jquery.js"></script>*@
+
+    <link href="~/Areas/Yonetim/Content/Scripts/sweetalert.css" rel="stylesheet" />
+
+    <script src="~/Areas/Yonetim/Content/js/jquery-1.8.3.min.js"></script>
+    <script src="~/Areas/Yonetim/Content/js/bootstrap.min.js"></script>
+
+    <script src="~/Areas/Yonetim/Content/js/jquery.scrollTo.min.js"></script>
+    <script src="~/Areas/Yonetim/Content/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <script src="~/Areas/Yonetim/Content/js/jquery.sparkline.js" type="text/javascript"></script>
+    <script src="~/Areas/Yonetim/Content/assets/jquery.easy-pie-chart.js"></script>
+
+    <script src="~/Areas/Yonetim/Content/js/jquery.customSelect.min.js"></script>
+    <script src="~/Areas/Yonetim/Content/js/respond.min.js"></script>
+
+    <!--common script for all pages-->
+    <script src="~/Areas/Yonetim/Content/js/owl.carousel.js"></script>
+
+    <script class="include" type="text/javascript" src="~/Areas/Yonetim/Content/js/jquery.dcjqaccordion.2.7.js"></script>
+    <script src="~/Areas/Yonetim/Content/js/common-scripts.js"></script>
+
+    
+
+    <script>
+
+        //owl carousel
+
+        $(document).ready(function () {
+            $("#owl-demo").owlCarousel({
+                navigation: true,
+                slideSpeed: 300,
+                paginationSpeed: 400,
+                singleItem: true,
+                autoPlay: true
+
+            });
+        });
+
+        //custom select box
+
+        $(function () {
+            $('select.styled').customSelect();
+        });
+
+    </script>
+    @RenderSection("js", false)
+</body>
+</html>
+

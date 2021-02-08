@@ -1,0 +1,40 @@
+﻿@model KeyifliBilet.Areas.Yonetim.Models.IndexViewModel
+@foreach (var item in Model.sms)
+{
+    <form id="myForm" action="@Url.Action("SmsGuncelle", "Panel",new { id = item.SmsId })" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+        <div id="listOfCustomers" style="height: 400px; overflow: auto;">
+
+
+            <div class="form-group">
+                <label>APİ ADRESİ</label>
+                <input class="form-control" type="text" name="api" id="api" value="@item.ApiAdresi" required="required">
+            </div>
+            <div class="form-group">
+                <label>KAYNAK ADRESİ</label>
+                <input class="form-control" type="text" name="kaynak" id="kaynak" value="@item.KaynakAdres" required="required">
+            </div>
+            <div class="form-group">
+                <label>MESAJ</label>
+                <input class="form-control" type="text" name="mesaj" id="mesaj" value="@item.Mesaj" required="required">
+            </div>
+            <div class="form-group">
+                <label>KULLANICI ADI</label>
+                <input class="form-control" type="text" name="kullanici" id="kullanici" value="@item.KullaniciAdi" required="required">
+            </div>
+            <div class="form-group">
+                <label>ŞİFRE</label>
+                <input class="form-control" type="text" name="sifre" id="sifre" value="@item.Sifre" required="required">
+            </div>
+            <div class="box-footer">
+                <button class="btn btn-xs btn-danger" id="btnSubmit" href="@Url.Action("SmsGuncelle", "Panel",new { id = item.SmsId })">
+                    <span> GÜNCELLE</span>
+                </button>
+            </div>
+
+
+        </div>
+
+
+    </form>
+
+}

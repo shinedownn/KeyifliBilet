@@ -1,0 +1,101 @@
+﻿@model KeyifliBilet.Areas.Yonetim.Models.IndexViewModel
+@{
+    ViewBag.Title = "Profil";
+    Layout = "~/Areas/Yonetim/Views/Shared/MasterPage.cshtml";
+}
+<head>
+    <script src="~/Scripts/jquery-1.10.2.intellisense.js"></script>
+    <script type="text/javascript">
+        $('#tumunu_sec').click(function (event) {
+            if (this.checked) {
+                // Iterate each checkbox
+                $(':checkbox').each(function () {
+                    this.checked = true;
+                });
+            }
+            else {
+                $(':checkbox').each(function () {
+                    this.checked = false;
+                });
+            }
+        });
+    </script>
+</head>
+<section id="main-content">
+    <section class="wrapper">
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Profilim</h1>
+                </div>
+
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <form action="#" method="post" enctype="multipart/form-data">
+                                        <input type="hidden" name="js_spam" value="">
+                                        <input type="hidden" name="plus" value="">
+                                        <div class="form-group">
+
+                                            <label>Rol Adı</label>
+
+                                            <select class="form-control" name="rol" required="required">
+                                                @foreach (var item in Model.rol)
+                                                {
+                                                    <option value="@item.RolAdi" selected="selected">@item.RolAdi</option>
+                                                }
+                                                @foreach (var item in Model.rol)
+                                                {
+                                                    <option value="@item.RolAdi">@item.RolAdi</option>
+                                                }
+                                            </select>
+
+
+                                        </div>
+
+                                        @foreach (var item in Model.kullanicilar)
+                                        {
+                                            <div class="form-group">
+                                                <label>Ad Soyad</label>
+                                                <input class="form-control" name="ad" required="required" value="@item.Ad">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Kullanıcı Adı</label>
+                                                <input class="form-control" name="kullaniciAdi" required="required" value="@item.Mail">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Şifre</label>
+                                                <input class="form-control" name="sifre" required="required" value="@item.Sifre">
+                                            </div>
+
+                                        }
+                                    </form>
+                                </div>
+                                <!-- /.col-lg-6 (nested) -->
+
+                            </div>
+                            <!-- /.row (nested) -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+        </div>
+    </section>
+</section>
+
+
+
+
+

@@ -1,0 +1,97 @@
+﻿
+@{
+    ViewBag.Title = "Iletisim";
+    Layout = "~/Views/Shared/MasterPage.cshtml";
+}
+@Html.Action("HeaderIndex", "Home")
+<section class="mt-sm-5 mt-5">
+    <div class="container mt-sm-5">
+        <div class="row">
+            <div class="contact-over-box col-md-6 col-sm-6">
+                <h3 class="size-20 nomargin">Bize Ulaşın</h3>
+                <p>Sorularınız veya görüşleriniz için lütfen aşağıdaki formu doldurun.</p>
+                <div id="alert_success" class="alert alert-success margin-bottom-30" style="display:none;">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <strong>Teşekkürler!</strong> <span style="text-align:justify" id="spanSuccMsg"></span>
+                </div>
+                <div id="alert_failed" class="alert alert-danger margin-bottom-30" style="display:none;">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <strong>Üzgünüz!</strong> <span style="text-align:justify" id="spanErrMsg"></span>
+                </div>
+                <div id="dvContact">
+
+                    <form action="@Url.Action("BizeUlasin","Home")" data-ajax="true" data-ajax-method="POST" data-ajax-success="Form.Success(data)" id="contacForm" method="post">
+                        <fieldset class="nomargin">
+                            <div class="row">
+                                <div class="col-md-12 margin-bottom-20">
+                                    <label class="size-12" for="NameSurname">Adı Soyadı *</label>
+                                    <input class="form-control" data-val="true" data-val-required="Lütfen isim soyisim bilgisini giriniz !" id="NameSurname" name="NameSurname" type="text" value="" />
+                                    <span class="field-validation-valid" data-valmsg-for="NameSurname" data-valmsg-replace="true"></span>
+                                </div>
+                                <div class="col-md-12 margin-bottom-20">
+                                    <label class="size-12" for="Email">E-Posta Adresi *</label>
+                                    <input class="form-control" data-val="true" data-val-required="Lütfen email adresinizi giriniz !" id="Email" name="Email" type="text" value="" />
+                                    <span class="field-validation-valid" data-valmsg-for="Email" data-valmsg-replace="true"></span>
+                                </div>
+                                <div class="col-md-12 margin-bottom-20">
+                                    <label class="size-12" for="Mobile">Telefon Numarası</label>
+                                    <input class="form-control" data-val="true" data-val-required="Lütfen cep telefonu numaranızı giriniz !" id="Mobile" name="Mobile" type="text" value="" />
+                                    <span class="field-validation-valid" data-valmsg-for="Mobile" data-valmsg-replace="true"></span>
+                                </div>
+                                <div class="col-md-12 margin-bottom-20">
+                                    <label class="size-12" for="Message">Mesaj Alanı *</label>
+                                    <textarea class="form-control" cols="20" data-val="true" data-val-required="Lütfen mesajınızı giriniz !" id="Message" name="Message" rows="6">
+</textarea>
+                                    <span class="field-validation-valid" data-valmsg-for="Message" data-valmsg-replace="true"></span>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div class="row">
+                            <div class="col-md-6 text-left">
+                                <img src="~/Uploaded/GetSecurityCode.jpg" />
+                            </div>
+                            <div class="col-md-6 text-right">
+                                <input class="form-control" data-val="true" data-val-required="Lütfen güvenlik kodunu giriniz !" id="SecurityCode" name="SecurityCode" placeholder="Güvenlik Kodu" type="text" value="" />
+                                <span class="field-validation-valid" data-valmsg-for="SecurityCode" data-valmsg-replace="true"></span>
+                            </div>
+                            <div class="col-md-12 text-right">
+                                <br />
+                                <button type="submit" class="btn btn-primary">Gönder</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="padding-20">
+                    <div class="contact-phone">
+                        <i class="flaticon-clock"></i>
+                        <div class="text">
+                            <a href="tel:0 850 550 41 14">
+                                <span class="renk"><i>+90</i> (850)</span>
+                                <span class="big">550 4114 </span>
+                            </a>
+                            <span class="yazi">Hemen Arayın!</span>
+                        </div>
+                    </div>
+                    <p>
+                        <strong>Z Arslan Turizm İnş. San. Ve Tic. LTD. ŞTİ</strong>
+
+                        <br />
+                        V.D: Fevzipaşa V.No: 995 081 59 13
+                    </p>
+                    <p>
+                        <span class="block">
+                            <strong><i class="fa fa-map-marker"></i> Adres</strong> <br />H&#252;k&#252;met Caddesi Gemi İş Merkezi No:1 Merkez / Erzincan 24000
+                        </span>
+                        <span class="block"><strong><i class="fa fa-phone"></i> Müşteri Hizmetleri:</strong> <a href="tel:0 850 550 41 14">+90 (446) 226-06-06</a></span>
+                        <span class="block"><strong><i class="fa fa-envelope"></i> E-Posta:</strong> <a href="mailto:info@keyiflibilet.com">info@keyiflibilet.com</a></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@Html.Action("Footer", "Home")
+@Html.Action("PartialSignUp", "Home")

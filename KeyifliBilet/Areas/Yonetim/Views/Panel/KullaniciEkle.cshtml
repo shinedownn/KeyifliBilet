@@ -1,0 +1,46 @@
+﻿
+<form id="myForm" action="@Url.Action("KullaniciEkle", "Panel")" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+    <div id="listOfCustomers" style="height: 400px; overflow: auto;">
+
+        <div class="portlet-title">
+            <div class="caption">
+                <label>KULLANICI ROLÜ</label>
+                <select class="form-control" id="rol" name="rol">
+                    <option value="">Rol Seçiniz</option>
+
+                    <option value="Admin">Admin</option>
+                    <option value="Kullanıcı">Kullanıcı</option>
+
+
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>AD</label>
+            <input class="form-control" type="text" name="ad" id="ad" placeholder="AD" required="required">
+        </div>
+        <div class="form-group">
+            <label>SOYAD</label>
+            <input class="form-control" type="text" name="soyad" id="soyad" placeholder="SOYAD" required="required">
+        </div>
+        <div class="form-group">
+            <label>MAİL</label>
+            <input class="form-control" type="text" name="mail" id="mail" placeholder="MAİL" required="required">
+        </div>
+        <div class="form-group">
+            <label>ŞİFRE</label>
+            <input class="form-control" type="text" name="sifre" id="sifre" placeholder="ŞİFRE" required="required">
+        </div>
+
+        <div class="box-footer">
+            <button class="btn btn-xs btn-danger" id="btnSubmit" href="@Url.Action("KullaniciEkle", "Panel" )">
+                <span> EKLE</span>
+            </button>
+        </div>
+
+
+    </div>
+
+
+</form>
+

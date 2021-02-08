@@ -1,0 +1,1552 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="KeyifliBiletModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BookingInfo">
+          <Key>
+            <PropertyRef Name="BookingInfoId" />
+          </Key>
+          <Property Name="BookingInfoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="int" />
+          <Property Name="pnr" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="EBulten">
+          <Key>
+            <PropertyRef Name="BultenId" />
+          </Key>
+          <Property Name="BultenId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Mail" Type="nvarchar" MaxLength="50" />
+          <Property Name="Tarih" Type="datetime" />
+          <Property Name="Durum" Type="bit" />
+        </EntityType>
+        <EntityType Name="EkstraServis">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tip" Type="bit" />
+          <Property Name="ServisBedeli" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="BaslangicTarihi" Type="date" />
+          <Property Name="BitisTarihi" Type="date" />
+          <Property Name="DonusEklensinMi" Type="bit" />
+          <Property Name="KoltukLimiti" Type="int" />
+          <Property Name="LimiteBagliServisBedeli" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Durum" Type="bit" />
+          <Property Name="KalkisKod" Type="nvarchar" MaxLength="50" />
+          <Property Name="KalkisSehir" Type="nvarchar" MaxLength="50" />
+          <Property Name="KalkisHavalimani" Type="nvarchar" MaxLength="50" />
+          <Property Name="VarisKod" Type="nvarchar" MaxLength="50" />
+          <Property Name="VarisSehir" Type="nvarchar" MaxLength="50" />
+          <Property Name="VarisHavalimani" Type="nvarchar" MaxLength="50" />
+          <Property Name="KalkisUlke" Type="nvarchar" MaxLength="50" />
+          <Property Name="VarisUlke" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="IletisimFormu">
+          <Key>
+            <PropertyRef Name="IletisimId" />
+          </Key>
+          <Property Name="IletisimId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdSoyad" Type="nvarchar" MaxLength="50" />
+          <Property Name="Mail" Type="nvarchar" MaxLength="50" />
+          <Property Name="Telefon" Type="nvarchar" MaxLength="50" />
+          <Property Name="Mesaj" Type="text" />
+          <Property Name="Tarih" Type="datetime" />
+          <Property Name="Durum" Type="bit" />
+          <Property Name="OkunmaTarihi" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Kullanicilar">
+          <Key>
+            <PropertyRef Name="KullaniciId" />
+          </Key>
+          <Property Name="KullaniciId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ad" Type="nvarchar" MaxLength="50" />
+          <Property Name="Soyad" Type="nvarchar" MaxLength="50" />
+          <Property Name="Mail" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sifre" Type="nvarchar" MaxLength="50" />
+          <Property Name="Durum" Type="bit" />
+          <Property Name="KayitTarihi" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Kutu">
+          <Key>
+            <PropertyRef Name="KutuId" />
+          </Key>
+          <Property Name="KategoriId" Type="int" Nullable="false" />
+          <Property Name="KutuId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Resim" Type="text" />
+          <Property Name="IsOneWay" Type="bit" />
+          <Property Name="DEP_Airport_Code" Type="nvarchar" MaxLength="150" />
+          <Property Name="DEP_Airport_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="DEP_Airport_CityName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DEP_Airport_IsCity" Type="bit" />
+          <Property Name="ARR_Airport_Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="ARR_Airport_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="ARR_Airport_CityName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ARR_Airport_IsCity" Type="bit" />
+          <Property Name="Durum" Type="bit" />
+        </EntityType>
+        <EntityType Name="KutuKategori">
+          <Key>
+            <PropertyRef Name="KategoriId" />
+          </Key>
+          <Property Name="Kategori" Type="nvarchar" MaxLength="150" />
+          <Property Name="KategoriId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Durum" Type="bit" />
+        </EntityType>
+        <EntityType Name="legs">
+          <Key>
+            <PropertyRef Name="LegsId" />
+          </Key>
+          <Property Name="LegsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="int" />
+          <Property Name="operatorName" Type="nvarchar" MaxLength="50" />
+          <Property Name="aircraft" Type="nvarchar" MaxLength="50" />
+          <Property Name="arrivalAirport" Type="nvarchar" MaxLength="50" />
+          <Property Name="arrivalAirportName" Type="nvarchar" MaxLength="50" />
+          <Property Name="arrivalCityName" Type="nvarchar" MaxLength="50" />
+          <Property Name="arrivalTime" Type="datetime" />
+          <Property Name="departureAirport" Type="nvarchar" MaxLength="50" />
+          <Property Name="departureAirportName" Type="nvarchar" MaxLength="50" />
+          <Property Name="departureCityName" Type="nvarchar" MaxLength="50" />
+          <Property Name="departureTime" Type="datetime" />
+          <Property Name="flightNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="localArrivalDate" Type="nvarchar" MaxLength="50" />
+          <Property Name="localDepartureDate" Type="nvarchar" MaxLength="50" />
+          <Property Name="returnFlight" Type="bit" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="LogId" />
+          </Key>
+          <Property Name="LogId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Metin" Type="text" />
+          <Property Name="Metod" Type="nvarchar" MaxLength="50" />
+          <Property Name="Tarih" Type="datetime" />
+          <Property Name="KullaniciId" Type="int" />
+        </EntityType>
+        <EntityType Name="MailKategori">
+          <Key>
+            <PropertyRef Name="MailKategoriId" />
+          </Key>
+          <Property Name="MailKategoriId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Aciklama" Type="nvarchar" MaxLength="50" />
+          <Property Name="Kod" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Mailler">
+          <Key>
+            <PropertyRef Name="MailId" />
+          </Key>
+          <Property Name="MailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Baslik" Type="nvarchar" MaxLength="50" />
+          <Property Name="Icerik" Type="nvarchar" MaxLength="50" />
+          <Property Name="SMTPAdresi" Type="nvarchar" MaxLength="50" />
+          <Property Name="Port" Type="int" />
+          <Property Name="Sifre" Type="nvarchar" MaxLength="50" />
+          <Property Name="Durum" Type="bit" />
+          <Property Name="Mail" Type="nvarchar" MaxLength="50" />
+          <Property Name="MailKategoriId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Menuler">
+          <Key>
+            <PropertyRef Name="MenuId" />
+          </Key>
+          <Property Name="TipId" Type="int" />
+          <Property Name="MenuId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Sira" Type="nvarchar" MaxLength="50" />
+          <Property Name="Tip" Type="nvarchar" MaxLength="50" />
+          <Property Name="SayfaId" Type="int" />
+        </EntityType>
+        <EntityType Name="MenuTipleri">
+          <Key>
+            <PropertyRef Name="TipId" />
+          </Key>
+          <Property Name="TipId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Menu" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="OrderResult">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="orderId" Type="int" />
+          <Property Name="provider" Type="nvarchar" MaxLength="50" />
+          <Property Name="creationDate" Type="datetime" />
+          <Property Name="note" Type="nvarchar" MaxLength="50" />
+          <Property Name="status" Type="nvarchar" MaxLength="50" />
+          <Property Name="contactGsm" Type="nvarchar" MaxLength="50" />
+          <Property Name="contactEmail" Type="nvarchar" MaxLength="50" />
+          <Property Name="pax" Type="int" />
+          <Property Name="UyeId" Type="int" />
+        </EntityType>
+        <EntityType Name="passengers">
+          <Key>
+            <PropertyRef Name="PassgengerId" />
+          </Key>
+          <Property Name="PassgengerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="int" />
+          <Property Name="eticket" Type="nvarchar" MaxLength="50" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="surname" Type="nvarchar" MaxLength="50" />
+          <Property Name="birthdate" Type="datetime" />
+          <Property Name="gender" Type="nvarchar" MaxLength="50" />
+          <Property Name="persontype" Type="nvarchar" MaxLength="50" />
+          <Property Name="serviceFee" Type="nvarchar" MaxLength="50" />
+          <Property Name="totalPrice" Type="nvarchar" MaxLength="50" />
+          <Property Name="agencyComission" Type="float" />
+          <Property Name="tax" Type="nvarchar" MaxLength="50" />
+          <Property Name="currency" Type="nvarchar" MaxLength="50" />
+          <Property Name="city" Type="nvarchar" MaxLength="50" />
+          <Property Name="country" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="RolId" />
+          </Key>
+          <Property Name="RolId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RolAdi" Type="nvarchar" MaxLength="50" />
+          <Property Name="KullaniciId" Type="int" />
+        </EntityType>
+        <EntityType Name="SayfaIcerigi">
+          <Key>
+            <PropertyRef Name="IcerikId" />
+          </Key>
+          <Property Name="SayfaId" Type="int" />
+          <Property Name="IcerikId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ad" Type="nvarchar" MaxLength="50" />
+          <Property Name="Baslik" Type="nvarchar" MaxLength="150" />
+          <Property Name="Icerik" Type="text" />
+          <Property Name="SeoBasligi" Type="nvarchar" MaxLength="150" />
+          <Property Name="KeyWords" Type="nvarchar" MaxLength="150" />
+          <Property Name="SeoAciklama" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="Sayfalar">
+          <Key>
+            <PropertyRef Name="SayfaId" />
+          </Key>
+          <Property Name="SayfaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UstSayfaId" Type="int" />
+          <Property Name="Ad" Type="nvarchar" MaxLength="50" />
+          <Property Name="Tarih" Type="datetime" />
+          <Property Name="Baslik" Type="nvarchar" MaxLength="150" />
+          <Property Name="Icerik" Type="text" />
+          <Property Name="SeoBasligi" Type="nvarchar" MaxLength="150" />
+          <Property Name="KeyWords" Type="nvarchar" MaxLength="150" />
+          <Property Name="SeoAciklama" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="SayfaMultiMedia">
+          <Key>
+            <PropertyRef Name="MultiMediaId" />
+          </Key>
+          <Property Name="SayfaId" Type="int" />
+          <Property Name="MultiMediaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Resim" Type="text" />
+        </EntityType>
+        <EntityType Name="Siniflar">
+          <Key>
+            <PropertyRef Name="SinifId" />
+          </Key>
+          <Property Name="SinifId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SinifAdi" Type="nvarchar" MaxLength="50" />
+          <Property Name="ServisBedeli" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Sms">
+          <Key>
+            <PropertyRef Name="SmsId" />
+          </Key>
+          <Property Name="SmsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ApiAdresi" Type="nvarchar" MaxLength="50" />
+          <Property Name="Mesaj" Type="nvarchar" MaxLength="50" />
+          <Property Name="KullaniciAdi" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sifre" Type="nvarchar" MaxLength="50" />
+          <Property Name="KaynakAdres" Type="nvarchar" MaxLength="50" />
+          <Property Name="Durum" Type="bit" />
+          <Property Name="SmsKategoriId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SmsKategori">
+          <Key>
+            <PropertyRef Name="SmsKategoriId" />
+          </Key>
+          <Property Name="SmsKategoriId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Aciklama" Type="nvarchar" MaxLength="50" />
+          <Property Name="Kod" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SosyalMedya">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Platform" Type="nvarchar" MaxLength="50" />
+          <Property Name="Url" Type="text" />
+          <Property Name="Durum" Type="bit" />
+        </EntityType>
+        <EntityType Name="TakipKodlari">
+          <Key>
+            <PropertyRef Name="TakipId" />
+          </Key>
+          <Property Name="TakipId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Servis" Type="nvarchar" MaxLength="50" />
+          <Property Name="Lokasyon" Type="bit" />
+          <Property Name="Script" Type="text" />
+          <Property Name="Durum" Type="bit" />
+        </EntityType>
+        <EntityType Name="Tanimlar">
+          <Key>
+            <PropertyRef Name="TanimId" />
+          </Key>
+          <Property Name="TanimId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SiteAdi" Type="nvarchar" MaxLength="50" />
+          <Property Name="Mail" Type="nvarchar" MaxLength="50" />
+          <Property Name="Url" Type="nvarchar" MaxLength="50" />
+          <Property Name="Telefon" Type="nvarchar" MaxLength="50" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="50" />
+          <Property Name="Adres" Type="text" />
+          <Property Name="Harita" Type="text" />
+        </EntityType>
+        <EntityType Name="Uyeler">
+          <Key>
+            <PropertyRef Name="UyeId" />
+          </Key>
+          <Property Name="UyeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Mail" Type="nvarchar" MaxLength="50" />
+          <Property Name="GSM" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sifre" Type="nvarchar" MaxLength="50" />
+          <Property Name="AdSoyad" Type="nvarchar" MaxLength="50" />
+          <Property Name="KampanyaDurum" Type="bit" />
+          <Property Name="Durum" Type="bit" />
+          <Property Name="KayitTarihi" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Yetki">
+          <Key>
+            <PropertyRef Name="YetkiId" />
+          </Key>
+          <Property Name="YetkiId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MetodAdi" Type="nvarchar" MaxLength="50" />
+          <Property Name="RolId" Type="int" />
+        </EntityType>
+        <EntityType Name="Yetkiler">
+          <Key>
+            <PropertyRef Name="YetkiId" />
+          </Key>
+          <Property Name="YetkiId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="YetkiAdi" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_BookingInfo_OrderResult">
+          <End Role="OrderResult" Type="Self.OrderResult" Multiplicity="0..1" />
+          <End Role="BookingInfo" Type="Self.BookingInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderResult">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BookingInfo">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kutu_KutuKategori">
+          <End Role="KutuKategori" Type="Self.KutuKategori" Multiplicity="1" />
+          <End Role="Kutu" Type="Self.Kutu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KutuKategori">
+              <PropertyRef Name="KategoriId" />
+            </Principal>
+            <Dependent Role="Kutu">
+              <PropertyRef Name="KategoriId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_legs_OrderResult">
+          <End Role="OrderResult" Type="Self.OrderResult" Multiplicity="0..1" />
+          <End Role="legs" Type="Self.legs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderResult">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="legs">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Log_Kullanicilar">
+          <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="0..1" />
+          <End Role="Log" Type="Self.Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanicilar">
+              <PropertyRef Name="KullaniciId" />
+            </Principal>
+            <Dependent Role="Log">
+              <PropertyRef Name="KullaniciId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mailler_MailKategori">
+          <End Role="MailKategori" Type="Self.MailKategori" Multiplicity="1" />
+          <End Role="Mailler" Type="Self.Mailler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MailKategori">
+              <PropertyRef Name="MailKategoriId" />
+            </Principal>
+            <Dependent Role="Mailler">
+              <PropertyRef Name="MailKategoriId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Menuler_MenuTipleri">
+          <End Role="MenuTipleri" Type="Self.MenuTipleri" Multiplicity="0..1" />
+          <End Role="Menuler" Type="Self.Menuler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MenuTipleri">
+              <PropertyRef Name="TipId" />
+            </Principal>
+            <Dependent Role="Menuler">
+              <PropertyRef Name="TipId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderResult_Uyeler1">
+          <End Role="Uyeler" Type="Self.Uyeler" Multiplicity="0..1" />
+          <End Role="OrderResult" Type="Self.OrderResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uyeler">
+              <PropertyRef Name="UyeId" />
+            </Principal>
+            <Dependent Role="OrderResult">
+              <PropertyRef Name="UyeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_passengers_OrderResult">
+          <End Role="OrderResult" Type="Self.OrderResult" Multiplicity="0..1" />
+          <End Role="passengers" Type="Self.passengers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderResult">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="passengers">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rol_Kullanicilar">
+          <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="0..1" />
+          <End Role="Rol" Type="Self.Rol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanicilar">
+              <PropertyRef Name="KullaniciId" />
+            </Principal>
+            <Dependent Role="Rol">
+              <PropertyRef Name="KullaniciId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SayfaIcerigi_Sayfalar">
+          <End Role="Sayfalar" Type="Self.Sayfalar" Multiplicity="0..1" />
+          <End Role="SayfaIcerigi" Type="Self.SayfaIcerigi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sayfalar">
+              <PropertyRef Name="SayfaId" />
+            </Principal>
+            <Dependent Role="SayfaIcerigi">
+              <PropertyRef Name="SayfaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SayfaMultiMedia_Sayfalar1">
+          <End Role="Sayfalar" Type="Self.Sayfalar" Multiplicity="0..1" />
+          <End Role="SayfaMultiMedia" Type="Self.SayfaMultiMedia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sayfalar">
+              <PropertyRef Name="SayfaId" />
+            </Principal>
+            <Dependent Role="SayfaMultiMedia">
+              <PropertyRef Name="SayfaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sms_SmsKategori">
+          <End Role="SmsKategori" Type="Self.SmsKategori" Multiplicity="1" />
+          <End Role="Sms" Type="Self.Sms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SmsKategori">
+              <PropertyRef Name="SmsKategoriId" />
+            </Principal>
+            <Dependent Role="Sms">
+              <PropertyRef Name="SmsKategoriId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Yetki_Rol">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="0..1" />
+          <End Role="Yetki" Type="Self.Yetki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="RolId" />
+            </Principal>
+            <Dependent Role="Yetki">
+              <PropertyRef Name="RolId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KeyifliBiletModelStoreContainer">
+          <EntitySet Name="BookingInfo" EntityType="Self.BookingInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EBulten" EntityType="Self.EBulten" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EkstraServis" EntityType="Self.EkstraServis" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IletisimFormu" EntityType="Self.IletisimFormu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kullanicilar" EntityType="Self.Kullanicilar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kutu" EntityType="Self.Kutu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KutuKategori" EntityType="Self.KutuKategori" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="legs" EntityType="Self.legs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Log" EntityType="Self.Log" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MailKategori" EntityType="Self.MailKategori" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mailler" EntityType="Self.Mailler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Menuler" EntityType="Self.Menuler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MenuTipleri" EntityType="Self.MenuTipleri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderResult" EntityType="Self.OrderResult" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="passengers" EntityType="Self.passengers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SayfaIcerigi" EntityType="Self.SayfaIcerigi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sayfalar" EntityType="Self.Sayfalar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SayfaMultiMedia" EntityType="Self.SayfaMultiMedia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Siniflar" EntityType="Self.Siniflar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sms" EntityType="Self.Sms" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SmsKategori" EntityType="Self.SmsKategori" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SosyalMedya" EntityType="Self.SosyalMedya" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TakipKodlari" EntityType="Self.TakipKodlari" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tanimlar" EntityType="Self.Tanimlar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Uyeler" EntityType="Self.Uyeler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Yetki" EntityType="Self.Yetki" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Yetkiler" EntityType="Self.Yetkiler" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_BookingInfo_OrderResult" Association="Self.FK_BookingInfo_OrderResult">
+            <End Role="OrderResult" EntitySet="OrderResult" />
+            <End Role="BookingInfo" EntitySet="BookingInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kutu_KutuKategori" Association="Self.FK_Kutu_KutuKategori">
+            <End Role="KutuKategori" EntitySet="KutuKategori" />
+            <End Role="Kutu" EntitySet="Kutu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_legs_OrderResult" Association="Self.FK_legs_OrderResult">
+            <End Role="OrderResult" EntitySet="OrderResult" />
+            <End Role="legs" EntitySet="legs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Log_Kullanicilar" Association="Self.FK_Log_Kullanicilar">
+            <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+            <End Role="Log" EntitySet="Log" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mailler_MailKategori" Association="Self.FK_Mailler_MailKategori">
+            <End Role="MailKategori" EntitySet="MailKategori" />
+            <End Role="Mailler" EntitySet="Mailler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Menuler_MenuTipleri" Association="Self.FK_Menuler_MenuTipleri">
+            <End Role="MenuTipleri" EntitySet="MenuTipleri" />
+            <End Role="Menuler" EntitySet="Menuler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderResult_Uyeler1" Association="Self.FK_OrderResult_Uyeler1">
+            <End Role="Uyeler" EntitySet="Uyeler" />
+            <End Role="OrderResult" EntitySet="OrderResult" />
+          </AssociationSet>
+          <AssociationSet Name="FK_passengers_OrderResult" Association="Self.FK_passengers_OrderResult">
+            <End Role="OrderResult" EntitySet="OrderResult" />
+            <End Role="passengers" EntitySet="passengers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rol_Kullanicilar" Association="Self.FK_Rol_Kullanicilar">
+            <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+            <End Role="Rol" EntitySet="Rol" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SayfaIcerigi_Sayfalar" Association="Self.FK_SayfaIcerigi_Sayfalar">
+            <End Role="Sayfalar" EntitySet="Sayfalar" />
+            <End Role="SayfaIcerigi" EntitySet="SayfaIcerigi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SayfaMultiMedia_Sayfalar1" Association="Self.FK_SayfaMultiMedia_Sayfalar1">
+            <End Role="Sayfalar" EntitySet="Sayfalar" />
+            <End Role="SayfaMultiMedia" EntitySet="SayfaMultiMedia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sms_SmsKategori" Association="Self.FK_Sms_SmsKategori">
+            <End Role="SmsKategori" EntitySet="SmsKategori" />
+            <End Role="Sms" EntitySet="Sms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Yetki_Rol" Association="Self.FK_Yetki_Rol">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="Yetki" EntitySet="Yetki" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KeyifliBiletModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="KeyifliBiletEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BookingInfo" EntityType="KeyifliBiletModel.BookingInfo" />
+          <EntitySet Name="EBulten" EntityType="KeyifliBiletModel.EBulten" />
+          <EntitySet Name="EkstraServis" EntityType="KeyifliBiletModel.EkstraServis" />
+          <EntitySet Name="IletisimFormu" EntityType="KeyifliBiletModel.IletisimFormu" />
+          <EntitySet Name="Kullanicilar" EntityType="KeyifliBiletModel.Kullanicilar" />
+          <EntitySet Name="Kutu" EntityType="KeyifliBiletModel.Kutu" />
+          <EntitySet Name="KutuKategori" EntityType="KeyifliBiletModel.KutuKategori" />
+          <EntitySet Name="legs" EntityType="KeyifliBiletModel.legs" />
+          <EntitySet Name="Log" EntityType="KeyifliBiletModel.Log" />
+          <EntitySet Name="MailKategori" EntityType="KeyifliBiletModel.MailKategori" />
+          <EntitySet Name="Mailler" EntityType="KeyifliBiletModel.Mailler" />
+          <EntitySet Name="Menuler" EntityType="KeyifliBiletModel.Menuler" />
+          <EntitySet Name="MenuTipleri" EntityType="KeyifliBiletModel.MenuTipleri" />
+          <EntitySet Name="OrderResult" EntityType="KeyifliBiletModel.OrderResult" />
+          <EntitySet Name="passengers" EntityType="KeyifliBiletModel.passengers" />
+          <EntitySet Name="Rol" EntityType="KeyifliBiletModel.Rol" />
+          <EntitySet Name="SayfaIcerigi" EntityType="KeyifliBiletModel.SayfaIcerigi" />
+          <EntitySet Name="Sayfalar" EntityType="KeyifliBiletModel.Sayfalar" />
+          <EntitySet Name="SayfaMultiMedia" EntityType="KeyifliBiletModel.SayfaMultiMedia" />
+          <EntitySet Name="Siniflar" EntityType="KeyifliBiletModel.Siniflar" />
+          <EntitySet Name="Sms" EntityType="KeyifliBiletModel.Sms" />
+          <EntitySet Name="SmsKategori" EntityType="KeyifliBiletModel.SmsKategori" />
+          <EntitySet Name="SosyalMedya" EntityType="KeyifliBiletModel.SosyalMedya" />
+          <EntitySet Name="TakipKodlari" EntityType="KeyifliBiletModel.TakipKodlari" />
+          <EntitySet Name="Tanimlar" EntityType="KeyifliBiletModel.Tanimlar" />
+          <EntitySet Name="Uyeler" EntityType="KeyifliBiletModel.Uyeler" />
+          <EntitySet Name="Yetki" EntityType="KeyifliBiletModel.Yetki" />
+          <EntitySet Name="Yetkiler" EntityType="KeyifliBiletModel.Yetkiler" />
+          <AssociationSet Name="FK_BookingInfo_OrderResult" Association="KeyifliBiletModel.FK_BookingInfo_OrderResult">
+            <End Role="OrderResult" EntitySet="OrderResult" />
+            <End Role="BookingInfo" EntitySet="BookingInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Log_Kullanicilar" Association="KeyifliBiletModel.FK_Log_Kullanicilar">
+            <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+            <End Role="Log" EntitySet="Log" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rol_Kullanicilar" Association="KeyifliBiletModel.FK_Rol_Kullanicilar">
+            <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+            <End Role="Rol" EntitySet="Rol" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kutu_KutuKategori" Association="KeyifliBiletModel.FK_Kutu_KutuKategori">
+            <End Role="KutuKategori" EntitySet="KutuKategori" />
+            <End Role="Kutu" EntitySet="Kutu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_legs_OrderResult" Association="KeyifliBiletModel.FK_legs_OrderResult">
+            <End Role="OrderResult" EntitySet="OrderResult" />
+            <End Role="legs" EntitySet="legs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mailler_MailKategori" Association="KeyifliBiletModel.FK_Mailler_MailKategori">
+            <End Role="MailKategori" EntitySet="MailKategori" />
+            <End Role="Mailler" EntitySet="Mailler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Menuler_MenuTipleri" Association="KeyifliBiletModel.FK_Menuler_MenuTipleri">
+            <End Role="MenuTipleri" EntitySet="MenuTipleri" />
+            <End Role="Menuler" EntitySet="Menuler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderResult_Uyeler1" Association="KeyifliBiletModel.FK_OrderResult_Uyeler1">
+            <End Role="Uyeler" EntitySet="Uyeler" />
+            <End Role="OrderResult" EntitySet="OrderResult" />
+          </AssociationSet>
+          <AssociationSet Name="FK_passengers_OrderResult" Association="KeyifliBiletModel.FK_passengers_OrderResult">
+            <End Role="OrderResult" EntitySet="OrderResult" />
+            <End Role="passengers" EntitySet="passengers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Yetki_Rol" Association="KeyifliBiletModel.FK_Yetki_Rol">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="Yetki" EntitySet="Yetki" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SayfaIcerigi_Sayfalar" Association="KeyifliBiletModel.FK_SayfaIcerigi_Sayfalar">
+            <End Role="Sayfalar" EntitySet="Sayfalar" />
+            <End Role="SayfaIcerigi" EntitySet="SayfaIcerigi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SayfaMultiMedia_Sayfalar1" Association="KeyifliBiletModel.FK_SayfaMultiMedia_Sayfalar1">
+            <End Role="Sayfalar" EntitySet="Sayfalar" />
+            <End Role="SayfaMultiMedia" EntitySet="SayfaMultiMedia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sms_SmsKategori" Association="KeyifliBiletModel.FK_Sms_SmsKategori">
+            <End Role="SmsKategori" EntitySet="SmsKategori" />
+            <End Role="Sms" EntitySet="Sms" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="BookingInfo">
+          <Key>
+            <PropertyRef Name="BookingInfoId" />
+          </Key>
+          <Property Name="BookingInfoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int32" />
+          <Property Name="pnr" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="OrderResult" Relationship="KeyifliBiletModel.FK_BookingInfo_OrderResult" FromRole="BookingInfo" ToRole="OrderResult" />
+        </EntityType>
+        <EntityType Name="EBulten">
+          <Key>
+            <PropertyRef Name="BultenId" />
+          </Key>
+          <Property Name="BultenId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Tarih" Type="DateTime" Precision="3" />
+          <Property Name="Durum" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="EkstraServis">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tip" Type="Boolean" />
+          <Property Name="ServisBedeli" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="BaslangicTarihi" Type="DateTime" Precision="0" />
+          <Property Name="BitisTarihi" Type="DateTime" Precision="0" />
+          <Property Name="DonusEklensinMi" Type="Boolean" />
+          <Property Name="KoltukLimiti" Type="Int32" />
+          <Property Name="LimiteBagliServisBedeli" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Durum" Type="Boolean" />
+          <Property Name="KalkisKod" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KalkisSehir" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KalkisHavalimani" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VarisKod" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VarisSehir" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VarisHavalimani" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KalkisUlke" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VarisUlke" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="IletisimFormu">
+          <Key>
+            <PropertyRef Name="IletisimId" />
+          </Key>
+          <Property Name="IletisimId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Telefon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mesaj" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Tarih" Type="DateTime" Precision="3" />
+          <Property Name="Durum" Type="Boolean" />
+          <Property Name="OkunmaTarihi" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Kullanicilar">
+          <Key>
+            <PropertyRef Name="KullaniciId" />
+          </Key>
+          <Property Name="KullaniciId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Durum" Type="Boolean" />
+          <Property Name="KayitTarihi" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Log" Relationship="KeyifliBiletModel.FK_Log_Kullanicilar" FromRole="Kullanicilar" ToRole="Log" />
+          <NavigationProperty Name="Rol" Relationship="KeyifliBiletModel.FK_Rol_Kullanicilar" FromRole="Kullanicilar" ToRole="Rol" />
+        </EntityType>
+        <EntityType Name="Kutu">
+          <Key>
+            <PropertyRef Name="KutuId" />
+          </Key>
+          <Property Name="KategoriId" Type="Int32" Nullable="false" />
+          <Property Name="KutuId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Resim" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IsOneWay" Type="Boolean" />
+          <Property Name="DEP_Airport_Code" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="DEP_Airport_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DEP_Airport_CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DEP_Airport_IsCity" Type="Boolean" />
+          <Property Name="ARR_Airport_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ARR_Airport_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ARR_Airport_CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ARR_Airport_IsCity" Type="Boolean" />
+          <Property Name="Durum" Type="Boolean" />
+          <NavigationProperty Name="KutuKategori" Relationship="KeyifliBiletModel.FK_Kutu_KutuKategori" FromRole="Kutu" ToRole="KutuKategori" />
+        </EntityType>
+        <EntityType Name="KutuKategori">
+          <Key>
+            <PropertyRef Name="KategoriId" />
+          </Key>
+          <Property Name="Kategori" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="KategoriId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Durum" Type="Boolean" />
+          <NavigationProperty Name="Kutu" Relationship="KeyifliBiletModel.FK_Kutu_KutuKategori" FromRole="KutuKategori" ToRole="Kutu" />
+        </EntityType>
+        <EntityType Name="legs">
+          <Key>
+            <PropertyRef Name="LegsId" />
+          </Key>
+          <Property Name="LegsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int32" />
+          <Property Name="operatorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="aircraft" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="arrivalAirport" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="arrivalAirportName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="arrivalCityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="arrivalTime" Type="DateTime" Precision="3" />
+          <Property Name="departureAirport" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="departureAirportName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="departureCityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="departureTime" Type="DateTime" Precision="3" />
+          <Property Name="flightNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="localArrivalDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="localDepartureDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="returnFlight" Type="Boolean" />
+          <NavigationProperty Name="OrderResult" Relationship="KeyifliBiletModel.FK_legs_OrderResult" FromRole="legs" ToRole="OrderResult" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="LogId" />
+          </Key>
+          <Property Name="LogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Metin" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Metod" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Tarih" Type="DateTime" Precision="3" />
+          <Property Name="KullaniciId" Type="Int32" />
+          <NavigationProperty Name="Kullanicilar" Relationship="KeyifliBiletModel.FK_Log_Kullanicilar" FromRole="Log" ToRole="Kullanicilar" />
+        </EntityType>
+        <EntityType Name="MailKategori">
+          <Key>
+            <PropertyRef Name="MailKategoriId" />
+          </Key>
+          <Property Name="MailKategoriId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Aciklama" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Kod" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Mailler" Relationship="KeyifliBiletModel.FK_Mailler_MailKategori" FromRole="MailKategori" ToRole="Mailler" />
+        </EntityType>
+        <EntityType Name="Mailler">
+          <Key>
+            <PropertyRef Name="MailId" />
+          </Key>
+          <Property Name="MailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Baslik" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Icerik" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SMTPAdresi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Port" Type="Int32" />
+          <Property Name="Sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Durum" Type="Boolean" />
+          <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MailKategoriId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MailKategori" Relationship="KeyifliBiletModel.FK_Mailler_MailKategori" FromRole="Mailler" ToRole="MailKategori" />
+        </EntityType>
+        <EntityType Name="Menuler">
+          <Key>
+            <PropertyRef Name="MenuId" />
+          </Key>
+          <Property Name="TipId" Type="Int32" />
+          <Property Name="MenuId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Sira" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Tip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SayfaId" Type="Int32" />
+          <NavigationProperty Name="MenuTipleri" Relationship="KeyifliBiletModel.FK_Menuler_MenuTipleri" FromRole="Menuler" ToRole="MenuTipleri" />
+        </EntityType>
+        <EntityType Name="MenuTipleri">
+          <Key>
+            <PropertyRef Name="TipId" />
+          </Key>
+          <Property Name="TipId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Menu" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Menuler" Relationship="KeyifliBiletModel.FK_Menuler_MenuTipleri" FromRole="MenuTipleri" ToRole="Menuler" />
+        </EntityType>
+        <EntityType Name="OrderResult">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="orderId" Type="Int32" />
+          <Property Name="provider" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="creationDate" Type="DateTime" Precision="3" />
+          <Property Name="note" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="contactGsm" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="contactEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="pax" Type="Int32" />
+          <Property Name="UyeId" Type="Int32" />
+          <NavigationProperty Name="BookingInfo" Relationship="KeyifliBiletModel.FK_BookingInfo_OrderResult" FromRole="OrderResult" ToRole="BookingInfo" />
+          <NavigationProperty Name="legs" Relationship="KeyifliBiletModel.FK_legs_OrderResult" FromRole="OrderResult" ToRole="legs" />
+          <NavigationProperty Name="Uyeler" Relationship="KeyifliBiletModel.FK_OrderResult_Uyeler1" FromRole="OrderResult" ToRole="Uyeler" />
+          <NavigationProperty Name="passengers" Relationship="KeyifliBiletModel.FK_passengers_OrderResult" FromRole="OrderResult" ToRole="passengers" />
+        </EntityType>
+        <EntityType Name="passengers">
+          <Key>
+            <PropertyRef Name="PassgengerId" />
+          </Key>
+          <Property Name="PassgengerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int32" />
+          <Property Name="eticket" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="birthdate" Type="DateTime" Precision="3" />
+          <Property Name="gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="persontype" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="serviceFee" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="totalPrice" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="agencyComission" Type="Double" />
+          <Property Name="tax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="currency" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="OrderResult" Relationship="KeyifliBiletModel.FK_passengers_OrderResult" FromRole="passengers" ToRole="OrderResult" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="RolId" />
+          </Key>
+          <Property Name="RolId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RolAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KullaniciId" Type="Int32" />
+          <NavigationProperty Name="Kullanicilar" Relationship="KeyifliBiletModel.FK_Rol_Kullanicilar" FromRole="Rol" ToRole="Kullanicilar" />
+          <NavigationProperty Name="Yetki" Relationship="KeyifliBiletModel.FK_Yetki_Rol" FromRole="Rol" ToRole="Yetki" />
+        </EntityType>
+        <EntityType Name="SayfaIcerigi">
+          <Key>
+            <PropertyRef Name="IcerikId" />
+          </Key>
+          <Property Name="SayfaId" Type="Int32" />
+          <Property Name="IcerikId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Baslik" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Icerik" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SeoBasligi" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="KeyWords" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="SeoAciklama" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Sayfalar" Relationship="KeyifliBiletModel.FK_SayfaIcerigi_Sayfalar" FromRole="SayfaIcerigi" ToRole="Sayfalar" />
+        </EntityType>
+        <EntityType Name="Sayfalar">
+          <Key>
+            <PropertyRef Name="SayfaId" />
+          </Key>
+          <Property Name="SayfaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UstSayfaId" Type="Int32" />
+          <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Tarih" Type="DateTime" Precision="3" />
+          <Property Name="Baslik" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Icerik" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SeoBasligi" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="KeyWords" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="SeoAciklama" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SayfaIcerigi" Relationship="KeyifliBiletModel.FK_SayfaIcerigi_Sayfalar" FromRole="Sayfalar" ToRole="SayfaIcerigi" />
+          <NavigationProperty Name="SayfaMultiMedia" Relationship="KeyifliBiletModel.FK_SayfaMultiMedia_Sayfalar1" FromRole="Sayfalar" ToRole="SayfaMultiMedia" />
+        </EntityType>
+        <EntityType Name="SayfaMultiMedia">
+          <Key>
+            <PropertyRef Name="MultiMediaId" />
+          </Key>
+          <Property Name="SayfaId" Type="Int32" />
+          <Property Name="MultiMediaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Resim" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Sayfalar" Relationship="KeyifliBiletModel.FK_SayfaMultiMedia_Sayfalar1" FromRole="SayfaMultiMedia" ToRole="Sayfalar" />
+        </EntityType>
+        <EntityType Name="Siniflar">
+          <Key>
+            <PropertyRef Name="SinifId" />
+          </Key>
+          <Property Name="SinifId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SinifAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ServisBedeli" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Sms">
+          <Key>
+            <PropertyRef Name="SmsId" />
+          </Key>
+          <Property Name="SmsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ApiAdresi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mesaj" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KullaniciAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KaynakAdres" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Durum" Type="Boolean" />
+          <Property Name="SmsKategoriId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SmsKategori" Relationship="KeyifliBiletModel.FK_Sms_SmsKategori" FromRole="Sms" ToRole="SmsKategori" />
+        </EntityType>
+        <EntityType Name="SmsKategori">
+          <Key>
+            <PropertyRef Name="SmsKategoriId" />
+          </Key>
+          <Property Name="SmsKategoriId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Aciklama" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Kod" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Sms" Relationship="KeyifliBiletModel.FK_Sms_SmsKategori" FromRole="SmsKategori" ToRole="Sms" />
+        </EntityType>
+        <EntityType Name="SosyalMedya">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Platform" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Url" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Durum" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="TakipKodlari">
+          <Key>
+            <PropertyRef Name="TakipId" />
+          </Key>
+          <Property Name="TakipId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Servis" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Lokasyon" Type="Boolean" />
+          <Property Name="Script" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Durum" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Tanimlar">
+          <Key>
+            <PropertyRef Name="TanimId" />
+          </Key>
+          <Property Name="TanimId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SiteAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Url" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Telefon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Adres" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Harita" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Uyeler">
+          <Key>
+            <PropertyRef Name="UyeId" />
+          </Key>
+          <Property Name="UyeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GSM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AdSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KampanyaDurum" Type="Boolean" />
+          <Property Name="Durum" Type="Boolean" />
+          <Property Name="KayitTarihi" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="OrderResult" Relationship="KeyifliBiletModel.FK_OrderResult_Uyeler1" FromRole="Uyeler" ToRole="OrderResult" />
+        </EntityType>
+        <EntityType Name="Yetki">
+          <Key>
+            <PropertyRef Name="YetkiId" />
+          </Key>
+          <Property Name="YetkiId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MetodAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RolId" Type="Int32" />
+          <NavigationProperty Name="Rol" Relationship="KeyifliBiletModel.FK_Yetki_Rol" FromRole="Yetki" ToRole="Rol" />
+        </EntityType>
+        <EntityType Name="Yetkiler">
+          <Key>
+            <PropertyRef Name="YetkiId" />
+          </Key>
+          <Property Name="YetkiId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="YetkiAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_BookingInfo_OrderResult">
+          <End Type="KeyifliBiletModel.OrderResult" Role="OrderResult" Multiplicity="0..1" />
+          <End Type="KeyifliBiletModel.BookingInfo" Role="BookingInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderResult">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BookingInfo">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Log_Kullanicilar">
+          <End Type="KeyifliBiletModel.Kullanicilar" Role="Kullanicilar" Multiplicity="0..1" />
+          <End Type="KeyifliBiletModel.Log" Role="Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanicilar">
+              <PropertyRef Name="KullaniciId" />
+            </Principal>
+            <Dependent Role="Log">
+              <PropertyRef Name="KullaniciId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rol_Kullanicilar">
+          <End Type="KeyifliBiletModel.Kullanicilar" Role="Kullanicilar" Multiplicity="0..1" />
+          <End Type="KeyifliBiletModel.Rol" Role="Rol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanicilar">
+              <PropertyRef Name="KullaniciId" />
+            </Principal>
+            <Dependent Role="Rol">
+              <PropertyRef Name="KullaniciId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kutu_KutuKategori">
+          <End Type="KeyifliBiletModel.KutuKategori" Role="KutuKategori" Multiplicity="1" />
+          <End Type="KeyifliBiletModel.Kutu" Role="Kutu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KutuKategori">
+              <PropertyRef Name="KategoriId" />
+            </Principal>
+            <Dependent Role="Kutu">
+              <PropertyRef Name="KategoriId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_legs_OrderResult">
+          <End Type="KeyifliBiletModel.OrderResult" Role="OrderResult" Multiplicity="0..1" />
+          <End Type="KeyifliBiletModel.legs" Role="legs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderResult">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="legs">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mailler_MailKategori">
+          <End Type="KeyifliBiletModel.MailKategori" Role="MailKategori" Multiplicity="1" />
+          <End Type="KeyifliBiletModel.Mailler" Role="Mailler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MailKategori">
+              <PropertyRef Name="MailKategoriId" />
+            </Principal>
+            <Dependent Role="Mailler">
+              <PropertyRef Name="MailKategoriId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Menuler_MenuTipleri">
+          <End Type="KeyifliBiletModel.MenuTipleri" Role="MenuTipleri" Multiplicity="0..1" />
+          <End Type="KeyifliBiletModel.Menuler" Role="Menuler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MenuTipleri">
+              <PropertyRef Name="TipId" />
+            </Principal>
+            <Dependent Role="Menuler">
+              <PropertyRef Name="TipId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderResult_Uyeler1">
+          <End Type="KeyifliBiletModel.Uyeler" Role="Uyeler" Multiplicity="0..1" />
+          <End Type="KeyifliBiletModel.OrderResult" Role="OrderResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uyeler">
+              <PropertyRef Name="UyeId" />
+            </Principal>
+            <Dependent Role="OrderResult">
+              <PropertyRef Name="UyeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_passengers_OrderResult">
+          <End Type="KeyifliBiletModel.OrderResult" Role="OrderResult" Multiplicity="0..1" />
+          <End Type="KeyifliBiletModel.passengers" Role="passengers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderResult">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="passengers">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Yetki_Rol">
+          <End Type="KeyifliBiletModel.Rol" Role="Rol" Multiplicity="0..1" />
+          <End Type="KeyifliBiletModel.Yetki" Role="Yetki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="RolId" />
+            </Principal>
+            <Dependent Role="Yetki">
+              <PropertyRef Name="RolId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SayfaIcerigi_Sayfalar">
+          <End Type="KeyifliBiletModel.Sayfalar" Role="Sayfalar" Multiplicity="0..1" />
+          <End Type="KeyifliBiletModel.SayfaIcerigi" Role="SayfaIcerigi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sayfalar">
+              <PropertyRef Name="SayfaId" />
+            </Principal>
+            <Dependent Role="SayfaIcerigi">
+              <PropertyRef Name="SayfaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SayfaMultiMedia_Sayfalar1">
+          <End Type="KeyifliBiletModel.Sayfalar" Role="Sayfalar" Multiplicity="0..1" />
+          <End Type="KeyifliBiletModel.SayfaMultiMedia" Role="SayfaMultiMedia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sayfalar">
+              <PropertyRef Name="SayfaId" />
+            </Principal>
+            <Dependent Role="SayfaMultiMedia">
+              <PropertyRef Name="SayfaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sms_SmsKategori">
+          <End Type="KeyifliBiletModel.SmsKategori" Role="SmsKategori" Multiplicity="1" />
+          <End Type="KeyifliBiletModel.Sms" Role="Sms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SmsKategori">
+              <PropertyRef Name="SmsKategoriId" />
+            </Principal>
+            <Dependent Role="Sms">
+              <PropertyRef Name="SmsKategoriId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="KeyifliBiletModelStoreContainer" CdmEntityContainer="KeyifliBiletEntities">
+          <EntitySetMapping Name="BookingInfo">
+            <EntityTypeMapping TypeName="KeyifliBiletModel.BookingInfo">
+              <MappingFragment StoreEntitySet="BookingInfo">
+                <ScalarProperty Name="pnr" ColumnName="pnr" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="BookingInfoId" ColumnName="BookingInfoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EBulten">
+            <EntityTypeMapping TypeName="KeyifliBiletModel.EBulten">
+              <MappingFragment StoreEntitySet="EBulten">
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="BultenId" ColumnName="BultenId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EkstraServis">
+            <EntityTypeMapping TypeName="KeyifliBiletModel.EkstraServis">
+              <MappingFragment StoreEntitySet="EkstraServis">
+                <ScalarProperty Name="VarisUlke" ColumnName="VarisUlke" />
+                <ScalarProperty Name="KalkisUlke" ColumnName="KalkisUlke" />
+                <ScalarProperty Name="VarisHavalimani" ColumnName="VarisHavalimani" />
+                <ScalarProperty Name="VarisSehir" ColumnName="VarisSehir" />
+                <ScalarProperty Name="VarisKod" ColumnName="VarisKod" />
+                <ScalarProperty Name="KalkisHavalimani" ColumnName="KalkisHavalimani" />
+                <ScalarProperty Name="KalkisSehir" ColumnName="KalkisSehir" />
+                <ScalarProperty Name="KalkisKod" ColumnName="KalkisKod" />
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
+                <ScalarProperty Name="LimiteBagliServisBedeli" ColumnName="LimiteBagliServisBedeli" />
+                <ScalarProperty Name="KoltukLimiti" ColumnName="KoltukLimiti" />
+                <ScalarProperty Name="DonusEklensinMi" ColumnName="DonusEklensinMi" />
+                <ScalarProperty Name="BitisTarihi" ColumnName="BitisTarihi" />
+                <ScalarProperty Name="BaslangicTarihi" ColumnName="BaslangicTarihi" />
+                <ScalarProperty Name="ServisBedeli" ColumnName="ServisBedeli" />
+                <ScalarProperty Name="Tip" ColumnName="Tip" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IletisimFormu">
+            <EntityTypeMapping TypeName="KeyifliBiletModel.IletisimFormu">
+              <MappingFragment StoreEntitySet="IletisimFormu">
+                <ScalarProperty Name="OkunmaTarihi" ColumnName="OkunmaTarihi" />
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+                <ScalarProperty Name="Mesaj" ColumnName="Mesaj" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="AdSoyad" ColumnName="AdSoyad" />
+                <ScalarProperty Name="IletisimId" ColumnName="IletisimId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kullanicilar">
+            <EntityTypeMapping TypeName="KeyifliBiletModel.Kullanicilar">
+              <MappingFragment StoreEntitySet="Kullanicilar">
+                <ScalarProperty Name="KayitTarihi" ColumnName="KayitTarihi" />
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
+                <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="KullaniciId" ColumnName="KullaniciId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kutu">
+            <EntityTypeMapping TypeName="KeyifliBiletModel.Kutu">
+              <MappingFragment StoreEntitySet="Kutu">
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
+                <ScalarProperty Name="ARR_Airport_IsCity" ColumnName="ARR_Airport_IsCity" />
+                <ScalarProperty Name="ARR_Airport_CityName" ColumnName="ARR_Airport_CityName" />
+                <ScalarProperty Name="ARR_Airport_Name" ColumnName="ARR_Airport_Name" />
+                <ScalarProperty Name="ARR_Airport_Code" ColumnName="ARR_Airport_Code" />
+                <ScalarProperty Name="DEP_Airport_IsCity" ColumnName="DEP_Airport_IsCity" />
+                <ScalarProperty Name="DEP_Airport_CityName" ColumnName="DEP_Airport_CityName" />
+                <ScalarProperty Name="DEP_Airport_Name" ColumnName="DEP_Airport_Name" />
+                <ScalarProperty Name="DEP_Airport_Code" ColumnName="DEP_Airport_Code" />
+                <ScalarProperty Name="IsOneWay" ColumnName="IsOneWay" />
+                <ScalarProperty Name="Resim" ColumnName="Resim" />
+                <ScalarProperty Name="KutuId" ColumnName="KutuId" />
+                <ScalarProperty Name="KategoriId" ColumnName="KategoriId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KutuKategori">
+            <EntityTypeMapping TypeName="KeyifliBiletModel.KutuKategori">
+              <MappingFragment StoreEntitySet="KutuKategori">
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
+                <ScalarProperty Name="KategoriId" ColumnName="KategoriId" />
+                <ScalarProperty Name="Kategori" ColumnName="Kategori" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="legs">
+            <EntityTypeMapping TypeName="KeyifliBiletModel.legs">
+              <MappingFragment StoreEntitySet="legs">
+                <ScalarProperty Name="returnFlight" ColumnName="returnFlight" />
+                <ScalarProperty Name="localDepartureDate" ColumnName="localDepartureDate" />
+                <ScalarProperty Name="localArrivalDate" ColumnName="localArrivalDate" />
+                <ScalarProperty Name="flightNo" ColumnName="flightNo" />
+                <ScalarProperty Name="departureTime" ColumnName="departureTime" />
+                <ScalarProperty Name="departureCityName" ColumnName="departureCityName" />
+                <ScalarProperty Name="departureAirportName" ColumnName="departureAirportName" />
+                <ScalarProperty Name="departureAirport" ColumnName="departureAirport" />
+                <ScalarProperty Name="arrivalTime" ColumnName="arrivalTime" />
+                <ScalarProperty Name="arrivalCityName" ColumnName="arrivalCityName" />
+                <ScalarProperty Name="arrivalAirportName" ColumnName="arrivalAirportName" />
+                <ScalarProperty Name="arrivalAirport" ColumnName="arrivalAirport" />
+                <ScalarProperty Name="aircraft" ColumnName="aircraft" />
+                <ScalarProperty Name="operatorName" ColumnName="operatorName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="LegsId" ColumnName="LegsId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Log">
+            <EntityTypeMapping TypeName="KeyifliBiletModel.Log">
+              <MappingFragment StoreEntitySet="Log">
+                <ScalarProperty Name="KullaniciId" ColumnName="KullaniciId" />
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+                <ScalarProperty Name="Metod" ColumnName="Metod" />
+                <ScalarProperty Name="Metin" ColumnName="Metin" />
+                <ScalarProperty Name="LogId" ColumnName="LogId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MailKategori">
+            <EntityTypeMapping TypeName="KeyifliBiletModel.MailKategori">
+              <MappingFragment StoreEntitySet="MailKategori">
+                <ScalarProperty Name="Kod" ColumnName="Kod" />
+                <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+                <ScalarProperty Name="MailKategoriId" ColumnName="MailKategoriId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mailler">
+            <EntityTypeMapping TypeName="KeyifliBiletModel.Mailler">
+              <MappingFragment StoreEntitySet="Mailler">
+                <ScalarProperty Name="MailKategoriId" ColumnName="MailKategoriId" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
+                <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+                <ScalarProperty Name="Port" ColumnName="Port" />
+                <ScalarProperty Name="SMTPAdresi" ColumnName="SMTPAdresi" />
+                <ScalarProperty Name="Icerik" ColumnName="Icerik" />
+                <ScalarProperty Name="Baslik" ColumnName="Baslik" />
+                <ScalarProperty Name="MailId" ColumnName="MailId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Menuler">
+            <EntityTypeMapping TypeName="KeyifliBiletModel.Menuler">
+              <MappingFragment StoreEntitySet="Menuler">
+                <ScalarProperty Name="SayfaId" ColumnName="SayfaId" />
+                <ScalarProperty Name="Tip" ColumnName="Tip" />
+                <ScalarProperty Name="Sira" ColumnName="Sira" />
+                <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+                <ScalarProperty Name="TipId" ColumnName="TipId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MenuTipleri">
+            <EntityTypeMapping TypeName="KeyifliBiletModel.MenuTipleri">
+              <MappingFragment StoreEntitySet="MenuTipleri">
+                <ScalarProperty Name="Menu" ColumnName="Menu" />
+                <ScalarProperty Name="TipId" ColumnName="TipId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderResult">
+            <EntityTypeMapping TypeName="KeyifliBiletModel.OrderResult">
+              <MappingFragment StoreEntitySet="OrderResult">
+                <ScalarProperty Name="UyeId" ColumnName="UyeId" />
+                <ScalarProperty Name="pax" ColumnName="pax" />
+                <ScalarProperty Name="contactEmail" ColumnName="contactEmail" />
+                <ScalarProperty Name="contactGsm" ColumnName="contactGsm" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="note" ColumnName="note" />
+                <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+                <ScalarProperty Name="provider" ColumnName="provider" />
+                <ScalarProperty Name="orderId" ColumnName="orderId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="passengers">
+            <EntityTypeMapping TypeName="KeyifliBiletModel.passengers">
+              <MappingFragment StoreEntitySet="passengers">
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="currency" ColumnName="currency" />
+                <ScalarProperty Name="tax" ColumnName="tax" />
+                <ScalarProperty Name="agencyComission" ColumnName="agencyComission" />
+                <ScalarProperty Name="totalPrice" ColumnName="totalPrice" />
+                <ScalarProperty Name="serviceFee" ColumnName="serviceFee" />
+                <ScalarProperty Name="persontype" ColumnName="persontype" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="birthdate" ColumnName="birthdate" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="eticket" ColumnName="eticket" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PassgengerId" ColumnName="PassgengerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rol">
+            <EntityTypeMapping TypeName="KeyifliBiletModel.Rol">
+              <MappingFragment StoreEntitySet="Rol">
+                <ScalarProperty Name="KullaniciId" ColumnName="KullaniciId" />
+                <ScalarProperty Name="RolAdi" ColumnName="RolAdi" />
+                <ScalarProperty Name="RolId" ColumnName="RolId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SayfaIcerigi">
+            <EntityTypeMapping TypeName="KeyifliBiletModel.SayfaIcerigi">
+              <MappingFragment StoreEntitySet="SayfaIcerigi">
+                <ScalarProperty Name="SeoAciklama" ColumnName="SeoAciklama" />
+                <ScalarProperty Name="KeyWords" ColumnName="KeyWords" />
+                <ScalarProperty Name="SeoBasligi" ColumnName="SeoBasligi" />
+                <ScalarProperty Name="Icerik" ColumnName="Icerik" />
+                <ScalarProperty Name="Baslik" ColumnName="Baslik" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="IcerikId" ColumnName="IcerikId" />
+                <ScalarProperty Name="SayfaId" ColumnName="SayfaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sayfalar">
+            <EntityTypeMapping TypeName="KeyifliBiletModel.Sayfalar">
+              <MappingFragment StoreEntitySet="Sayfalar">
+                <ScalarProperty Name="SeoAciklama" ColumnName="SeoAciklama" />
+                <ScalarProperty Name="KeyWords" ColumnName="KeyWords" />
+                <ScalarProperty Name="SeoBasligi" ColumnName="SeoBasligi" />
+                <ScalarProperty Name="Icerik" ColumnName="Icerik" />
+                <ScalarProperty Name="Baslik" ColumnName="Baslik" />
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="UstSayfaId" ColumnName="UstSayfaId" />
+                <ScalarProperty Name="SayfaId" ColumnName="SayfaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SayfaMultiMedia">
+            <EntityTypeMapping TypeName="KeyifliBiletModel.SayfaMultiMedia">
+              <MappingFragment StoreEntitySet="SayfaMultiMedia">
+                <ScalarProperty Name="Resim" ColumnName="Resim" />
+                <ScalarProperty Name="MultiMediaId" ColumnName="MultiMediaId" />
+                <ScalarProperty Name="SayfaId" ColumnName="SayfaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Siniflar">
+            <EntityTypeMapping TypeName="KeyifliBiletModel.Siniflar">
+              <MappingFragment StoreEntitySet="Siniflar">
+                <ScalarProperty Name="ServisBedeli" ColumnName="ServisBedeli" />
+                <ScalarProperty Name="SinifAdi" ColumnName="SinifAdi" />
+                <ScalarProperty Name="SinifId" ColumnName="SinifId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sms">
+            <EntityTypeMapping TypeName="KeyifliBiletModel.Sms">
+              <MappingFragment StoreEntitySet="Sms">
+                <ScalarProperty Name="SmsKategoriId" ColumnName="SmsKategoriId" />
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
+                <ScalarProperty Name="KaynakAdres" ColumnName="KaynakAdres" />
+                <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+                <ScalarProperty Name="KullaniciAdi" ColumnName="KullaniciAdi" />
+                <ScalarProperty Name="Mesaj" ColumnName="Mesaj" />
+                <ScalarProperty Name="ApiAdresi" ColumnName="ApiAdresi" />
+                <ScalarProperty Name="SmsId" ColumnName="SmsId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SmsKategori">
+            <EntityTypeMapping TypeName="KeyifliBiletModel.SmsKategori">
+              <MappingFragment StoreEntitySet="SmsKategori">
+                <ScalarProperty Name="Kod" ColumnName="Kod" />
+                <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+                <ScalarProperty Name="SmsKategoriId" ColumnName="SmsKategoriId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SosyalMedya">
+            <EntityTypeMapping TypeName="KeyifliBiletModel.SosyalMedya">
+              <MappingFragment StoreEntitySet="SosyalMedya">
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Platform" ColumnName="Platform" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TakipKodlari">
+            <EntityTypeMapping TypeName="KeyifliBiletModel.TakipKodlari">
+              <MappingFragment StoreEntitySet="TakipKodlari">
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
+                <ScalarProperty Name="Script" ColumnName="Script" />
+                <ScalarProperty Name="Lokasyon" ColumnName="Lokasyon" />
+                <ScalarProperty Name="Servis" ColumnName="Servis" />
+                <ScalarProperty Name="TakipId" ColumnName="TakipId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tanimlar">
+            <EntityTypeMapping TypeName="KeyifliBiletModel.Tanimlar">
+              <MappingFragment StoreEntitySet="Tanimlar">
+                <ScalarProperty Name="Harita" ColumnName="Harita" />
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="SiteAdi" ColumnName="SiteAdi" />
+                <ScalarProperty Name="TanimId" ColumnName="TanimId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Uyeler">
+            <EntityTypeMapping TypeName="KeyifliBiletModel.Uyeler">
+              <MappingFragment StoreEntitySet="Uyeler">
+                <ScalarProperty Name="KayitTarihi" ColumnName="KayitTarihi" />
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
+                <ScalarProperty Name="KampanyaDurum" ColumnName="KampanyaDurum" />
+                <ScalarProperty Name="AdSoyad" ColumnName="AdSoyad" />
+                <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+                <ScalarProperty Name="GSM" ColumnName="GSM" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="UyeId" ColumnName="UyeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Yetki">
+            <EntityTypeMapping TypeName="KeyifliBiletModel.Yetki">
+              <MappingFragment StoreEntitySet="Yetki">
+                <ScalarProperty Name="RolId" ColumnName="RolId" />
+                <ScalarProperty Name="MetodAdi" ColumnName="MetodAdi" />
+                <ScalarProperty Name="YetkiId" ColumnName="YetkiId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Yetkiler">
+            <EntityTypeMapping TypeName="KeyifliBiletModel.Yetkiler">
+              <MappingFragment StoreEntitySet="Yetkiler">
+                <ScalarProperty Name="YetkiAdi" ColumnName="YetkiAdi" />
+                <ScalarProperty Name="YetkiId" ColumnName="YetkiId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

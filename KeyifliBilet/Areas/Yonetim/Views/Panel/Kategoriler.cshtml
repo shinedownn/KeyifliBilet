@@ -1,0 +1,145 @@
+﻿@model KeyifliBilet.Areas.Yonetim.Models.IndexViewModel
+@{
+    ViewBag.Title = "Kategoriler";
+    Layout = "~/Areas/Yonetim/Views/Shared/MasterPage.cshtml";
+}
+@section css{
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+
+    <style>
+        body {
+            margin: 1em;
+        }
+
+        .jstree-table-wrapper {
+            border: 1px solid #ccc;
+        }
+    </style>
+}
+<section id="main-content">
+    <section class="wrapper">
+        <div id="page-wrapper">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-12">
+
+                                        <div id="jstree">
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.table-responsive -->
+
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+        </div>
+    </section>
+</section>
+
+
+
+@section js{
+
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="https://static.jstree.com/latest/assets/dist/jstree.min.js"></script>
+    <script src="https://rawgit.com/adamjimenez/jstree-table/master/jstreetable.js"></script>
+    <script src="~/Areas/Yonetim/Content/js/jstreegrid.js"></script>
+    <script>
+        // load jstree
+        $("div#jstree").jstree({
+            plugins: ["themes", "json", "grid", "dnd"],
+            core: {
+                data: {
+                    url: '/Panel/Nodes'
+                }
+            },
+            grid: {
+                columns: [
+                    { header: "Sayfalar", title: "_DATA_" },
+                    { cellClass: "col1", value: "multimedia", header: "Multimedya", valueClass: "spanclass" },
+                    { cellClass: "col2", value: "edit", header: "Düzenle", valueClass: "spanclass" },
+                    { cellClass: "col3", value: "delete", header: "Sil", valueClass: "spanclass" }
+
+                ],
+                resizable: true,
+                draggable: true
+            },
+            dnd: {
+                drop_finish: function () {
+                },
+                drag_finish: function () {
+                },
+                drag_check: function (data) {
+                    return {
+                        after: true,
+                        before: true,
+                        inside: true
+                    };
+                }
+            }
+        })
+            .on('loaded.jstree', function () {
+                // $("div#jstree").jstree('open_all');
+            });
+
+
+                        //$(function () {
+                        //    $('div#jstree').jstree({
+                        //        plugins: ["table", "dnd", "contextmenu", "sort"],
+                        //        core: {
+                        //            data: {
+                        //                url: '/Panel/Nodes',
+                        //                data: {},
+                        //                children: function (node) {
+                        //                    return {
+                        //                        id: node.SayfaId,
+                        //                        parent: node.UstSayfaId,
+                        //                        text: node.Ad
+                        //                    };
+                        //                },
+                        //                success: function (data) {
+                        //                    debugger;
+                        //                    return data;
+                        //                }
+                        //            }
+                        //        },
+                        //        table: {
+                        //            columns: [
+                        //                { width: 250, header: "Name" },
+                        //                { width: 250, value: "price", header: "price" },
+                        //                { width: 250, value: "quantity", header: "Qty" }
+                        //            ],
+                        //            resizable: true,
+                        //            draggable: true,
+                        //            contextmenu: true,
+                        //            width: 800,
+                        //            height: 500
+                        //        }
+                        //    });
+
+
+                        //});
+    </script>
+}
+
+
+
+

@@ -1,0 +1,115 @@
+﻿@model KeyifliBilet.Areas.Yonetim.Models.IndexViewModel
+@{
+    ViewBag.Title = "KomisyonRapolari";
+    Layout = "~/Areas/Yonetim/Views/Shared/MasterPage.cshtml";
+}
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs-3.3.7/jq-2.2.4/jszip-3.1.3/pdfmake-0.1.27/dt-1.10.15/b-1.3.1/b-html5-1.3.1/b-print-1.3.1/r-2.1.1/rg-1.0.0/datatables.min.css" />
+
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs-3.3.7/jq-2.2.4/jszip-3.1.3/pdfmake-0.1.27/dt-1.10.15/b-1.3.1/b-html5-1.3.1/b-print-1.3.1/r-2.1.1/rg-1.0.0/datatables.min.js"></script>
+
+<section id="main-content">
+    <section class="wrapper">
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Komisyon Raporları</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="table-responsive">
+
+                                <table id="myTable" class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>PNR</th>
+                                            <th>Tarih</th>
+                                            <th>Hava Yolu</th>
+                                            <th>Durum </th>
+                                            <th>Komisyon</th>
+                                            <th>Para Birimi</th>
+                                            <th>Detay</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if (Model.orderResult.Count() != 0)
+                                        {
+                                            foreach (var item in Model.orderResult)
+                                            {
+                                        <tr class="odd gradeX" id="row_@item.Id">
+                                            <td>@item.BookingInfo.First(w => w.Id == item.Id).pnr</td>
+                                            <td>@item.creationDate</td>
+                                            <td>@item.provider</td>
+                                            <td>@item.status</td>
+                                            <td>@item.passengers.First(w => w.Id == item.Id).agencyComission.ToString()</td>
+                                            <td>@item.passengers.First(w => w.Id == item.Id).currency.ToString()</td>
+                                            <td>   <a class="btn btn-success" onclick="BiletDetay(@item.Id)"><i class="glyphicon glyphicon-pencil"></i> </a></td>
+                                        </tr>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <div class="alert alert-info">Bilet Bulunmamaktadır.</div>
+                                        }
+                                    </tbody>
+                                </table>
+
+                                <script>
+                                    $('#myTable').DataTable();
+                                </script>
+                                <div class="pagination"></div>
+                            </div>
+                            <!-- /.table-responsive -->
+
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+        </div>
+    </section>
+</section>
+<div class="modal fade" id="myModal1" >
+    <div class="modal-dialog" style="width:1300px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h3 class="modal-title">Detay</h3>
+            </div>
+            <div class="modal-body" id="myModalBodyDiv1" >
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+
+    var BiletDetay = function (Id) {
+
+        var url = "/Yonetim/Panel/BiletDetay?Id=" + Id;
+
+        $("#myModalBodyDiv1").load(url, function () {
+            $("#myModal1").modal("show");
+
+        })
+
+    }
+</script>

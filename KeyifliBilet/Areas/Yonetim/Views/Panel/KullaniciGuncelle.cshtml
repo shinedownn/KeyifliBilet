@@ -1,0 +1,38 @@
+﻿@model KeyifliBilet.Areas.Yonetim.Models.IndexViewModel
+
+@foreach (var item in Model.kullanicilar)
+{
+    <form id="myForm" action="@Url.Action("KullaniciGuncelle", "Panel",new { id = item.KullaniciId })" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+        <div id="listOfCustomers" style="height: 400px; overflow: auto;">
+
+           
+            <div class="form-group">
+                <label>AD</label>
+                <input class="form-control" type="text" name="ad" id="ad" value="@item.Ad" required="required">
+            </div>
+            <div class="form-group">
+                <label>SOYAD</label>
+                <input class="form-control" type="text" name="soyad" id="soyad" value="@item.Soyad" required="required">
+            </div>
+            <div class="form-group">
+                <label>MAİL</label>
+                <input class="form-control" type="text" name="mail" id="mail" value="@item.Mail" required="required">
+            </div>
+            <div class="form-group">
+                <label>ŞİFRE</label>
+                <input class="form-control" type="text" name="sifre" id="sifre" value="@item.Sifre" required="required">
+            </div>
+
+            <div class="box-footer">
+                <button class="btn btn-xs btn-danger" id="btnSubmit" href="@Url.Action("KullaniciGuncelle", "Panel",new { id = item.KullaniciId })">
+                    <span> DÜZENLE</span>
+                </button>
+            </div>
+
+
+        </div>
+
+
+    </form>
+}
+

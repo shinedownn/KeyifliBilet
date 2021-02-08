@@ -1,0 +1,49 @@
+﻿@model KeyifliBilet.Areas.Yonetim.Models.IndexViewModel
+
+<form id="myForm" action="@Url.Action("SmsEkle", "Panel")" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+    <div id="listOfCustomers" style="height: 400px; overflow: auto;">
+
+        <div class="portlet-title">
+            <div class="caption">
+                <select class="form-control" id="kategori" name="kategori">
+                    <option value="">Kategori Seçiniz</option>
+                    @foreach (var item in Model.smsKategori)
+                    {
+                        <option value="@item.SmsKategoriId">@item.Aciklama</option>
+                    }
+
+
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>APİ ADRESİ</label>
+            <input class="form-control" type="text" name="api" id="api" placeholder="APİ ADRESİ" required="required">
+        </div>
+        <div class="form-group">
+            <label>KAYNAK ADRESİ</label>
+            <input class="form-control" type="text" name="kaynak" id="kaynak" placeholder="KAYNAK ADRESİ" required="required">
+        </div>
+        <div class="form-group">
+            <label>MESAJ</label>
+            <input class="form-control" type="text" name="mesaj" id="mesaj" placeholder="MESAJ" required="required">
+        </div>
+        <div class="form-group">
+            <label>KULLANICI ADI</label>
+            <input class="form-control" type="text" name="kullanici" id="kullanici" placeholder="KULLANICI ADI" required="required">
+        </div>
+        <div class="form-group">
+            <label>ŞİFRE</label>
+            <input class="form-control" type="text" name="sifre" id="sifre" placeholder="ŞİFRE" required="required">
+        </div>
+        <div class="box-footer">
+            <button class="btn btn-xs btn-danger" id="btnSubmit" href="@Url.Action("SmsEkle", "Panel" )">
+                <span> EKLE</span>
+            </button>
+        </div>
+
+
+    </div>
+
+
+</form>

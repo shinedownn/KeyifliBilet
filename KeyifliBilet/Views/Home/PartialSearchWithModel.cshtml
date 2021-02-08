@@ -1,0 +1,566 @@
+﻿@model KeyifliBilet.Models.ViewSearch
+
+
+<div class="engine-step tab-pane show active" id="tabQuickFlights" role="tabpanel" aria-labelledby="flight-tab">
+    @using (Html.BeginForm("Result", "Flight", FormMethod.Post, new { id = "SearchForm", style = "height:100%" }))
+    {
+
+        @*<input id="hdnIsOneWay" name="hdnIsOneWay" type="hidden" value="true">*@
+        @Html.HiddenFor(model => model.IsOneWay, new { id = "hdnIsOneWay" })
+        <div class="row">
+            <div class="col-md-6 tabs-type-a tabs-block">
+                <ul class="nav nav-tabs tabs-nav" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="tekyon-tab" data-toggle="tab" href="#tekyon" role="tab" aria-controls="tekyon" aria-selected="true">Tek Yön</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="gidisdonus-tab" data-toggle="tab" href="#gidisdonus" role="tab" aria-controls="gidisdonus" aria-selected="false">Gidiş-Dönüş</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-controls="tekyon" aria-selected="true">
+                            <label class="nomargin">
+                                <input type="checkbox" id="chkNoStop" style="vertical-align: -3px;" @(Model.NoStop ? "checked=\"checked\"" : "")> Sadece direkt uçuşları
+                                @*@Html.CheckBoxFor(model => model.NoStop, new { style = "vertical-align: -3px;" }) Sadece direkt uçuşları*@
+                            </label>
+                        </a>
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="btn-group" id="dvDeparture">
+                    <button class="btn btn-secondary btn-lg dropdown-toggle custom-input animated flipInX" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="icon-plane"></i>
+                        <span class="label autohide">
+                            <span class="label-short">@Model.DEP_Airport_CityName</span>
+                            <span class="label-full">
+                                <span class="label-airport">@Model.DEP_Airport_Name</span>
+                                (<span class="label-code">@Model.DEP_Airport_Code</span>)
+                            </span>
+                        </span>
+                    </button>
+                    <div class="dropdown-menu" role="menu">
+                        <div class="typeahead__container">
+                            <div class="typeahead__field">
+                                <span class="typeahead__query">
+                                    <input type="text" placeholder="Kalkış Havalimanı" value="@Model.DEP_Airport_Code" class="t-input txtAutocomplete ui-autocomplete-input" autocapitalize="none" id="selectBoardingTerminal" autocomplete="off">
+                                    @*@Html.TextBoxFor(model => model.DEP_Airport_Code, new { @class="t-input txtAutocomplete ui-autocomplete-input", autocapitalize="none",  id="selectBoardingTerminal", autocomplete="off" })*@
+                                </span>
+                            </div>
+                        </div>
+                        <ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content" id="ui-id-1" tabindex="0" style="display: none;"></ul>
+                    </div>
+                </div>
+            </div>
+            <div class="change-ports animated flipInX col-md-pull-3 clearfix" id="btnChangePorts" style="cursor:pointer">
+                <i class="icon-angle-right"></i>
+                <i class="icon-angle-right"></i>
+            </div>
+            <div class="col-md-3">
+                <div class="btn-group" id="dvReturn">
+                    <button class="btn btn-secondary btn-lg dropdown-toggle custom-input animated flipInX" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="icon-plane"></i>
+                        <span class="label autohide">
+                            <span class="label-short">@Model.ARR_Airport_CityName</span>
+                            <span class="label-full">
+                                <span class="label-airport">@Model.ARR_Airport_Name</span>
+                                (<span class="label-code">@Model.ARR_Airport_Code</span>)
+                            </span>
+                        </span>
+                    </button>
+                    <div class="dropdown-menu" role="menu">
+                        <div class="typeahead__container">
+                            <div class="typeahead__field">
+                                <span class="typeahead__query">
+                                    <input type="text" placeholder="Varış Havalimanı" value="@Model.ARR_Airport_Code" class="t-input ui-autocomplete-input" id="selectLandingTerminal" autocomplete="off">
+                                    @*@Html.TextBoxFor(model => model.ARR_Airport_Code, new { @class="t-input ui-autocomplete-input", id="selectLandingTerminal", autocomplete="off" })*@
+                                </span>
+                            </div>
+                        </div>
+                        <ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content" id="ui-id-2" tabindex="0" style="display: none;"></ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="row">
+                    <div class="col-md-12">
+                        <button class="btn btn-secondary btn-lg custom-input dark animated flipInX" type="button">
+                            <i class="icon-calendar"></i>
+                            <span class="label">
+                                <span class="date-title">Gidiş Tarihi</span>
+                                <input id="inpRangePicker" name="datepicker" type="text" class="date-inpt rangepicker" singledatepicker="false" value="@Model.DepartureDate - @Model.ReturnDate" data-format="dd.mm.yyyy" data-from="@Model.DepartureDate" data-to="@Model.ReturnDate" readonly="readonly">
+                            </span>
+                            <span class="field-validation-valid" data-valmsg-for="DepartureDate" data-valmsg-replace="true"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="btn-group" id="dvPerson">
+                    <button class="btn btn-secondary btn-lg dropdown-toggle custom-input animated flipInX" type="button" data-original-title="" title="">
+                        <i class="icon-user2"></i>
+                        <span class="label">
+                            <span class="date-title">Seyahat Bilgileri</span>
+                            <span id="spn_FSB_TotalPax" class="label-short"><span id="personCount">@(Model.Adult + Model.Child + Model.Infant)</span> Yolcu</span>
+                        </span>
+                    </button>
+                    <div class="flight-information" role="menu" x-placement="bottom-start">
+
+
+                        <div class="row">
+                            <div class="col-md-4 col-6">
+                                <label>Kabin tipi </label>
+                            </div>
+                            <div class="col-md-8 col-6">
+                                <div class="fancy-form fancy-form-select">
+                                    <select class="form-control" name="selectCabinClass" id="ddlClass">
+                                        <option value="ALL">Hepsi</option>
+                                        <option value="PROMO">Promosyon</option>
+                                        <option value="ECONOMY">Ekonomi</option>
+                                        <option value="BUSINESS">Business</option>
+                                    </select>
+                                    <i class="fancy-arrow"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="row">
+                            <div class="col-md-8 col-6">
+                                <label>Yetişkin<br><span>(12 yaş ve üstü)</span></label>
+                            </div>
+                            <div class="col-md-4 col-6">
+
+                                <input type="text" id="txtAdultCount" value="@Model.Adult" min="1" max="5" class="form-control stepper" style="margin: 0px;">
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8 col-6">
+                                <label>Çocuk<br><span>(2-11)</span></label>
+                            </div>
+                            <div class="col-md-4 col-6">
+
+                                <input type="text" id="txtChildCount" value="@Model.Child" min="0" max="2" class="form-control stepper">
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8 col-6">
+                                <label>Bebek<br><span>(-2)</span></label>
+                            </div>
+                            <div class="col-md-4 col-6">
+
+                                <input type="text" id="txtInfantCount" value="@Model.Infant" min="0" max="2" class="form-control stepper">
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a class="btn srch-tab-ok" id="btn_FSB_OK">Arama Yap</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1 text-right">
+                <button type="button" class="srch-btn animated flipInX" id="btnGoFlightSearch"><i class="icon-angle-right"></i></button>
+            </div>
+        </div>
+
+
+        <input type="hidden" id="DEP_Airport_IsCity" name="DEP_Airport_IsCity">
+        <input type="hidden" id="ARR_Airport_IsCity" name="ARR_Airport_IsCity">
+        <input type="hidden" id="hdnflightType" value="value">
+        <input type="hidden" id="DepartureDate" name="DepartureDate" />
+        <input type="hidden" id="ReturnDate" name="ReturnDate" />
+        <input type="hidden" id="Adult" name="Adult" />
+        <input type="hidden" id="Child" name="Child" />
+        <input type="hidden" id="Infant" name="Infant" />
+        <input type="hidden" id="CabinClass" name="CabinClass" />
+
+        <input type="hidden" id="DEP_Airport_Code" name="DEP_Airport_Code" value="IST">
+        <input type="hidden" id="DEP_Airport_Name" name="DEP_Airport_Name" />
+        <input type="hidden" id="DEP_Airport_CityName" name="DEP_Airport_CityName" />
+        <input type="hidden" id="ARR_Airport_Code" name="ARR_Airport_Code" value="AYT">
+        <input type="hidden" id="ARR_Airport_Name" name="ARR_Airport_Name" />
+        <input type="hidden" id="ARR_Airport_CityName" name="ARR_Airport_CityName" />
+
+    }
+</div>
+<script src="~/Scripts/jquery-2.2.2.min.js" type="text/javascript"></script>
+
+
+
+<script type="text/javascript">
+    //IsOneWay: $("#hdnIsOneWay").val().toString().toLowerCase() == 'true' ? true : false,
+    //            DEP_Airport_Code: $('#selectBoardingTerminalCode').val(),
+    //            DEP_Airport_Name: '',
+    //            DEP_Airport_CityName: $("#dvDeparture").find('span[class="label-short"]').text(),
+    //            DEP_Airport_IsCity: $('#selectAllInFromCity').val() == 'true' ? true : false,
+    //            DepartureDate: $('#inpRangePicker').data('daterangepicker').startDate.format('DD-MM-YYYY'),
+    //            ARR_Airport_Code: $('#selectLandingTerminalCode').val(),
+    //            ARR_Airport_Name: '',
+    //            ARR_Airport_CityName: $("#dvReturn").find('span[class="label-short"]').text(),
+    //            ARR_Airport_IsCity: $('#selectAllInToCity').val() == 'true' ? true : false,
+    //            ReturnDate: toDate,
+    //            Adult: parseInt($("#txtAdultCount").val()),
+    //            Child: parseInt($("#txtChildCount").val()),
+    //            Infant: parseInt($("#txtInfantCount").val()),
+    //            Total: 0,
+    //            CabinClass: $("#ddlClass").val(),
+    //            NoStop: $("#chkNoStop").is(':checked')
+    $(document).ready(function () {
+        $("#btn_FSB_OK").click(function () {
+            $("#btnGoFlightSearch").trigger("click");
+        })
+        $("#btnGoFlightSearch").click(function () {
+            $("#preloader").fadeIn();
+                debugger;
+                var toDate = "";
+                try {
+                    toDate = $('#inpRangePicker').data('daterangepicker').endDate.format('DD-MM-YYYY');
+                } catch (e) {
+                    toDate = "";
+                }
+
+
+                var DepartureDate = $('#inpRangePicker').data('daterangepicker').startDate.format('DD-MM-YYYY');
+                var ReturnDate = toDate;
+                $("#DepartureDate").val(DepartureDate);
+                $("#ReturnDate").val(ReturnDate);
+                var Adult = $("#txtAdultCount").val();
+                var Child = $("#txtChildCount").val();
+                var Infant = $("#txtInfantCount").val();
+                $("#Adult").val(Adult);
+                $("#Child").val(Child);
+                $("#Infant").val(Infant);
+                var cabinclass = $("#ddlClass").val();
+                $("#CabinClass").val(cabinclass);
+                var depCity = $("#dvDeparture").find('span[class="label-short"]').text();
+                var depAirport = $("#dvDeparture").find('span[class="label-airport"]').text();
+                var depCode = $("#dvDeparture").find('span[class="label-code"]').text();
+
+                var arrCity = $("#dvReturn").find('span[class="label-short"]').text();
+                var arrAirport = $("#dvReturn").find('span[class="label-airport"]').text();
+                var arrCode = $("#dvReturn").find('span[class="label-code"]').text();
+
+                $("#DEP_Airport_Name").val(depAirport);
+                $("#DEP_Airport_Code").val(depCode);
+                $("#DEP_Airport_CityName").val(depCity);
+
+
+                $("#ARR_Airport_Name").val(arrAirport);
+                $("#ARR_Airport_Code").val(arrCode);
+                $("#ARR_Airport_CityName").val(arrCity);
+                $("#spnDeparture").html(depCity + "(" + depCode + ")");
+                $("#spnArrival").html(arrCity + "(" + arrCode + ")");
+                var paxArray = [];
+                if (Adult > 0)
+                    paxArray.push(Adult + " Yetişkin ");
+                if (Child > 0)
+                    paxArray.push(Child + " Çocuk ");
+                if (Infant > 0)
+                    paxArray.push(Infant + " Bebek ");
+                $("#spnDateAndPax").html(DepartureDate + " - " + paxArray.join(","));
+                $("#SearchForm").submit();
+            })
+
+        $("#adas-home-tagline").sticky({ topSpacing: 0 });
+        $('#layerslider').layerSlider({ skin: 'noskin', skinsPath: 'Content/assets/plugins/slider.layerslider/skins/', pauseOnHover: false, navButtons: true, slideDirection: 'top' });
+        $("#tekyon-tab").click(function () {
+            $("#hdnIsOneWay").val(true)
+            SetPicker(true);
+        });
+        $("#gidisdonus-tab").click(function () {
+            $("#hdnIsOneWay").val(false)
+            SetPicker(false);
+        });
+        setTimeout(function () {
+            if ($("#hdnIsOneWay").val() == 'True') {
+                $("#tekyon-tab").click();
+            } else {
+                $("#gidisdonus-tab").click();
+            }
+        }, 500);
+
+
+        if ($(".fancy-form.mobile.departure").length > 0) {
+            $(".fancy-form.mobile.departure").focusin(function () {
+                $("#slider").animate({ "margin-bottom": "200px" }, 1000, 'easeInOutExpo');
+                $("body").animate({ scrollTop: 80 }, 1000, 'easeInOutExpo');
+                $(this).toggleClass("active");
+            });
+            $(".fancy-form.mobile.departure").focusout(function () {
+                $("#slider").animate({ "margin-bottom": "0" }, 1000, 'easeInOutExpo');
+                $("body").animate({ scrollTop: 0 }, 1000, 'easeInOutExpo');
+                $(this).toggleClass("active");
+            });
+
+        }
+        var $popoverItem = $('#dvPerson .custom-input').popover({
+            container: '.search-engine',
+            content: $(".flight-information"),
+            html: true,
+            placement: 'bottom'
+        });
+        var hasStepper = false;
+        $popoverItem.on('shown.bs.popover', function () {
+            if (!hasStepper) {
+                hasStepper = true;
+                //_stepper();
+            }
+        });
+
+
+        //$("#btn_FSB_OK").click(WDT.SearchBox.SearchFlight);
+
+        $(document).on("change", "#adult, #child, #infant", CalcPersonCount);
+        SetAutocomplete();
+        $('#dvDeparture').on('show.bs.dropdown', function () {
+            setTimeout(function () { $("#selectBoardingTerminal").focus(); }, 100);
+        });
+        $('#dvReturn').on('show.bs.dropdown', function () {
+            setTimeout(function () { $("#selectLandingTerminal").focus(); }, 100);
+        });
+        var isOneWay = $("#hdnflightType").val();
+        //$("#btnGoFlightSearch").click(WDT.SearchBox.SearchFlight);
+
+        $("#btnChangePorts").click(function () {
+            var depCity = $("#dvReturn").find('span[class="label-short"]').text();
+            var depAirport = $("#dvReturn").find('span[class="label-airport"]').text();
+            var depCode = $("#dvReturn").find('span[class="label-code"]').text();
+
+            var arrCity = $("#dvDeparture").find('span[class="label-short"]').text();
+            var arrAirport = $("#dvDeparture").find('span[class="label-airport"]').text();
+            var arrCode = $("#dvDeparture").find('span[class="label-code"]').text();
+
+            $("#dvDeparture").find('span[class="label-short"]').text(arrCity);
+            $("#dvDeparture").find('span[class="label-airport"]').text(arrAirport);
+            $("#dvDeparture").find('span[class="label-code"]').text(arrCode);
+            $('#DEP_Airport_Code').val(arrCode);
+
+
+            $("#dvReturn").find('span[class="label-short"]').text(depCity);
+            $("#dvReturn").find('span[class="label-airport"]').text(depAirport);
+            $("#dvReturn").find('span[class="label-code"]').text(depCode);
+            $('#ARR_Airport_Code').val(depCode);
+
+        });
+        //WDT.SearchBox.CreateBox();
+        //WDT.SearchPnr.Init();
+        //WDT.Member.LoginRequired();
+    });
+    function CalcPersonCount() {
+        var adultCount = $('#txtAdultCount').val();
+        var childCount = $('#txtChildCount').val();
+        var infantCount = $('#txtInfantCount').val();
+        $('#personCount').html(parseInt(adultCount) + parseInt(childCount) + parseInt(infantCount));
+    }
+        $("#btnChangePorts").click(function () {
+            var depCity = $("#dvReturn").find('span[class="label-short"]').text();
+            var depAirport = $("#dvReturn").find('span[class="label-airport"]').text();
+            var depCode = $("#dvReturn").find('span[class="label-code"]').text();
+
+            var arrCity = $("#dvDeparture").find('span[class="label-short"]').text();
+            var arrAirport = $("#dvDeparture").find('span[class="label-airport"]').text();
+            var arrCode = $("#dvDeparture").find('span[class="label-code"]').text();
+
+            $("#dvDeparture").find('span[class="label-short"]').text(depCity);
+            $("#dvDeparture").find('span[class="label-airport"]').text(depAirport);
+            $("#dvDeparture").find('span[class="label-code"]').text(depCode);
+            $('#selectBoardingTerminalCode').val(depCode);
+
+
+            $("#dvReturn").find('span[class="label-short"]').text(arrCity);
+            $("#dvReturn").find('span[class="label-airport"]').text(arrAirport);
+            $("#dvReturn").find('span[class="label-code"]').text(arrCode);
+            $('#selectLandingTerminalCode').val(arrCode);
+
+        });
+        function SetAutocomplete() {
+            $("#selectBoardingTerminal").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "@Url.Action("Autocomplete", "WDT")",
+                        type: "GET",
+                        data: { q: request.term },
+                        success: function (data) {
+
+                            response($.map(data, function (el) {
+                                return {
+                                    name: el.name,
+                                    code: el.code,
+                                    cityName: el.cityName,
+                                    label: el.cityName + ' - ' + el.name + ' - (' + el.code + ') - ' + el.countryName,
+                                    value: el.code,
+                                    city: el.city
+                                };
+                            }));
+                        }
+                    });
+                },
+                appendTo: $("#dvDeparture").find(".dropdown-menu"),
+                delay: 300,
+                autoFocus: !0,
+                minLength: 3,
+                max: 7,
+                classes: {
+                    "ui-autocomplete": "tt-menu"
+                },
+                select: function (t, e) {
+                    console.log(e.item);
+                    $("#DEP_Airport_Code").val(e.item.code);
+                    $("#DEP_Airport_IsCity").val(e.item.city);
+                    $("#dvDeparture").find(".label-short").html(e.item.cityName);
+                    $("#dvDeparture").find(".label-airport").html(e.item.name);
+                    $("#dvDeparture").find(".label-code").html(e.item.code);
+
+                    setTimeout(function () {
+                        $('#dvReturn').find(".custom-input").trigger("click");
+                        $("#selectLandingTerminal").focus();
+                    }, 100);
+                },
+                focus: function (t, e) {
+                    if (void 0 !== t.keyCode) {
+                        var a = $(this).parents("form")[0].getAttribute("data-name");
+                        $(this).hasClass("complete-origin") ? (window.main[a].origin = e.item.id, window.main[a].originText = e.item.label) : (window.main[a].destination = e.item.id, window.main[a].destinationText = e.item.label)
+                    }
+                },
+                create: function (t, e) {
+                    $(this).data("ui-autocomplete")._resizeMenu = function () {
+                        this.menu.element.outerWidth($(this.element[0]).parents(".row")[0].offsetWidth)
+                    }, $(this).data("ui-autocomplete")._renderItem = function (t, e) {
+                        var a = '<div class="item"><span class="avatar"><i class="icon-chevron-right"></i></span> <span class="airport">' + e.name + '<small>(' + e.code + ')</small>, </span> <span class="city">' + e.cityName + '</span> </div>';
+                        return $("<li>").append(a).appendTo(t)
+                    }, $(this).autocomplete("option", "position", {
+                        my: "right top",
+                        at: "right bottom",
+                        of: $(this).parents(".row")[0]
+                    })
+                }
+            });
+
+
+
+            function split(val) {
+                return val.split(/,\s*/);
+            }
+            function extractLast(term) {
+                return split(term).pop();
+            }
+
+            $("#selectLandingTerminal").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "@Url.Action("Autocomplete", "WDT")",
+                        type: "GET",
+                        data: { q: request.term },
+                        success: function (data) {
+                            response($.map(data, function (el) {
+                                return {
+                                    name: el.name,
+                                    code: el.code,
+                                    cityName: el.cityName,
+                                    label: el.cityName + ' - ' + el.name + ' - (' + el.code + ') - ' + el.countryName,
+                                    value: el.code,
+                                    city: el.city
+                                };
+                            }));
+                        }
+                    });
+                },
+                appendTo: $("#dvReturn").find(".dropdown-menu"),
+                delay: 300,
+                autoFocus: !0,
+                minLength: 3,
+                max: 7,
+                classes: {
+                    "ui-autocomplete": "tt-menu"
+                },
+                select: function (t, e) {
+                    console.log(e.item);
+                    $("#ARR_Airport_Code").val(e.item.code);
+                    $("#ARR_Airport_IsCity").val(e.item.city);
+                    $("#dvReturn").find(".label-short").html(e.item.cityName);
+                    $("#dvReturn").find(".label-airport").html(e.item.name);
+                    $("#dvReturn").find(".label-code").html(e.item.code);
+                    $('#selectLandingTerminal').blur();
+                    setTimeout(function () {
+                        $("#inpRangePicker").focus();
+                        $('#selectLandingTerminal').blur();
+                    }, 100);
+                },
+                focus: function (t, e) {
+                    if (void 0 !== t.keyCode) {
+                        var a = $(this).parents("form")[0].getAttribute("data-name");
+                        $(this).hasClass("complete-origin") ? (window.main[a].origin = e.item.id, window.main[a].originText = e.item.label) : (window.main[a].destination = e.item.id, window.main[a].destinationText = e.item.label)
+                    }
+                },
+                create: function (t, e) {
+                    $(this).data("ui-autocomplete")._resizeMenu = function () {
+                        this.menu.element.outerWidth($(this.element[0]).parents(".row")[0].offsetWidth)
+                    }, $(this).data("ui-autocomplete")._renderItem = function (t, e) {
+                        var a = '<div class="item"><span class="avatar"><i class="icon-chevron-right"></i></span> <span class="airport">' + e.name + '<small>(' + e.code + ')</small>, </span> <span class="city">' + e.cityName + '</span> </div>';
+                        return $("<li>").append(a).appendTo(t)
+                    }, $(this).autocomplete("option", "position", {
+                        my: "right top",
+                        at: "right bottom",
+                        of: $(this).parents(".row")[0]
+                    })
+                }
+            });
+        }
+
+
+        function SetPicker(isSingle) {
+            var today = new Date();
+            $('#inpRangePicker').daterangepicker({
+                locale: {
+                    format: 'DD.MM.YYYY',
+                    "applyLabel": "Tamam",
+                    "cancelLabel": "Kapat",
+                    "fromLabel": "From",
+                    "toLabel": "To",
+                    "customRangeLabel": "Custom",
+                    "weekLabel": "W",
+                    "daysOfWeek": [
+                        "Pz",
+                        "Pt",
+                        "Sa",
+                        "Ça",
+                        "Pe",
+                        "Cu",
+                        "Ct"
+                    ],
+                    "monthNames": [
+                        "Ocak",
+                        "Şubat",
+                        "Mart",
+                        "Nisan",
+                        "Mayıs",
+                        "Haziran",
+                        "Temmuz",
+                        "Ağustos",
+                        "Eylül",
+                        "Ekim",
+                        "Kasım",
+                        "Aralık"
+                    ],
+                    "firstDay": 1
+                },
+                singleDatePicker: isSingle,
+                autoApply: true,
+                autoUpdateInput: true,
+                changeMonth: false,
+                showDropdowns: false,
+                minDate: today,
+                autoApply: false
+            });
+
+
+        }
+
+
+</script>

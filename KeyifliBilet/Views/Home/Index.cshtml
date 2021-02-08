@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "Anasayfa";
+    Layout = "~/Views/Shared/MasterPage.cshtml";
+}
+
+@Html.Action("HeaderIndex", "Home")
+<section id="adas-home">
+    @Html.Action("Slider", "Home")
+    <div id="adas-home-tagline-sticky-wrapper" class="sticky-wrapper" style="height: 334px;">
+        <div id="adas-home-tagline" style="width: 1539px;">
+            <div class="container">
+                <div class="search-engine">
+                    <ul class="nav search-engine-main-nav justify-content-center" id="pills-tab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="flight-tab" data-toggle="tab" href="#tabQuickFlights" role="tab" aria-controls="tabQuickFlights" aria-selected="true">Uçuş Ara / Bilet Al</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="pnr-tab" data-toggle="tab" href="#tabQuickPNR" role="tab" aria-controls="tabQuickPNR" aria-selected="false">PNR Sorgulama</a>
+                        </li>
+                    </ul>
+                    <div class="search-engine-steps tab-content" id="pills-tabContent">
+                        @Html.Action("PartialSearch", "Home")
+                        @Html.Action("PartialPNR", "Home")
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<div id="yourContainer"></div>
+@Html.Action("Blog", "Home")   
+@Html.Action("Features", "Home")
+@Html.Action("SignUp", "Home")
+@Html.Action("FlightImages", "Home")
+@Html.Action("Footer", "Home")
+@Html.Action("PartialSignUp", "Home")
+@section js{
+    <script src="~/Content/assets/js/scripts.js"></script>
+    <script src="~/Content/assets/plugins/bootstrap.daterangepicker/moment.min.js"></script>
+    <script src="~/Content/assets/plugins/bootstrap.daterangepicker/daterangepicker.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#yourContainer").load('@Url.Action("PartialDestenation", "Home")')
+            //$("#adas-home-tagline").sticky({ topSpacing: 0 });
+            //$('#layerslider').layerSlider({ skin: 'noskin', skinsPath: 'Content/assets/plugins/slider.layerslider/skins/', pauseOnHover: false, navButtons: true, slideDirection: 'top' });
+            //WDT.SearchBox.CreateBox();
+            //WDT.SearchPnr.Init();
+            //WDT.Member.LoginRequired();
+        });</script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //WDT.Member.Init();
+        });
+    </script>
+}
+

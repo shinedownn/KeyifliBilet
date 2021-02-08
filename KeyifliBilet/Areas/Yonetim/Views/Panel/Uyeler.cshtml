@@ -1,0 +1,148 @@
+﻿@model KeyifliBilet.Areas.Yonetim.Models.IndexViewModel
+@{
+    ViewBag.Title = "Uyeler";
+    Layout = "~/Areas/Yonetim/Views/Shared/MasterPage.cshtml";
+}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs-3.3.7/jq-2.2.4/jszip-3.1.3/pdfmake-0.1.27/dt-1.10.15/b-1.3.1/b-html5-1.3.1/b-print-1.3.1/r-2.1.1/rg-1.0.0/datatables.min.css" />
+
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs-3.3.7/jq-2.2.4/jszip-3.1.3/pdfmake-0.1.27/dt-1.10.15/b-1.3.1/b-html5-1.3.1/b-print-1.3.1/r-2.1.1/rg-1.0.0/datatables.min.js"></script>
+
+<section id="main-content">
+    <section class="wrapper">
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Üyeler</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="table-responsive">
+
+                                <table id="myTable" class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Adı Soyadı</th>
+                                            <th>Mail</th>
+                                            <th>Telefon</th>
+                                            <th>Kayıt Tarihi</th>
+                                            <th>Düzenle</th>
+                                            <th>Kampanya Durumu</th>
+                                            <th>Durum</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if (Model.uyeler.Count() != 0)
+                                        {
+                                            foreach (var item in Model.uyeler)
+                                            {
+                                                <tr class="odd gradeX" id="row_@item.UyeId">
+                                                    <td>@item.AdSoyad</td>
+                                                    <td>@item.Mail</td>
+                                                    <td>@item.GSM</td>
+                                                    <td>@item.KayitTarihi</td>
+                                                    <td>   <a class="btn btn-success" onclick="UyeGuncelle(@item.UyeId)"><i class="glyphicon glyphicon-pencil"></i> </a></td>
+                                                    <td class="center">
+                                                        @if (item.KampanyaDurum == true)
+                                                        {
+                                                            <a class="btn btn-success" href="@Url.Action("KampanyaDurum", "Panel", new
+                                                                                            {
+                                                                                                id = @item.UyeId
+                                                                                            })">Kampanyalardan Çıkar</a>
+                                                        }
+                                                        else
+                                                        {
+                                                            <a class="btn btn-danger" href="@Url.Action("KampanyaDurum", "Panel", new
+                                                                                            {
+                                                                                                id = @item.UyeId
+                                                                                            })">Kampanyalara Ekle</a>
+                                                        }
+                                                    </td>
+                                                    <td class="center">
+                                                        @if (item.Durum == true)
+                                                        {
+                                                            <a class="btn btn-warning" href="@Url.Action("UyeAktifPasif", "Panel", new
+                                                                                            {
+                                                                                                id = @item.UyeId
+                                                                                            })">Pasif Et</a>
+                                                        }
+                                                        else
+                                                        {
+                                                            <a class="btn btn-success" href="@Url.Action("UyeAktifPasif", "Panel", new
+                                                                                            {
+                                                                                                id = @item.UyeId
+                                                                                            })">Aktif Et</a>
+                                                        }
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <div class="alert alert-info">Üye bulunmamaktadır.</div>
+                                        }
+                                    </tbody>
+                                </table>
+
+                                <script>
+                                    $('#myTable').DataTable();
+                                </script>
+                                <div class="pagination"></div>
+                            </div>
+                            <!-- /.table-responsive -->
+
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+        </div>
+    </section>
+</section>
+<div class="modal fade" id="myModal1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h3 class="modal-title">Üye Düzenleme</h3>
+            </div>
+            <div class="modal-body" id="myModalBodyDiv1">
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+
+    var UyeGuncelle = function (UyeId) {
+
+        var url = "/Yonetim/Panel/UyeGuncelle?UyeId=" + UyeId;
+
+        $("#myModalBodyDiv1").load(url, function () {
+            $("#myModal1").modal("show");
+
+        })
+
+    }
+</script>
+
+
+
+

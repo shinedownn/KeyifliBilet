@@ -1,0 +1,90 @@
+﻿<div class="row clearfix">
+    <div class="col-lg-6">
+        <h3 class="size-14 heading-title mb-10">İletişim Kurulacak Kişi</h3>
+        <label class="input margin-bottom-10">
+            <i class="ico-append fa fa-envelope"></i>
+            <input data-val="true" data-val-number="The field SaleId must be a number." data-val-required="The SaleId field is required." id="PassengerForm_SaleId" name="PassengerForm.SaleId" type="hidden" value="11369">
+            <input autocomplete="off" data-val="true" data-val-required="İletişim email adresini giriniz !" id="PassengerForm_Email" name="PassengerForm.Email" placeholder="Email adresi" type="text" value="">
+            <span class="field-validation-valid" data-valmsg-for="PassengerForm.Email" data-valmsg-replace="true"></span>
+            <b class="tooltip tooltip-bottom-right">Biletin gönderilmesi için önemlidir</b>
+        </label>
+        <div class="cinput margin-bottom-10">
+            <i class="ico-append fa fa-phone"></i>
+            <input id="PassengerForm_CountryCode" name="PassengerForm.CountryCode" type="hidden" value="+90">
+            <div class="cc-picker cc-picker-code-select-enabled"><div class="cc-picker-flag tr"></div><span class="cc-picker-code">+90</span> </div><input autocomplete="off" class="phone-field" data-val="true" data-val-required="İletişim cep telefonu numarasını giriniz !" id="PassengerForm_Mobile" name="PassengerForm.Mobile" placeholder="Cep Telefonu" type="text" value=""><input type="hidden" id="PassengerForm_Mobile_phoneCode" name="PassengerForm.Mobile_phoneCode" value="+90">
+            <span class="field-validation-valid" data-valmsg-for="PassengerForm.Mobile" data-valmsg-replace="true"></span><br><br>
+            <span class="field-validation-error" id="spnMobileError"></span>
+        </div>
+    </div>
+    <div class="col-lg-6">
+    </div>
+</div>
+<div class="row clearfix">
+    <div class="col-lg-6">
+        <h3 class="size-14 mb-sm-1">Yolcu Bilgileri</h3>
+        <strong>1. Yetişkin</strong>
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <label>
+                    <input type="checkbox" class="tcPerson" personid="0">T.C.Vatandaşı Değilim
+                </label>
+                <label class="input">
+                    <input data-val="true" data-val-number="The field Id must be a number." data-val-required="The Id field is required." id="PassengerForm_PassengerList_0__Id" name="PassengerForm.PassengerList[0].Id" type="hidden" value="2090">
+                    <input id="PassengerForm_PassengerList_0__IdentityType" name="PassengerForm.PassengerList[0].IdentityType" type="hidden" value="TC_NO">
+                    <input class="hdnIsTurkish" data-val="true" data-val-required="The IsTurkish field is required." id="PassengerForm_PassengerList_0__IsTurkish" name="PassengerForm.PassengerList[0].IsTurkish" personid="0" type="hidden" value="True"><input class="maskIdentity" data-val="true" data-val-required="Yolcu kimlik numarasını giriniz !" id="PassengerForm_PassengerList_0__IdentityNo" masktype="TC_NO" maxlength="11" name="PassengerForm.PassengerList[0].IdentityNo" placeholder="TC No" type="text" value=""><span class="field-validation-valid" data-valmsg-for="PassengerForm.PassengerList[0].IdentityNo" data-valmsg-replace="true"></span>
+                </label>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <label class="input">
+                    <input data-val="true" data-val-required="Yolcu adını giriniz !" id="PassengerForm_PassengerList_0__Name" name="PassengerForm.PassengerList[0].Name" placeholder="Ad" type="text" value="">
+                    <span class="field-validation-valid" data-valmsg-for="PassengerForm.PassengerList[0].Name" data-valmsg-replace="true"></span>
+                </label>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <label class="input">
+                    <input data-val="true" data-val-required="Yolcu soyadını giriniz !" id="PassengerForm_PassengerList_0__Surname" name="PassengerForm.PassengerList[0].Surname" placeholder="Soyad" type="text" value="">
+                    <span class="field-validation-valid" data-valmsg-for="PassengerForm.PassengerList[0].Surname" data-valmsg-replace="true"></span>
+                </label>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label class="input">
+                    <select class="form-control" id="PassengerForm_PassengerList_0__Gender" name="PassengerForm.PassengerList[0].Gender">
+                        <option value="MALE">Erkek</option>
+                        <option value="FEMALE">Kadın</option>
+                    </select>
+                </label>
+            </div>
+            <div class="form-group col-md-6">
+                <label class="input">
+                    <input value="10.12.1978" class="maskBirthdate" data-val="true" data-val-required="Yolcu doğum tarihini giriniz !" id="PassengerForm_PassengerList_0__Birthdate" name="PassengerForm.PassengerList[0].Birthdate" placeholder="Doğum Tarihi" type="text">
+                    <span class="field-validation-valid" data-valmsg-for="PassengerForm.PassengerList[0].Birthdate" data-valmsg-replace="true"></span>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+    </div>
+</div>
+<div class="row clearfix">
+    <div class="col-lg-6">
+        <div class="margin-top-30">
+            <label class="checkbox nomargin">
+                <input class="checked-agree" data-val="true" data-val-required="The RightsConfirm field is required." id="RightsConfirm" name="RightsConfirm" type="checkbox" value="true"><i></i><input name="RightsConfirm" type="hidden" value="false">
+                <a class="weight-600" data-toggle="modal" data-target="#termsAgentReg">Kişisel verilerin korunması</a> ve
+                <a class="weight-600" data-toggle="modal" data-target="#termsTicketReq">Kullanım Kurallarını</a> okudum, kabul ediyorum.
+            </label>
+            <span id="spnRightError" style="color:red"></span>
+            <label class="checkbox nomargin">
+                <input data-val="true" data-val-required="The CampaignConfirm field is required." id="CampaignConfirm" name="CampaignConfirm" type="checkbox" value="true"><i></i><input name="CampaignConfirm" type="hidden" value="false"> Fırsat ve kampanyalardan haberdar olmak istiyorum.
+            </label>
+        </div>
+    </div>
+    <div class="col-lg-6">
+    </div>
+</div>

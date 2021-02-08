@@ -1,0 +1,160 @@
+﻿@model KeyifliBilet.Areas.Yonetim.Models.IndexViewModel
+
+
+@foreach (var item in Model.orderResult)
+{
+    <form id="myForm" accept-charset="utf-8" enctype="multipart/form-data">
+        <div id="listOfCustomers" style=" height:400px; overflow: auto;">
+
+            <div id="content3">
+
+                <table class="fullcollapsed" cellpadding="5" border="0" width="100%">
+
+                    <tbody>
+                        <tr>
+                            <td colspan="2"><span class="tableHeader">PNR</span> <b>: @item.BookingInfo.First(w => w.Id == item.Id).pnr</b></td>
+                            <td colspan="6" align="right"><img src="https://img.iati.com/images/logo.gif"></td>
+                        </tr>
+
+                        <tr></tr>
+
+                        <tr>
+                            <th class="tableHeader" colspan="8">FLIGHT INFO</th>
+                        </tr>
+
+                        <tr>
+                            <td colspan="10"><div class="blueline2"></div></td>
+                        </tr>
+
+                        <tr class="formtitle rowitem" valign="top">
+                            <th width="3"></th>
+                            <th>Airline</th>
+                            <th>Flight No</th>
+                            <th>Airline PNR</th>
+                            <th>From</th>
+                            <th>To</th>
+                            <th>Via</th>
+                            <th>Take Off</th>
+                            <th>Landing</th>
+
+                        </tr>
+
+                        <tr class="rowitem">
+                            <td></td>
+                            <td>@item.provider</td>
+                            <td>@item.legs.First(w => w.Id == item.Id).flightNo</td>
+                            <td>-</td>
+                            <td>@item.legs.First(w => w.Id == item.Id).departureAirport</td>
+                            <td>@item.legs.Last(w => w.Id == item.Id).arrivalAirport</td>
+                            <td>-</td>
+                            <td>@(Convert.ToDateTime(item.legs.First(w => w.Id == item.Id).localDepartureDate).ToString("dd.MM")) - @(Convert.ToDateTime(item.legs.Last(w => w.Id == item.Id).localDepartureDate).ToShortTimeString())</td>
+                            <td>@(Convert.ToDateTime(item.legs.Last(w => w.Id == item.Id).localArrivalDate).ToString("dd.MM")) - @(Convert.ToDateTime(item.legs.Last(w => w.Id == item.Id).localArrivalDate).ToShortTimeString())</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="spacer"></div>
+
+                <table class="fullcollapsed" cellpadding="5" border="0" width="100%">
+
+                    <tbody>
+                        <tr>
+                            <th class="tableHeader" colspan="15">PASSENGER INFO</th>
+                        </tr>
+
+                        <tr>
+                            <td colspan="15"><div class="blueline2"></div></td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="15">
+
+                                <table class="fullcollapsed" cellpadding="5" border="0" width="100%">
+
+                                    <tbody>
+                                        <tr class="formtitle rowitem">
+                                            <th>E-Mail</th>
+                                            <th>GSM</th>
+                                        </tr>
+
+                                        <tr class="rowitem">
+                                            <td>@item.contactEmail</td>
+                                            <td>@item.contactGsm</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td colspan="2" height="10"></td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+
+                            </td>
+                        </tr>
+
+
+                        <tr class="formtitle rowitem" valign="top">
+                            <th>Passengers</th>
+                            <th>Name</th>
+                            <th>Surname</th>
+                            <th>Birth</th>
+                            <th>Price</th>
+                            <th>TAX</th>
+                            <th>Ser. Pri.</th>
+                            <th>Agency Commission</th>
+                            <th>Curr.</th>
+                            <th></th>
+                        </tr>
+
+                        @foreach (var data in item.passengers)
+                        {
+                           
+                            <tr class="rowitem">
+                                <td>@data.persontype</td>
+                                <td>@data.name</td>
+                                <td>@data.surname</td>
+                                <td>@data.birthdate.Value.ToShortDateString()</td>
+
+                                <td><span value="@(Convert.ToDecimal(data.totalPrice) - Convert.ToDecimal(data.tax) - Convert.ToDecimal(data.serviceFee))">@(Convert.ToDecimal(data.totalPrice) - Convert.ToDecimal(data.tax) - Convert.ToDecimal(data.serviceFee))</span></td>
+
+                                <td><span value="@data.tax">@data.tax</span></td>
+
+                                <td><span value="@data.serviceFee">@data.serviceFee</span></td>
+
+                                <td><span value="@data.agencyComission">@data.agencyComission</span></td>
+
+                                <td><span value="@data.currency">@data.currency</span></td>
+                            </tr>
+                        }
+
+                        @{
+                            var comission = item.passengers.Where(w => w.Id == item.Id).Sum(w => w.agencyComission);
+
+                        }
+                        <tr style="height:25px;"></tr>
+                        <tr class="rowitem">
+                            <th colspan="9" >Agency Commission(+)</th>
+                            <td colspan="5"  class="grandTotal">@comission TL</td>
+                            <td></td>
+                        </tr>
+                        <tr class="rowitem">
+                            <th colspan="9">
+                                All Passengers
+                            </th>
+                            <td colspan="5" align="center" class="grandTotal">@item.passengers.First(w => w.Id == @item.Id).totalPrice TL</td>
+                            <td></td>
+                        </tr>
+
+                      
+
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+
+    </form>
+}

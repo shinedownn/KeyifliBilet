@@ -1,0 +1,125 @@
+﻿@model KeyifliBilet.Iati.Response.FlightResponse
+
+<div class="row mt-sm-3">
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-head">
+                    <i class="flaticon-transport"></i> <strong>@Model.legs[0].departureCityName - @Model.legs[0].arrivalCityName</strong>, <nobr>@Model.legs[0].localDepartureDate</nobr>
+                </div>
+            </div>
+            <div class="flight-itinerary departure">
+                <div class="airlines">
+                    <div class="content">
+                        <span class="icon-carrier-@Model.legs[0].departureAirport"></span>
+                        <span class="title">@Model.legs[0].flightNo</span>
+                    </div>
+                </div>
+                <div class="departure col-sm-2 col-xs-3 col-sm-push-0 col-xs-push-2">
+                    <div class="content">
+                        <div class="time">@Model.legs[0].departureTime.ToShortTimeString()</div>
+                        <div class="airport">@Model.legs[0].departureAirport</div>
+                    </div>
+                </div>
+                <div class="stops col-sm-1 col-xs-4 col-sm-push-0 col-xs-push-2">
+                    <div class="content">
+                        <div class="date">@Model.legs[0].legDurationMinute d</div>
+                        <div class="airport">
+                            <div class="stop">
+                                <div class="stop-row">DİREKT</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="arrival col-sm-2 col-xs-3 col-sm-push-0 col-xs-push-2">
+                    <div class="content">
+                        <div class="time">@Model.legs[0].arrivalTime.ToShortTimeString()</div>
+                        <div class="airport">@Model.legs[0].arrivalAirport</div>
+                    </div>
+                </div>
+                <div class="col-sm-5"></div><div class="pricing col-sm-2 col-xs-4">
+                    <div class="content">
+                        <div class="price">
+                            <strong class="amount">
+                                @Model.fares[0].totalSingleAdultFare.ToString().Split(',')[0]<span class="sup">
+                                    '
+                                    @if (Model.fares[0].totalSingleAdultFare.ToString().IndexOf(',') > 0)
+                                    {
+                                        @Model.fares[0].totalSingleAdultFare.ToString().Split(',')[1]
+                                    }
+                                    else
+                                    {
+                                        <span>00</span>
+                                    }
+                                    <span class="desc">@Model.fares[0].currency</span>
+                                </span>
+                            </strong>
+                        </div>
+                        <div class="per-person">vergi dahil </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <section class="section noborder nopadding sticky-wrapper mb-5" id="sticky-wrapper">
+            <div class="container container-gray" id="pricebreakdownscroll">
+                <div class="row grid-mbl mt-5">
+                    <div class="col-6 pr-0-mbl">
+                        <h2 class="nomargin size-20 weight-300">Toplam tutar</h2>
+                    </div>
+                    <div class="col-6 pl-0-mbl text-right">
+                        <h2 class="bold nomargin text-right blue-light weight-500 size-30">
+                            <span><span class="price-currency">@Model.fares[0].currency</span><span>@Model.fares[0].totalSingleAdultFare</span></span>
+                        </h2>
+                        <span class="text-muted size-11">VERGİ VE TAŞIYICI ÜCRETLERİ DAHİL</span>
+                    </div>
+                </div>
+                <div class="row mt-3 mb-3">
+                    <div class="col-12 red mb-15">
+                        <a class="size-16 weight-500" style="color: #f37321;" data-toggle="collapse" data-target="#collapse-10" aria-expanded="false" aria-controls="collapse-10">
+                            <span>Ücret detaylarını göster</span>
+                            <i class="fa fa-chevron-right red ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="row mt-1 collapse" id="collapse-10">
+                    <div class="col-12">
+                        <ul class="calculated-price-list fs-14">
+                            <li>
+                                <span>1 Yetişkin</span>
+                                <span class="pull-right">
+                                    <span class="price-column-currency">@Model.fares[0].currency</span>
+                                    <span>@Model.fares[0].totalSingleAdultFare</span>
+                                </span>
+                            </li>
+                            <li class="mb-10"></li>
+                            <li>
+                                <a class="black">
+                                    <u><span>Vergi ve diğer harçlar</span></u>
+                                </a>
+                                <span class="pull-right">
+                                    <span class="price-column-currency">@Model.fares[0].currency</span>
+                                    <span>@Model.fares[0].personFares[0].tax</span>
+                                </span>
+                            </li>
+                            <li>
+                                <a class="black">
+                                    <u><span>Biletleme servis ücreti</span></u>
+                                </a>
+                                <span class="pull-right">
+                                    <span class="price-column-currency">@Model.fares[0].currency</span>
+                                    <span>@Model.fares[0].personFares[0].serviceFee</span>
+                                </span>
+                            </li>
+
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+</div>
+

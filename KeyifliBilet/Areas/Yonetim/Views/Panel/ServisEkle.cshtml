@@ -1,0 +1,153 @@
+﻿
+
+<form id="myForm" action="@Url.Action("ServisEkle", "Panel")" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+    <div id="listOfCustomers" style="height: 600px; overflow: auto;">
+
+        <div class="form-group">
+            <label>Tip Seçiniz</label>
+            <select name="tip" class="form-control">
+                <option>İÇ HAT</option>
+                <option>DIŞ HAT</option>
+
+            </select>
+        </div>
+        <div class="form-group">
+            <label>BAŞLANGIÇ TARİHİ</label>
+            <input class="form-control" type="date" name="baslangicTarihi" placeholder="BAŞLANGIÇ TARİHİ" required="required">
+        </div>
+        <div class="form-group">
+            <label>BİTİŞ TARİHİ</label>
+            <input class="form-control" type="date" name="bitisTarihi" placeholder="BİTİŞ TARİHİ" required="required">
+        </div>
+        <div class="form-group">
+            <label>KALKIŞ YERİ</label>
+            <input class="form-control" name="kalkisYeri" id="kalkisYeri" autocomplete="off" placeholder="KALKIŞ YERİ" required="required" />
+
+        </div>
+
+
+
+        <div class="form-group">
+            <label>VARIŞ YERİ</label>
+            <input class="form-control" name="varisYeri" placeholder="VARIŞ YERİ" id="varisYeri" required="required">
+
+        </div>
+
+        <div class="form-group">
+            <label>EKSTRA SERVİS BEDELİ </label>
+            <input class="form-control" name="ekstraServisBedeli" id="ekstraServisBedeli" placeholder="EKSTRA SERVİS BEDELİİ" required="required">
+        </div>
+        <div class="form-group">
+            <label>KOLTUK LİMİTİ</label>
+            <input class="form-control" name="koltukLimiti" id="koltukLimiti" placeholder="KOLTUK LİMİTİ" required="required">
+        </div>
+        <div class="form-group">
+            <label>LİMİTE BAĞLI SERVİS BEDELİ</label>
+            <input class="form-control" name="limiteBagliServis" id="limiteBagliServis" placeholder="LİMİTE BAĞLI SERVİS BEDELİ" required="required">
+        </div>
+
+        <div class="form-group">
+            <label>Dönüş Uçuşuda Eklensin mi?</label>
+            <input class="form-control" type="checkbox" id="myCheck" name="myCheck" />
+        </div>
+        <div id="text" class="form-group">
+            <label>DÖNÜŞ SERVİS BİLGİLERİ</label>
+
+            <input class="form-control" name="dekstraServisBedeli" id="dekstraServisBedeli" placeholder="EKSTRA SERVİS BEDELİ" required="required">
+            <input class="form-control" name="dkoltukLimiti" id="dkoltukLimiti" placeholder="KOLTUK LİMİTİ" required="required">
+            <input class="form-control" name="dlimiteBagliServis" id="dlimiteBagliServis" placeholder="LİMİTE BAĞLI SERVİS BEDELİ" required="required">
+        </div>
+        <div class="box-footer">
+            <button class="btn btn-xs btn-danger" id="btnSubmit" href="@Url.Action("ServisEkle", "Panel" )">
+                <span> EKLE</span>
+            </button>
+        </div>
+
+
+    </div>
+
+
+</form>
+<script src="~/Scripts/jquery-ui.min.js"></script>
+<script type="text/javascript">
+
+    $("#kalkisYeri").keyup(function () {
+        this.value = this.value.toUpperCase();
+    });
+    $("#varisYeri").keyup(function () {
+        this.value = this.value.toUpperCase();
+    });
+    $(function () {
+
+        $("#kalkisYeri,#varisYeri").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: '/Panel/JsonGetir',
+                    data: "{ 'term': '" + request.term + "'}",
+                    dataType: "json",
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+
+                            return item.label;
+
+                        }))
+                    },
+
+                    error: function (response) {
+                        alert(response.responseText);
+                    }
+
+                });
+            },
+            select: function (e, i) {
+                var keyvalue = i.item.value;
+            },
+            minLength: 1
+        });
+        autofocus = true;
+    });
+
+</script>
+@section js{
+
+    <script>
+        $(function () {
+
+
+            var checkbox = $("#myCheck");
+            var hidden = $("#text");
+
+            hidden.hide();
+            checkbox.change(function () {
+
+                if (checkbox.is(':checked')) {
+
+                    hidden.show();
+
+                } else {
+
+                    hidden.hide();
+
+
+                }
+            });
+        });
+    </script>
+    <script>
+
+        $(document).ready(function () {
+            $("#ekstraServisBedeli").keyup(function (event) {
+                $("#dekstraServisBedeli").val($(this).val());
+            });
+            $("#koltukLimiti").keyup(function (event) {
+                $("#dkoltukLimiti").val($(this).val());
+            });
+            $("#limiteBagliServis").keyup(function (event) {
+                $("#dlimiteBagliServis").val($(this).val());
+            });
+
+        });
+    </script>
+}

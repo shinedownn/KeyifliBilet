@@ -1,0 +1,118 @@
+﻿@model KeyifliBilet.Areas.Yonetim.Models.IndexViewModel
+@{
+    ViewBag.Title = "YeniSayfa";
+    Layout = "~/Areas/Yonetim/Views/Shared/MasterPage.cshtml";
+}
+
+<section id="main-content">
+    <section class="wrapper">
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group">
+
+                        <a class="delete btn btn-info" onclick="SayfaKategoriEkle()" id="kategori" name="kategori">Kategoriler</a>
+
+                    </div>
+                    <div class="panel panel-default">
+
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <form id="test" action="@Url.Action("YeniSayfa", "Panel")" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+                                <div class="table-responsive">
+
+                                    <table id="myTable" class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <td></td>
+
+                                                <td>
+
+                                                    <div class="form-group">
+                                                        <label>TARİH</label>
+                                                        <input class="form-control" type="text" name="tarih" id="tarih" value="@DateTime.Now" required="required">
+                                                    </div>
+                                                </td>
+
+                                            </tr>
+                                        </thead>
+
+                                    </table>
+
+                                    <div class="form-group">
+                                        <label>SAYFA</label>
+                                        <input class="form-control" type="text" name="sayfa" id="sayfa" placeholder="SAYFA " required="required">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>SAYFA BAŞLIĞI</label>
+                                        <input class="form-control" type="text" name="sayfaBasligi" id="sayfaBasligi" placeholder="SAYFA BAŞLIĞI" required="required">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>SAYFA İÇERİĞİ</label>
+                                        <textarea class="form-control" type="text" name="sayfaIcerigi" id="sayfaIcerigi" placeholder="SAYFA İÇERİĞİ" required="required" style="width:inherit;height:inherit"></textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Seo Title</label>
+                                        <input class="form-control" type="text" name="seo" id="seo" placeholder="Seo Title" required="required">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Seo Keywords</label>
+                                        <input class="form-control" type="text" name="keywords" id="keywords" placeholder="Seo Keywords" required="required">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Seo Description</label>
+                                        <input class="form-control" type="text" name="description" id="description" placeholder="Seo Description" required="required">
+                                    </div>
+                                    <div class="box-footer">
+                                        <button class="btn btn-xs btn-danger" id="btnSubmit" href="@Url.Action("YeniSayfa", "Panel")">
+                                            <span> KAYDET</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <!-- /.table-responsive -->
+                            </form>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+        </div>
+    </section>
+</section>
+<div class="modal fade" id="myModalek">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h3 class="modal-title">Sayfa Kategori Ekle</h3>
+            </div>
+            <div class="modal-body" id="myModalBodyDivek">
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    var SayfaKategoriEkle = function () {
+        var url = "/Yonetim/Panel/SayfaKategoriEkle";
+        $("#myModalBodyDivek").load(url, function () {
+            $("#myModalek").modal("show");
+
+        })
+
+    }
+</script>
+
+
+

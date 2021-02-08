@@ -1,0 +1,80 @@
+﻿
+@{
+    ViewBag.Title = "RT";
+    Layout = "~/Views/Shared/MasterPage.cshtml";
+}
+
+
+@Html.Action("HeaderResult", "Flight")
+<input id="hdnHidePreviousDay" name="hdnHidePreviousDay" type="hidden" value="False">
+<section id="adas-result" class="hidden-xs">
+    <div id="adas-result-background"></div>
+    <div id="adas-result-tagline">
+        <div class="container">
+            <div class="search-engine">
+                <div class="search-engine-steps">
+                    <div class="engine-step" id="tabQuickFlights">
+                        <input id="hdnIsOneWay" name="hdnIsOneWay" type="hidden" value="true">
+                        @Html.Action("PartialSearch", "Home")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="mobile-backhead visible-xs">
+    <a class="btn btn-link" href="/"><span class="fa fa-angle-left"></span><span class="sr-only"> Uçuş Seçimi</span> Uçuş Seçimi</a>
+</section>
+@Html.Action("FilterOneWay", "Flight")
+@Html.Action("Departure", "Flight")
+@Html.Action("Arrival", "Flight")
+@section js{
+    <script src="~/Content/assets/js/scripts.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#adas-home-tagline").sticky({ topSpacing: 0 });
+            $('#layerslider').layerSlider({ skin: 'noskin', skinsPath: 'Content/assets/plugins/slider.layerslider/skins/', pauseOnHover: false, navButtons: true, slideDirection: 'top' });
+            WDT.SearchBox.CreateBox();
+            WDT.SearchPnr.Init();
+            WDT.Member.LoginRequired();
+        });</script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            WDT.Member.Init();
+        });</script>
+}
+<script>
+    function selectFlight(supplier, groupId, isDomestic, flightId, isreturn, itemId) {
+        var depOrArr = isreturn == "true" ? 0 : 1;
+        if (isDomestic == "true") {
+            $(".asItem[data-fid!='" + flightId + "'][data-is-dep='" + depOrArr + "']").hide();
+            $(".asItem[data-fid='" + flightId + "'][data-is-dep='" + depOrArr + "']").show();
+        } else {
+            if (groupId != "" | groupId != undefined && supplier == "Galileo") {
+                $(".asItem[data-supplier='" + supplier + "'][data-grp='" + groupId + "']").show();
+                $(".asItem[data-supplier='" + supplier + "'][data-grp!='" + groupId + "']").hide();
+            }
+            else {
+
+            }
+        }
+        if (depOrArr == "1") {
+            $(document).find("input[name='departure'").val(flightId);
+
+        } else {
+            $(document).find("input[name='arrival'").val(flightId);
+        }
+        $("a[id='" + itemId + "']").addClass("selectedflight");
+        var selectedFlight = $("a.selectedflight").length;
+        var isRt = $(".asItem[data-is-dep='0']").length > 0 ? true : false;
+        if (isRt) {
+            if (selectedFlight == 2) {
+
+                loadFlightPrice();
+            }
+        } else {
+            loadFlightPrice();
+        }
+    }
+</script>
+

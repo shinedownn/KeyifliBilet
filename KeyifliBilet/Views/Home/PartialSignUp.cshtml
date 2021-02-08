@@ -1,0 +1,232 @@
+﻿<div class="jet-modal modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="z-index:9999">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin: 10px 15px"><span aria-hidden="true">&times;</span></button>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <header class="text-center margin-bottom-10">
+                <h2 class="text-white">Biletlerinizi Kaybetmeyin</h2>
+                <p class="text-white">Profil oluşturarak arama geçmişini görebilir, seyahat tercihlerini ayarlayabilir ve favori otel ve uçak biletlerini kaydedebilirsin.</p>
+                <hr>
+            </header>
+            <div class="modal-body nopadding" id="dvLoginSuccess" style="display:none;">
+                <div class="alert alert-default margin-bottom-30">
+                    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                    <i class="flaticon-upload pull-left"></i>
+                    <h4 class="text-success">Başarıyla <strong>Giriş Yaptınız</strong></h4>
+                    <p class="text-white">
+                        Ana sayfaya dönerek uçuş arayabilirsiniz.
+                    </p>
+                    <a href="/" class="btn btn-jet btn-sm margin-top-20">Ana Sayfa</a>
+                </div>
+            </div>
+            <div class="modal-body nopadding" id="dvRegisterSuccess" style="display:none;">
+                <div class="alert alert-default margin-bottom-30">
+                    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                    <i class="flaticon-upload pull-left"></i>
+                    <h4 class="text-success">Başarıyla <strong>Kayıt Oldunuz</strong></h4>
+                    <p class="text-white">
+                        E-posta adresinize göndermiş olduğumuz onay linkine tıklayarak üyeliğinizi onaylayabilirsiniz.
+                    </p>
+                    <a href="/" class="btn btn-jet btn-sm margin-top-20">Ana Sayfa</a>
+                </div>
+            </div>
+            <div id="dvLoginPanel">
+                <div class="modal-header nopadding">
+                    <ul class="nav nav-tabs nav-justified" role="tablist">
+                        <li class="nav-item"><a class="nav-link active" href="#register" data-toggle="tab" aria-selected="true">Kayıt Ol</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#login" data-toggle="tab" aria-selected="false" id="btnLoginTab">Giriş Yap</a></li>
+                        <li class="nav-item" style="display:none!important"><a class="nav-link" href="#forgetPassword" data-toggle="tab" aria-selected="false" id="btnFPTab">Şifremi Unuttum</a></li>
+                        <li class="nav-item" style="display:none!important"><a class="nav-link" href="#changePassword" data-toggle="tab" aria-selected="false" id="btnCPTab">Yeni Şifre Oluştur</a></li>
+                    </ul>
+                </div>
+                <div class="modal-body nopadding">
+                    <div class="tab-content nopadding">
+                        <div class="tab-pane fade show active" id="register">
+                            <div class="jet-form boxed">
+
+
+                                <form action="@Url.Action("KayitOl","Home")" id="frmRegister" method="post">
+                                    <fieldset class="nomargin">
+                                        <div class="row margin-bottom-10">
+                                            <div class="col-md-12">
+                                                <label class="input">
+                                                    <i class="ico-append fa fa-envelope"></i>
+                                                    <input data-val="true" data-val-required="Lütfen email adresinizi giriniz !" id="txtReqEmail" name="txtReqEmail" placeholder="Email adresiniz" type="text" value="" />
+                                                    <span class="field-validation-valid" data-valmsg-for="Email" data-valmsg-replace="true"></span>
+                                                </label>
+                                            </div>
+                                            <div class="col col-md-12">
+                                                <div class="cinput margin-bottom-10">
+                                                    <i class="ico-append fa fa-phone"></i>
+                                                    <input data-val="true" data-val-required="Lütfen ülke kodunu seçiniz !" id="CountryCode" name="CountryCode" type="hidden" value="" />
+                                                    <input class="phone-field" data-val="true" data-val-required="Lütfen cep telefonu numaranızı giriniz !" id="txtReqMobile" name="txtReqMobile" placeholder="Cep Telefonu" type="text" value="" />
+                                                    <span class="field-validation-valid" data-valmsg-for="Mobile" data-valmsg-replace="true"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <label class="input margin-bottom-10">
+                                            <i class="ico-append fa fa-lock"></i>
+                                            <input data-val="true" data-val-required="Lütfen şifrenizi giriniz !" id="Password" name="Password" placeholder="Şifre" type="password" value="" />
+                                            <span class="field-validation-valid" data-valmsg-for="Password" data-valmsg-replace="true"></span>
+                                        </label>
+
+                                        <label class="input margin-bottom-10">
+                                            <i class="ico-append fa fa-lock"></i>
+                                            <input data-val="true" data-val-equalto="Girilen şifreler aynı olmalıdır !" data-val-equalto-other="*.Password" data-val-required="Lütfen şifrenizi giriniz !" id="RePassword" name="RePassword" placeholder="Şifre tekrar" type="password" value="" />
+                                            <span class="field-validation-valid" data-valmsg-for="RePassword" data-valmsg-replace="true"></span>
+                                        </label>
+
+                                        <div class="row margin-bottom-10">
+                                            <div class="col-md-6">
+                                                <label class="input">
+                                                    <input data-val="true" data-val-required="Lütfen isminizi giriniz !" id="Name" name="Name" placeholder="İsminiz" type="text" value="" />
+                                                    <span class="field-validation-valid" data-valmsg-for="Name" data-valmsg-replace="true"></span>
+                                                </label>
+                                            </div>
+                                            <div class="col col-md-6">
+                                                <label class="input">
+                                                    <input data-val="true" data-val-required="Lütfen soyisminizi giriniz !" id="Surname" name="Surname" placeholder="Soyisminiz" type="text" value="" />
+                                                    <span class="field-validation-valid" data-valmsg-for="Surname" data-valmsg-replace="true"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="margin-top-30">
+                                            <label class="nomargin">
+                                                <input class="checked-agree" data-val="true" data-val-required="The ConfirmContract field is required." id="ConfirmContract" name="ConfirmContract" type="checkbox" value="true" /><input name="ConfirmContract" type="hidden" value="false" />
+                                                <i></i><a href="#" data-toggle="modal" data-target="#termsAgentReg">Üyelik Sözleşmesi</a> ve
+                                                <a href="#" data-toggle="modal" data-target="#termsTicketReg">Kullanım Kurallarını</a> okudum, kabul ediyorum.
+                                                <span class="field-validation-valid" data-valmsg-for="ConfirmContract" data-valmsg-replace="true"></span>
+                                            </label>
+                                            <label class="nomargin">
+                                                <i></i><input data-val="true" data-val-required="The ConfirmCampaign field is required." id="ConfirmCampaign" name="ConfirmCampaign" type="checkbox" value="true" /><input name="ConfirmCampaign" type="hidden" value="false" />
+                                                Fırsat ve kampanyalardan haberdar olmak istiyorum.
+                                            </label>
+                                        </div>
+                                    </fieldset>
+                                    <div class="row  mt-sm-1 mb-sm-1">
+                                        <div class="col-md-12">
+                                            <span id="spnError" style="color:red"></span>
+                                            <button type="submit" class="btn btn-primary" href="@Url.Action("KayitOl","Home")">KAYIT OL</button>
+                                            <button type="button" class="btn btn-secondary margin-right-20 pull-right" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">KAPAT</span></button>
+                                        </div>
+                                    </div>
+                                </form>
+
+                                <style>
+                                    .modal {
+                                        text-align: center;
+                                    }
+
+                                    media screen and (min-width: 768px) {
+                                        .modal:before
+
+                                    {
+                                        display: inline-block;
+                                        vertical-align: middle;
+                                        content: " ";
+                                        height: 100%;
+                                    }
+
+                                    }
+
+                                    .modal-dialog {
+                                        display: inline-block;
+                                        text-align: left;
+                                        vertical-align: middle;
+                                    }
+                                </style>
+
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="login">
+                            <div class="jet-form boxed">
+
+
+                                <form action="@Url.Action("Giris","Home")" id="frmLogin" method="post">
+                                    <fieldset class="nomargin">
+                                        <label class="input margin-bottom-10">
+                                            <i class="ico-append fa fa-envelope"></i>
+                                            <input data-val="true" data-val-required="Lütfen email adresinizi giriniz !" id="txtLogEmail" name="txtLogEmail" placeholder="Email adresiniz" type="text" value="" />
+                                            <span class="field-validation-valid" data-valmsg-for="Email" data-valmsg-replace="true"></span>
+                                        </label>
+                                        <label class="input margin-bottom-10">
+                                            <i class="ico-append fa fa-lock"></i>
+                                            <input data-val="true" data-val-required="Lütfen şifrenizi giriniz !" id="txtLogPassword" name="txtLogPassword" placeholder="Şifre" type="password" value="" />
+                                            <span class="field-validation-valid" data-valmsg-for="Password" data-valmsg-replace="true"></span>
+                                        </label>
+                                    </fieldset>
+                                    <div class="row  mt-sm-1 mb-sm-1">
+                                        <div class="col-md-12">
+                                            <span id="spnLoginError" style="color:red"></span>
+                                            <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> GİRİŞ YAP</button>
+                                            <button type="button" class="btn btn-blue" onclick="ForgetPasswordVisibility(true)"><i class="fa fa-question"></i> Şifremi Unuttum</button>
+                                            <button type="button" class="btn btn-secondary margin-right-20 pull-right" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">KAPAT</span></button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="forgetPassword">
+                            <div class="jet-form boxed">
+
+                                <form action="@Url.Action("SifremiUnuttum","Home")" id="frmForgetPassword" method="post">
+                                    <fieldset class="nomargin">
+                                        <label class="input margin-bottom-10">
+                                            <i class="ico-append fa fa-envelope"></i>
+                                            <input data-val="true" data-val-required="Lütfen email adresinizi giriniz !" id="Email" name="Email" placeholder="Email adresiniz" type="text" value="" />
+                                            <span class="field-validation-valid" data-valmsg-for="Email" data-valmsg-replace="true"></span>
+                                        </label>
+                                    </fieldset>
+                                    <div class="row  mt-sm-1 mb-sm-1">
+                                        <div class="col-md-12">
+                                            <span id="spnResultFP" style="color:red"></span>
+                                            <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Yeni Şifre Oluştur</button>
+                                            <button type="button" class="btn btn-blue" onclick="ForgetPasswordVisibility(false)"><i class="fa fa-question"></i> Giriş Yap</button>
+                                            <button type="button" class="btn btn-secondary margin-right-20 pull-right" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">KAPAT</span></button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="changePassword">
+                            <div class="jet-form boxed">
+                                <form action="/Form/ChangePassword?Length=4" data-ajax="true" data-ajax-method="POST" data-ajax-success="WDT.Member.ChangePasswordSuccess(data)" id="frmChangePassword" method="post">
+                                    <fieldset class="nomargin">
+                                        <label class="input margin-bottom-10">
+                                            <i class="ico-append fa fa-lock"></i>
+                                            <input data-val="true" data-val-required="Lütfen şifrenizi giriniz !" id="Password" name="Password" placeholder="Yeni Şifre" type="password" value="" />
+                                            <span class="field-validation-valid" data-valmsg-for="Password" data-valmsg-replace="true"></span>
+                                        </label>
+                                        <label class="input margin-bottom-10">
+                                            <i class="ico-append fa fa-lock"></i>
+                                            <input data-val="true" data-val-equalto="Girilen şifreler aynı olmalıdır !" data-val-equalto-other="*.Password" data-val-required="Lütfen şifrenizi giriniz !" id="RePassword" name="RePassword" placeholder="Yeni Şifre Tekrar" type="password" value="" />
+                                            <span class="field-validation-valid" data-valmsg-for="RePassword" data-valmsg-replace="true"></span>
+                                            <input id="Code" name="Code" type="hidden" value="" />
+                                        </label>
+                                    </fieldset>
+                                    <div class="row  mt-sm-1 mb-sm-1">
+                                        <div class="col-md-12">
+                                            <span id="spnResultCP" style="color:red"></span>
+                                            <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Yeni Şifre Oluştur</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script>
+    function ForgetPasswordVisibility(isShow) {
+        if (isShow) {
+            $('li > a[href="#forgetPassword"]').tab("show");
+        } else {
+            $('li > a[href="#login"]').tab("show");
+        }
+    }
+</script>

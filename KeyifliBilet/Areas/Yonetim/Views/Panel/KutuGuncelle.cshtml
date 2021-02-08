@@ -1,0 +1,43 @@
+﻿@model KeyifliBilet.Areas.Yonetim.Models.IndexViewModel
+@foreach (var item in Model.kutu)
+{
+    <form id="myForm" action="@Url.Action("KutuDuzenle", "Panel",new { id = item.KutuId })" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+        <div id="listOfCustomers" style="height: 400px; overflow: auto;">
+
+            <div class="portlet-title">
+                <div class="caption">
+                    <select class="form-control" id="kutuKategori" name="kutuKategori">
+                        <option value="">Kategori Seçiniz</option>
+                        @foreach (var data in Model.kutuKategori)
+                        {
+                            <option value="@data.KategoriId">@data+.Kategori</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>KALKIŞ YERİ</label>
+                <input class="form-control" type="text" name="kalkis" id="kalkis" value="@item.KalkisYeri" required="required">
+            </div>
+            <div class="form-group">
+                <label>VARIŞ YERİ</label>
+                <input class="form-control" type="text" name="varis" id="varis" value="@item.VarisYeri" required="required">
+            </div>
+            <div class="form-group">
+                <label>GÖRSEL</label>
+                <input class="form-control" type="file" name="resim" id="resim" placeholder="GÖRSEL" required="required">
+            </div>
+
+            <div class="box-footer">
+                <button class="btn btn-xs btn-danger" id="btnSubmit" href="@Url.Action("KutuDuzenle", "Panel",new { id = item.KutuId })">
+                    <span> EKLE</span>
+                </button>
+            </div>
+
+
+        </div>
+
+
+    </form>
+}
+

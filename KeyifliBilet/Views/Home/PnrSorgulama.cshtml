@@ -1,0 +1,65 @@
+﻿@model KeyifliBilet.Iati.Response.GetOrderResponse
+@{
+    ViewBag.Title = "PnrSorgulama";
+    Layout = "~/Views/Shared/MasterPage.cshtml";
+}
+@Html.Action("HeaderIndex", "Home")
+@if (Model.result!=null)
+{
+    <section class="mt-sm-5 mt-5">
+        <div class="container mt-sm-5">
+            @{var test=Model.result.cancellationInfo.pnr}
+            <div class="heading-title heading-border">
+                <h1 class="text-black">PNR :  @test</h1>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Bilet No</th>
+                                <th>İsim Soyisim</th>
+                                <th>Kalkış</th>
+                                <th>Varış</th>
+                                <th>Tarih Saat</th>
+                                <th>Sınıf</th>
+                                <th>Fiyat</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.result.legs)
+                            {
+                                foreach (var data in Model.result.passengers)
+                                {
+                            <tr>
+
+                                <td>@data.eticket</td>
+                                <td>@data.name @data.surname </td>
+                                <td>@item.departureAirport, @item.departureCityName (@item.departureCityCode) </td>
+                                <td>@item.arrivalAirport, @item.arrivalCityName (@item.arrivalCityCode) </td>
+                                <td>@item.departureTime.ToShortDateString() @item.departureTime.ToShortTimeString()</td>
+                                <td>@item.classCode</td>
+                                <td>@data.totalPrice TL </td>
+                            </tr>
+                                }
+
+                            }
+
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+else
+{
+    <div class="heading-title heading-border">
+
+        <h1 class="text-black">Arama kriterlerinize uygun PNR bilgisi bulunamadı</h1>
+    </div>
+}
+@Html.Action("Footer", "Home")
+@Html.Action("PartialSignUp", "Home")

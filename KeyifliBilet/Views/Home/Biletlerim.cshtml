@@ -1,0 +1,95 @@
+﻿@model KeyifliBilet.Areas.Yonetim.Models.IndexViewModel
+@{
+    ViewBag.Title = "Biletlerim";
+    Layout = "~/Views/Shared/MasterPage.cshtml";
+}
+@Html.Action("HeaderIndex", "Home")
+<section class="mt-sm-5 mt-5">
+    <div class="container mt-sm-5">
+        <div class="heading-title heading-border">
+            <h1 class="text-black">Biletlerim</h1>
+        </div>
+       
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#futureFlight">Geçmiş Uçuşlarım</a></li>
+                  
+                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#pastFlight">Gelecek Uçuşlarım</a></li>
+
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane container active" id="futureFlight">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Havayolu</th>
+                                    <th>Kalkış</th>
+                                    <th>Varış</th>
+                                    <th>Tarih</th>
+                                    <th>Sınıf</th>
+                                    <th>Fiyat</th>
+                                </tr>
+                                @if (Model.leg != null)
+                                {
+
+                                    foreach (var item in Model.leg)
+                                    {
+                                        if (item.arrivalTime < DateTime.Now)
+                                        {
+                                            <tr>
+                                                <td>@item.departureAirportName</td>
+                                                <td>@item.localDepartureDate</td>
+                                                <td>@item.localDepartureDate</td>
+                                                <td>@item.departureTime</td>
+                                                <td>@Model.passenger.FirstOrDefault().totalPrice</td>
+                                            </tr>
+                                        }
+                                    }
+                                }
+
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane container fade" id="pastFlight">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Havayolu</th>
+                                    <th>Kalkış</th>
+                                    <th>Varış</th>
+                                    <th>Tarih</th>
+                                    <th>Sınıf</th>
+                                    <th>Fiyat</th>
+                                </tr>
+                               
+                                @if (Model.leg != null)
+                                {
+
+                                    foreach (var item in Model.leg)
+                                    {
+                                        if (item.arrivalTime > DateTime.Now)
+                                        {
+                                            <tr>
+                                                <td>@item.departureAirportName</td>
+                                                <td>@item.localDepartureDate</td>
+                                                <td>@item.localDepartureDate</td>
+                                                <td>@item.departureTime</td>
+                                               <td></td>
+                                            </tr>
+                                        }
+                                    }
+                                }
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@Html.Action("Footer", "Home")
+@Html.Action("PartialSignUp", "Home")
+

@@ -1,0 +1,33 @@
+﻿@model KeyifliBilet.Areas.Yonetim.Models.IndexViewModel
+<div class="top-nav ">
+    <!--search & user info start-->
+    <ul class="nav pull-right top-menu">
+        <li>
+            <input type="text" class="form-control search" placeholder="Search">
+        </li>
+        <!-- user login dropdown start-->
+        @if (Model.kullanicilar != null)
+        {
+            foreach (var item in Model.kullanicilar)
+            {
+                <li class="dropdown">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <img alt="" src="~/Content/img/avatar1_small.jpg">
+                        <span class="username">@item.Ad</span>
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu extended logout">
+                        <div class="log-arrow-up"></div>
+                        <li><a href="@Url.Action("Profil", "Admin")"><i class=" icon-suitcase"></i>Profil</a></li>
+                        <li><a href="/Yonetim/Yoneticiler/Yoneticiler"><i class="icon-cog"></i> Yöneticiler</a></li>
+                        <li><a href="/Online/AnaSayfa"><i class="icon-key"></i> Çıkış</a></li>
+                    </ul>
+                </li>
+            }
+        }
+
+
+        <!-- user login dropdown end -->
+    </ul>
+    <!--search & user info end-->
+</div>

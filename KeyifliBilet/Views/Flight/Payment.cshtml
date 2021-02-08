@@ -1,0 +1,737 @@
+﻿@model KeyifliBilet.Models.IsBankasiVm
+@{
+    ViewBag.Title = "Payment";
+}
+@{
+    var adultcount = Convert.ToInt32(((KeyifliBilet.Models.ViewSearch)ViewBag.ViewSearch).Adult) + Convert.ToInt32(((KeyifliBilet.Models.ViewSearch)ViewBag.ViewSearch).Child);
+    var total = Convert.ToDecimal(((KeyifliBilet.Iati.Response.PriceDetailResponse)ViewBag.PriceDetailResponse).result.fares.Sum(x => x.total));
+    var totaltax = Convert.ToDecimal(((KeyifliBilet.Iati.Response.PriceDetailResponse)ViewBag.PriceDetailResponse).result.fares.Sum(x => x.tax));
+    var servicefee = Convert.ToDecimal(((KeyifliBilet.Iati.Response.PriceDetailResponse)ViewBag.PriceDetailResponse).result.fares.Sum(x => x.serviceFee));
+    var basefare = Convert.ToDecimal(((KeyifliBilet.Iati.Response.PriceDetailResponse)ViewBag.PriceDetailResponse).result.fares.Sum(x => x.baseFare));
+    decimal? agencyCommission = Convert.ToDecimal(((KeyifliBilet.Iati.Response.PriceDetailResponse)ViewBag.PriceDetailResponse).result.fares.Sum(x => x.agencyCommission));
+    var siniflar = ViewBag.Siniflar as List<KeyifliBilet.Areas.Yonetim.Models.Siniflar>;
+    var selectedFlights = ViewBag.SelectedFlights as List<KeyifliBilet.Iati.Response.FlightResponse>;
+
+}
+@Html.Action("HeaderResult", "Home")
+<section class="flights-list flight-information mt-sm-5 mt-5 pt-sm-5 bg-white">
+    <div class="container mt-sm-5 ">
+        <div class="panel panel-default row">
+            <div class="panel-body">
+                <strong>Lütfen üyeliğiniz varsa</strong>
+                <a href="#" data-toggle="modal" data-target=".bs-example-modal-sm">giriş yaparak</a> devam edin. Ya da <a href="javascript:;" data-toggle="modal" data-target=".bs-example-modal-sm">yeni bir hesap</a> oluşturabilirsiniz.
+            </div>
+        </div>
+        <div class="row mt-sm-3">
+            <div class="col-sm-12">
+                @foreach (var result in (List<KeyifliBilet.Iati.Response.FlightResponse>)ViewBag.SelectedFlights)
+                {
+                    foreach (var flight in result.result.flights)
+                    {
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="panel-head">
+
+                                    <i class="flaticon-transport"></i> <strong>@flight.legs.FirstOrDefault().departureCityName - @flight.legs.LastOrDefault().arrivalCityName</strong>, <nobr>@flight.legs.FirstOrDefault().departureTime.ToShortDateString()</nobr>
+
+
+                                </div>
+                            </div>
+                            @{
+                                if (flight.returnFlight == false)
+                                {
+                                    if (flight.legs.Count > 1)
+                                    {
+                                        for (int i = 0; i < flight.legs.Count(); i++)
+                                        {
+
+                                            <div class="flight-itinerary departure">
+                                                <div class="airlines">
+                                                    <div class="content">
+                                                        <span class="icon-carrier-@flight.legs[i].operatorCode"></span>
+                                                        <span class="title">@flight.legs[i].flightNo</span>
+                                                    </div>
+                                                </div>
+                                                <div class="departure col-sm-2 col-xs-3 col-sm-push-0 col-xs-push-2">
+                                                    <div class="content">
+                                                        <div class="time">@flight.legs[i].departureTime.ToString("HH:mm")</div>
+                                                        <div class="airport">@flight.legs[i].departureAirport</div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="stops col-sm-1 col-xs-4 col-sm-push-0 col-xs-push-2">
+                                                    <div class="content">
+                                                        <div class="date">@(flight.legs[i].legDurationMinute / 60) s @(flight.legs[i].legDurationMinute % 60) dk</div>
+                                                        <div class="airport">
+                                                            <div class="stop">
+                                                                <div class="stop-row-half">AKTARMA</div>
+                                                                <span class="ball">  @(flight.legs.Count() - 1) </span>
+                                                                <div class="stop-row-half">AKTARMA</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="arrival col-sm-2 col-xs-3 col-sm-push-0 col-xs-push-2">
+                                                    <div class="content">
+                                                        <div class="time">@flight.legs[i].arrivalTime.ToString("HH:mm")</div>
+                                                        <div class="airport">@flight.legs[i].arrivalAirport</div>
+                                                    </div>
+                                                </div>
+                                                @if (i == 0)
+                                                {
+                                                    <div class="col-sm-5"></div><div class="pricing col-sm-2 col-xs-4">
+                                                        <div class="content">
+                                                            <div class="price">
+
+                                                                @*<strong class="amount">@(i == 0 ? flight.fares.Sum(x => x.personFares.Sum(p => p.baseFare)).ToString("N2").Split(',')[0] : "")*@
+                                                                @{
+
+                                                                    <strong class="amount">
+
+                                                                        @((total + agencyCommission).Value.ToString("N2").Split(',')[0])
+                                                                        <span class="sup">
+                                                                            '@((total + agencyCommission).Value.ToString("N2").Split(',')[1])
+                                                                            <span class="desc">TRY</span>
+                                                                        </span>
+                                                                    </strong>
+
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                                @*<div class="col-sm-5"></div><div class="pricing col-sm-2 col-xs-4">
+                                                        <div class="content">
+
+                                                        </div>
+                                                    </div>*@
+                                            </div>
+
+                                        }
+                                    }
+                                    else
+                                    {
+
+                                        for (int i = 0; i < flight.legs.Count(); i++)
+                                        {
+                                            <div class="flight-itinerary departure">
+                                                <div class="airlines">
+                                                    <div class="content">
+                                                        <span class="icon-carrier-@flight.legs[i].operatorCode"></span>
+                                                        <span class="title">@flight.legs[i].flightNo</span>
+                                                    </div>
+                                                </div>
+                                                <div class="departure col-sm-2 col-xs-3 col-sm-push-0 col-xs-push-2">
+                                                    <div class="content">
+                                                        <div class="time">@flight.legs[i].departureTime.ToString("HH:mm")</div>
+                                                        <div class="airport">@flight.legs[i].departureAirport</div>
+                                                    </div>
+                                                </div>
+                                                <div class="stops col-sm-1 col-xs-4 col-sm-push-0 col-xs-push-2">
+                                                    <div class="content">
+                                                        <div class="date">@(flight.legs[i].legDurationMinute / 60) s @(flight.legs[i].legDurationMinute % 60) dk</div>
+                                                        <div class="airport">
+                                                            <div class="stop">
+                                                                <div class="stop-row-half">AKTARMA</div>
+                                                                <span class="ball">  @(flight.legs.Count() - 1) </span>
+                                                                <div class="stop-row-half">AKTARMA</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="arrival col-sm-2 col-xs-3 col-sm-push-0 col-xs-push-2">
+                                                    <div class="content">
+                                                        <div class="time">@flight.legs[i].arrivalTime.ToString("HH:mm")</div>
+                                                        <div class="airport">@flight.legs[i].arrivalAirport</div>
+                                                    </div>
+                                                </div>
+                                                @if (i == 0)
+                                                {
+                                                    <div class="col-sm-5"></div><div class="pricing col-sm-2 col-xs-4">
+                                                        <div class="content">
+                                                            <div class="price">
+
+                                                                @{
+
+                                                                    <strong class="amount">
+
+                                                                        @((total + agencyCommission).Value.ToString("N2").Split(',')[0])
+                                                                        <span class="sup">
+                                                                            '@((total + agencyCommission).Value.ToString("N2").Split(',')[1])
+                                                                            <span class="desc">TRY</span>
+                                                                        </span>
+                                                                    </strong>
+
+
+                                                                }
+                                                                <div class="per-person">vergi dahil </div>
+
+
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                }
+                                            </div>
+                                        }
+
+
+                                    }
+                                }
+                                else
+                                {
+                                    if (flight.legs.Count > 1)
+                                    {
+                                        for (int i = 0; i < flight.legs.Count(); i++)
+                                        {
+
+                                            <div class="flight-itinerary departure">
+                                                <div class="airlines">
+                                                    <div class="content">
+                                                        <span class="icon-carrier-@flight.legs[i].operatorCode"></span>
+                                                        <span class="title">@flight.legs[i].flightNo</span>
+                                                    </div>
+                                                </div>
+                                                <div class="departure col-sm-2 col-xs-3 col-sm-push-0 col-xs-push-2">
+                                                    <div class="content">
+                                                        <div class="time">@flight.legs[i].departureTime.ToString("HH:mm")</div>
+                                                        <div class="airport">@flight.legs[i].departureAirport</div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="stops col-sm-1 col-xs-4 col-sm-push-0 col-xs-push-2">
+                                                    <div class="content">
+                                                        <div class="date">@(flight.legs[i].legDurationMinute / 60) s @(flight.legs[i].legDurationMinute % 60) dk</div>
+                                                        <div class="airport">
+                                                            <div class="stop">
+                                                                <div class="stop-row-half">AKTARMA</div>
+                                                                <span class="ball">  @(flight.legs.Count() - 1) </span>
+                                                                <div class="stop-row-half">AKTARMA</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="arrival col-sm-2 col-xs-3 col-sm-push-0 col-xs-push-2">
+                                                    <div class="content">
+                                                        <div class="time">@flight.legs[i].arrivalTime.ToString("HH:mm")</div>
+                                                        <div class="airport">@flight.legs[i].arrivalAirport</div>
+                                                    </div>
+                                                </div>
+
+                                                @*<div class="col-sm-5"></div><div class="pricing col-sm-2 col-xs-4">
+                                                        <div class="content">
+
+                                                        </div>
+                                                    </div>*@
+                                            </div>
+
+                                        }
+                                    }
+                                    else
+                                    {
+
+                                        for (int i = 0; i < flight.legs.Count(); i++)
+                                        {
+                                            <div class="flight-itinerary departure">
+                                                <div class="airlines">
+                                                    <div class="content">
+                                                        <span class="icon-carrier-@flight.legs[i].operatorCode"></span>
+                                                        <span class="title">@flight.legs[i].flightNo</span>
+                                                    </div>
+                                                </div>
+                                                <div class="departure col-sm-2 col-xs-3 col-sm-push-0 col-xs-push-2">
+                                                    <div class="content">
+                                                        <div class="time">@flight.legs[i].departureTime.ToString("HH:mm")</div>
+                                                        <div class="airport">@flight.legs[i].departureAirport</div>
+                                                    </div>
+                                                </div>
+                                                <div class="stops col-sm-1 col-xs-4 col-sm-push-0 col-xs-push-2">
+                                                    <div class="content">
+                                                        <div class="date">@(flight.legs[i].legDurationMinute / 60) s @(flight.legs[i].legDurationMinute % 60) dk</div>
+                                                        <div class="airport">
+                                                            <div class="stop">
+                                                                <div class="stop-row-half">AKTARMA</div>
+                                                                <span class="ball">  @(flight.legs.Count() - 1) </span>
+                                                                <div class="stop-row-half">AKTARMA</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="arrival col-sm-2 col-xs-3 col-sm-push-0 col-xs-push-2">
+                                                    <div class="content">
+                                                        <div class="time">@flight.legs[i].arrivalTime.ToString("HH:mm")</div>
+                                                        <div class="airport">@flight.legs[i].arrivalAirport</div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        }
+
+
+                                    }
+                                }
+
+
+                            }
+                        </div>
+                    }
+                }
+                <section class="section noborder nopadding sticky-wrapper mb-5" id="sticky-wrapper">
+                    <div class="container container-gray" id="pricebreakdownscroll">
+                        <div class="row grid-mbl mt-5">
+                            <div class="col-6 pr-0-mbl">
+                                <h2 class="nomargin size-20 weight-300">Toplam tutar</h2>
+                            </div>
+                            @{
+                                var top = total + agencyCommission;
+                                double t = 0;
+                                double t1=0;
+                                double t2 = 0;
+
+                                t1 = (((List<KeyifliBilet.Iati.Response.FlightResponse>)ViewBag.SelectedFlights)[0].result.flights[0].fares[0].personFares.Sum(w => w.total+w.agencyCommission));
+                                if (((List<KeyifliBilet.Iati.Response.FlightResponse>)ViewBag.SelectedFlights).Count()>1)
+                                {
+                                    t2 = (((List<KeyifliBilet.Iati.Response.FlightResponse>)ViewBag.SelectedFlights)[1].result.flights[0].fares[0].personFares.Sum(w => w.total +w.agencyCommission));
+                                    t = t1 + t2;
+                                }
+                                else
+                                {
+                                    t = t1;
+                                }
+
+
+                            }
+                            @if (t!=Convert.ToDouble(top))
+                            {
+                            <div class="col-6 pl-0-mbl text-right">
+                                <h2 class="bold nomargin text-right blue-light weight-500 size-30">
+                                    <span><span style="text-decoration-line:line-through;text-decoration-color:red;">@(((List<KeyifliBilet.Iati.Response.FlightResponse>)ViewBag.SelectedFlights)[0].result.flights[0].fares[0].currency)</span><span style="text-decoration-line:line-through;text-decoration-color:red;">@(t)</span></span>
+                                    </h2>
+                                    <span class="text-muted size-11"><b>TÜRKİYE KAZANACAK %10 İNDİRİMLİ BİLETİ</b></span>
+                            </div>
+
+                                <div class="col-12 pl-0-mbl text-right">
+                                    <h2 class="bold nomargin text-right blue-light weight-500 size-30">
+                                        <span><span class="price-currency">@(((List<KeyifliBilet.Iati.Response.FlightResponse>)ViewBag.SelectedFlights)[0].result.flights[0].fares[0].currency)</span><span>@(top)</span></span>
+                                    </h2>
+                                    <span class="text-muted size-11">VERGİ VE TAŞIYICI ÜCRETLERİ DAHİL</span>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="col-6 pl-0-mbl text-right">
+                                    <h2 class="bold nomargin text-right blue-light weight-500 size-30">
+                                        <span><span class="price-currency">@(((List<KeyifliBilet.Iati.Response.FlightResponse>)ViewBag.SelectedFlights)[0].result.flights[0].fares[0].currency)</span><span>@(top)</span></span>
+                                    </h2>
+                                    <span class="text-muted size-11">VERGİ VE TAŞIYICI ÜCRETLERİ DAHİL</span>
+                                </div>
+                            }
+                        </div>
+
+                        <div class="row mt-3 mb-3">
+                            <div class="col-12 red mb-15">
+                                <a class="size-16 weight-500" style="color: #f37321;" data-toggle="collapse" data-target="#collapse-10" aria-expanded="false" aria-controls="collapse-10">
+                                    <span>Ücret detaylarını göster</span>
+                                    <i class="fa fa-chevron-right red ml-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row mt-1 collapse" id="collapse-10">
+                            <div class="col-12">
+                                <ul class="calculated-price-list fs-14">
+                                    <li>
+                                        <span>
+                                            @adultcount Yetişkin
+                                        </span>
+                                        <span class="pull-right">
+                                            <span class="price-column-currency">TRY</span>
+                                            <span>  @((basefare))</span>
+                                        </span>
+                                    </li>
+                                    <li class="mb-10"></li>
+                                    <li>
+                                        <a class="black">
+                                            <u><span>Vergi ve diğer harçlar</span></u>
+                                        </a>
+
+                                        <span class="pull-right">
+                                            <span class="price-column-currency">TRY</span>
+                                            <span>@(totaltax)</span>
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <a class="black">
+                                            <u><span>Biletleme servis ücreti</span></u>
+                                        </a>
+                                        <span class="pull-right">
+                                            <span class="price-column-currency">TRY</span>
+
+
+                                            <span>
+
+                                                @(agencyCommission + servicefee)
+
+                                            </span>
+
+
+
+                                        </span>
+
+                                    </li>
+
+                                </ul>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                </section>
+
+
+
+
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <h3 class="mt-sm-2 mb-sm-2">Yolcu bilgileri</h3>
+            </div>
+        </div>
+        <div id="dvPaymentArea">
+
+            <form action="https://sanalpos.isbank.com.tr/fim/est3Dgate" method="post" id="pform">
+                <div class="nomargin jet-form boxed">
+                    <div class="row clearfix">
+                        <div class="col-lg-6">
+                            <h3 class="size-14 heading-title mb-10">İletişim Kurulacak Kişi</h3>
+
+                            <label class="input margin-bottom-10">
+                                <i class="ico-append fa fa-envelope"></i>
+                                <input data-val="true" data-val-number="The field SaleId must be a number." data-val-required="The SaleId field is required." id="PassengerForm_SaleId" name="PassengerForm.SaleId" type="hidden" value="17656">
+                                <input autocomplete="off" data-val="true" data-val-required="İletişim email adresini giriniz !" id="contact.email" name="contact.email" placeholder="Email adresi" type="text" value="">
+                                <span class="field-validation-valid" data-valmsg-for="contact.email" data-valmsg-replace="true"></span>
+                                <b class="tooltip tooltip-bottom-right">Biletin gönderilmesi için önemlidir</b>
+                            </label>
+
+                            <div class="cinput margin-bottom-10">
+                                <i class="ico-append fa fa-phone"></i>
+                                <input id="contact.countryCode" name="PassengerForm.countryCode" type="hidden" value="+90">
+                                <div class="cc-picker cc-picker-code-select-enabled">
+                                    <div class="cc-picker-flag tr"></div>
+                                    <span class="cc-picker-code">+90</span>
+                                </div>
+                                <input autocomplete="off" class="phone-field" data-val="true" data-val-required="İletişim cep telefonu numarasını giriniz !" id="contact.mobilePhoneNumber" name="contact.mobilePhoneNumber" placeholder="Cep Telefonu" type="text" value="">
+                                <input type="hidden" id="PassengerForm_Mobile_phoneCode" name="contact.mobilePhoneNumber" value="+90">
+                                <span class="field-validation-valid" data-valmsg-for="contact.mobilePhoneNumber" data-valmsg-replace="true"></span><br><br>
+                                <span class="field-validation-error" id="spnMobileError"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+
+                        </div>
+                    </div>
+
+                    <div class="row clearfix">
+                        <div class="col-lg-6">
+                            <h3 class="size-14 mb-sm-1">Yolcu Bilgileri</h3>
+                            @for (int i = 0; i < ((KeyifliBilet.Models.ViewSearch)ViewBag.ViewSearch).Adult; i++)
+                            {
+                                <strong>@(i + 1). Yetişkin</strong>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label>
+                                            <input type="checkbox" class="tcPerson" personid="@i">T.C.Vatandaşı Değilim
+                                        </label>
+                                        <label class="input">
+                                            <input data-val="true" data-val-number="The field Id must be a number." data-val-required="The Id field is required." id="passenger[@i].Id" name="passenger[@i].Id" type="hidden" value="2090">
+                                            <input id="passenger[@i].IdentityType" name="passenger[@i].IdentityType" type="hidden" value="TC_NO">
+                                            <input class="hdnIsTurkish" data-val="true" data-val-required="The IsTurkish field is required." id="passenger_@(i)_IsTurkish" name="passenger[@i].IsTurkish" personid="@i" type="hidden" value="True">
+                                            <input class="maskIdentity" data-val="true" data-val-required="Yolcu kimlik numarasını giriniz !" id="passenger_@(i)_IdentityNo" masktype="TC_NO" maxlength="11" name="passenger[@i].IdentityNo" placeholder="TC No" type="text" value="">
+                                            <span class="field-validation-valid" data-valmsg-for="passenger_@(i)_IdentityNo" data-valmsg-replace="true"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label class="input">
+                                            <input data-val="true" data-val-required="Yolcu adını giriniz !" id="passenger[@i].name" name="passenger[@i].name" placeholder="Ad" type="text" value="">
+                                            <span class="field-validation-valid" data-valmsg-for="passenger[@i].name" data-valmsg-replace="true"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label class="input">
+                                            <input data-val="true" data-val-required="Yolcu soyadını giriniz !" id="passenger[@i].surname" name="passenger[@i].surname" placeholder="Soyad" type="text" value="">
+                                            <span class="field-validation-valid" data-valmsg-for="passenger[@i].surname" data-valmsg-replace="true"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label class="input">
+                                            <select class="form-control" id="passenger[@i].Gender" name="passenger[@i].gender">
+                                                <option value="MALE">Erkek</option>
+                                                <option value="FEMALE">Kadın</option>
+                                            </select>
+                                        </label>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label class="input">
+                                            <input class="maskBirthdate" data-val="true" data-val-required="Yolcu doğum tarihini giriniz !" id="passenger[@i].birthdate" name="passenger[@i].birthdate" placeholder="Doğum Tarihi" type="text">
+                                            <span class="field-validation-valid" data-valmsg-for="passenger[@i].birthdate" data-valmsg-replace="true"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <div class="col-lg-6">
+                        </div>
+                    </div>
+
+                    <div class="row clearfix">
+                        <div class="col-lg-6">
+                            <div class="margin-top-30">
+                                <label class="checkbox nomargin">
+                                    <input class="checked-agree" data-val="true" data-val-required="The RightsConfirm field is required." id="RightsConfirm" name="RightsConfirm" type="checkbox" value="true"><i></i><input name="RightsConfirm" type="hidden" value="false">
+                                    <a class="weight-600" data-toggle="modal" data-target="#termsAgentReg">Kişisel verilerin korunması</a> ve
+                                    <a class="weight-600" data-toggle="modal" data-target="#termsTicketReq">Kullanım Kurallarını</a> okudum, kabul ediyorum.
+                                </label>
+                                <span id="spnRightError" style="color:red"></span>
+                                <label class="checkbox nomargin">
+                                    <input data-val="true" data-val-required="The CampaignConfirm field is required." id="CampaignConfirm" name="CampaignConfirm" type="checkbox" value="true"><i></i><input name="CampaignConfirm" type="hidden" value="false"> Fırsat ve kampanyalardan haberdar olmak istiyorum.
+
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-lg-6">
+                            <h3 class="size-14 mb-sm-1">Ödeme Bilgileri</h3>
+                        </div>
+                        <div class="col-lg-6">
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-lg-6">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label class="control-label">Kart Üzerindeki İsim</label>
+                                    <input class="form-control" data-val="true" data-val-required="Kart üzerindeki isim soyisim bilgisini giriniz !" id="cardNameSurname" name="cardNameSurname" placeholder="Kart üzerindeki isim soyisim" type="text" value="">
+                                    <span class="field-validation-valid" data-valmsg-for="cardNameSurname" data-valmsg-replace="true"></span>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="control-label">Kredi Kartı Numarası</label>
+                                    <input class="form-control" data-val="true" data-val-required="Kart numarasını giriniz !" id="pan" name="pan" placeholder="Kart numarası" type="text" value="">
+                                    <span class="field-validation-valid" data-valmsg-for="pan" data-valmsg-replace="true"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label class="control-label">Ay</label>
+                                    <select class="form-control" data-val="true" data-val-required="Son kullanma tarihi ay seçiniz !" id="Ecom_Payment_Card_ExpDate_Month" name="Ecom_Payment_Card_ExpDate_Month">
+                                        <option value="01">01 - Ocak </option>
+                                        <option value="02">02 - Şubat</option>
+                                        <option value="03">03 - Mart </option>
+                                        <option value="04">04 - Nisan</option>
+                                        <option value="05">05 - Mayıs </option>
+                                        <option value="06">06 - Haziran</option>
+                                        <option value="07">07 - Temmuz </option>
+                                        <option value="08">08 - Ağustos</option>
+                                        <option value="09">09 - Eylül </option>
+                                        <option value="10">10 - Ekim</option>
+                                        <option value="11">11 - Kasım </option>
+                                        <option value="12">12 - Aralık</option>
+                                    </select>
+                                    <span class="field-validation-valid" data-valmsg-for="cardMonth" data-valmsg-replace="true"></span>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label class="control-label">Yıl</label>
+                                    <select class="form-control" data-val="true" data-val-required="Son kullanma tarihi yıl seçiniz !" id="Ecom_Payment_Card_ExpDate_Year" name="Ecom_Payment_Card_ExpDate_Year">
+                                        <option value="19">2019</option>
+                                        <option value="20">2020</option>
+                                        <option value="21">2021</option>
+                                        <option value="22">2022</option>
+                                        <option value="23">2023</option>
+                                        <option value="24">2024</option>
+                                        <option value="25">2025</option>
+                                        <option value="26">2026</option>
+                                        <option value="27">2027</option>
+                                        <option value="28">2028</option>
+                                    </select>
+                                    <span class="field-validation-valid" data-valmsg-for="cardYear" data-valmsg-replace="true"></span>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label class="control-label">Cvv</label>
+                                    <input autocomplete="Off" class="form-control col-md-6" data-val="true" data-val-required="Kart güvenlik numarasını giriniz !" id="cv2" name="cv2" type="text" value="">
+                                    <span class="field-validation-valid" data-valmsg-for="cardCcv" data-valmsg-replace="true"></span>
+                                </div>
+                                <input type="hidden" name="clientid" value="@Model.clientId">
+                                <input type="hidden" name="amount" value="@Model.amount">
+                                <input type="hidden" name="oid" value="@Model.oid">
+                                <input type="hidden" name="okUrl" value="@Model.okUrl">
+                                <input type="hidden" name="failUrl" value="@Model.failUrl">
+                                <input type="hidden" name="rnd" value="@Model.rnd">
+                                <input type="hidden" name="hash" value="@Model.hash">
+                                <input type="hidden" name="storetype" value="3d_pay">
+                                <input type="hidden" name="lang" value="tr">
+                                <input type="hidden" name="currency" value="949">
+                                @*<input type="hidden" name="cardType" value="1">*@
+
+
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+
+                        </div>
+                    </div>
+
+                    <div class="row clearfix">
+                        <div class="col-lg-6">
+                            <img src="/Content/assets/images/cc/cards.png" class="booking-complete-ssl">
+                        </div>
+                        <div class="col-lg-6">
+                            <button type="submit" id="btnMakeReservetion" class="btn btn-primary pull-right"><i class="fa fa-check"></i> Bileti Satın Al</button>
+                        </div>
+                    </div>
+
+                    <div class="chk-lock row">
+                        <div class="form-group col-md-6 col-sm-10 col-xs-10 align-left">
+                            <img width="42" height="42" src="/Content/assets/images/cc/security-on.svg" class="secure-payment">
+                            <p class="bottom"><strong>Keyifli Bilet'den</strong> yapacağınız işlemler, <br>Rapid SSL güvenlik sertifikası ile koruma altındadır.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+@Html.Action("Footer", "Home")
+@Html.Action("PartialSignUp", "Home")
+
+
+@section js{
+    <script type="text/javascript">
+        var timer = 0;
+
+        function setResetInterval(bool) {
+            if (bool) {
+                timer = setInterval(function () {
+                    debugger;
+                    $("#timeout").modal("show");
+                }, 1000 * 60 * 2);
+            } else {
+                clearInterval(timer);
+            }
+        }
+        function SessionEnd() {
+            clearInterval(timer);
+            location.href = "/";
+        }
+        function SessionResume() {
+            clearInterval(timer);
+            setResetInterval(true);
+            window.location.reload();
+        }
+        $(document).ready(function () {
+            setResetInterval(true);
+            $.validator.addMethod(
+                'tcKimlikNo',
+                function (value, element) {
+                    var no = value.split('');
+                    var i, total1 = 0, total2 = 0, total3 = parseInt(no[0]);
+                    for (i = 0; i < 10; i++) {
+                        total1 = total1 + parseInt(no[i]);
+                    }
+
+                    for (i = 1; i < 9; i = i + 2) {
+                        total2 = total2 + parseInt(no[i]);
+                        total3 = total3 + parseInt(no[i + 1]);
+                    }
+
+                    return this.optional(element) || !(!/^[1-9][0-9]{10}$/.test(value) || (total1 % 10 != no[10]) || (total3 * 7 - total2) % 10 != no[9]);
+                },
+                "Geçersiz TC Kimlik No. Algoritma doğrulanmadı lütfen kontrol edin."
+            );
+            $('#pform').validate({
+                "rules": {
+                    "passenger[0].IdentityNo": {
+                        tcKimlikNo: true
+                    }
+                }
+            });
+            $("#PassengerForm_Email").inputmask('email', { clearIncomplete: true });
+            $("#PassengerForm_Mobile").CcPicker({ "countryCode": "tr" });
+            $("#PassengerForm_Mobile").on("countrySelect", function (e, i) {
+                $("#PassengerForm_CountryCode").val(i.phoneCode);
+            });
+
+
+            $(".maskIdentity").inputmask('numeric', { clearIncomplete: true, rightAlign: false });
+
+            $(".maskBirthdate").inputmask('99/99/9999', { clearIncomplete: true });
+            $("#cardNumber").inputmask('9999-9999-9999-9999', { clearIncomplete: true });
+            $("#cardCcv").inputmask('999', { clearIncomplete: true });
+
+            $('.maskIdentity').on('keyup focus blur load', function (event) {
+                event.preventDefault();
+                var isValid = checkTcNum($(this).val());
+                console.log('isValid ', isValid);
+                var self = document.getElementsByClassName("maskIdentity")[0];
+                self.setCustomValidity("Onaylanmadı");
+                return isValid;
+            });
+        });
+
+        function checkTcNum(value) {
+            value = value.toString();
+            var isEleven = /^[0-9]{11}$/.test(value);
+            var totalX = 0;
+            for (var i = 0; i < 10; i++) {
+                totalX += Number(value.substr(i, 1));
+            }
+            var isRuleX = totalX % 10 == value.substr(10, 1);
+            var totalY1 = 0;
+            var totalY2 = 0;
+            for (var i = 0; i < 10; i += 2) {
+                totalY1 += Number(value.substr(i, 1));
+            }
+            for (var i = 1; i < 10; i += 2) {
+                totalY2 += Number(value.substr(i, 1));
+            }
+            var isRuleY = ((totalY1 * 7) - totalY2) % 10 == value.substr(9, 0);
+            return isEleven && isRuleX && isRuleY;
+        };
+        $(".tcPerson").click(function () {
+            debugger;
+            var personId = parseInt($(this).attr('personId'));
+            var isChecked = $(this).is(':checked');
+            if (isChecked) {
+                $("#passenger_" + personId + "_IsTurkish").val(false);
+                $("#passenger_" + personId + "_IdentityNo").hide();
+            } else {
+                $("#passenger_" + personId + "_IsTurkish").val(true);
+                $("#passenger_" + personId + "_IdentityNo").show();
+            }
+        });
+        $(".hdnIsTurkish").each(function (index, item) {
+            var isTurkish = $(item).val() == 'True';
+            var personId = $(item).attr('personId');
+            if (!isTurkish) {
+                $(".tcPerson").filter('input[personId=' + personId + ']').click();
+            }
+        });
+    </script>
+
+
+}

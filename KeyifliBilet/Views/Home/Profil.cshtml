@@ -1,0 +1,94 @@
+﻿@model KeyifliBilet.Areas.Yonetim.Models.IndexViewModel
+@{
+    ViewBag.Title = "Profil";
+    Layout = "~/Views/Shared/MasterPage.cshtml";
+}
+@Html.Action("HeaderIndex", "Home")
+<section class="mt-sm-5 mt-5">
+    <div class="container mt-sm-5">
+        <div class="heading-title heading-border">
+            <h1 class="text-black">Profil ayarları</h1>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#personalInfo">Kişisel Bilgiler</a></li>
+                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#changePassword">Şifre Değiştir</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane container active" id="personalInfo">
+                        <div class="jet-form boxed">
+                            <form action="@Url.Action("Profil","Home")" data-ajax="true" data-ajax-method="POST" data-ajax-success="WDT.Member.SaveProfileSuccess(data)" id="frmPersonalInfo" method="post" novalidate="novalidate">
+                                <div class="row  mt-sm-1 mb-sm-1">
+                                    @foreach (var item in Model.uyeler)
+                                    {
+                                        <div class="col-md-6">
+                                            <fieldset class="nomargin">
+                                                <label class="input margin-bottom-10">
+                                                    <input data-val="true" data-val-required="İsim giriniz !" id="txtUpName" name="txtUpName" placeholder="İsminiz" type="text" value="@item.AdSoyad">
+                                                    <span class="field-validation-valid" data-valmsg-for="AccountInfo.Name" data-valmsg-replace="true"></span>
+                                                </label>
+                                             
+                                                <label class="input margin-bottom-10">
+                                                    <i class="ico-append fa fa-envelope"></i>
+                                                    <input data-val="true" data-val-required="Email adresinizi giriniz !" id="txtUpEmail" name="txtUpEmail" placeholder="Email adresiniz" readonly="readonly" type="text" value="@item.Mail">
+                                                    <span class="field-validation-valid" data-valmsg-for="AccountInfo.Email" data-valmsg-replace="true"></span>
+                                                </label>
+                                                <label class="input margin-bottom-10">
+                                                    <i class="ico-append fa fa-phone"></i>
+                                                    <input data-val="true" data-val-required="Cep telefonu numaranızı giriniz !" id="txtUpMobile" name="txtUpMobile" placeholder="Cep Telefonu" type="text" value="@item.GSM">
+                                                    <span class="field-validation-valid" data-valmsg-for="AccountInfo.Mobile" data-valmsg-replace="true"></span>
+                                                </label>
+                                            </fieldset>
+                                        </div>
+                                    }
+
+                                </div>
+                                <div class="row  mt-sm-1 mb-sm-1">
+                                    <div class="col-md-6">
+                                        <span id="spnLoginError" style="color:red"></span>
+                                        <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-check"></i> GÜNCELLE</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="tab-pane container fade" id="changePassword">
+                        <div class="jet-form boxed">
+                            <form action="@Url.Action("Profil","Home")" data-ajax="true" data-ajax-method="POST" data-ajax-success="WDT.Member.SaveProfileSuccess(data)" id="frmPersonalInfo" method="post" novalidate="novalidate">
+                                <div class="row  mt-sm-1 mb-sm-1">
+                                 
+                                        <div class="col-md-6">
+                                            <fieldset class="nomargin">
+                                                <label class="input margin-bottom-10">
+                                                    <input data-val="true" data-val-required="Mevcut Şifrenizi giriniz !" id="mevcut" name="mevcut" placeholder="Şifreniz" type="text">
+                                                    <span class="field-validation-valid" data-valmsg-for="AccountInfo.Name" data-valmsg-replace="true"></span>
+                                                </label>
+
+                                                <label class="input margin-bottom-10">
+                                                    <i class="ico-append fa fa-paste"></i>
+                                                    <input data-val="true" data-val-required="Yeni Şifrenizi giriniz !" id="yeni" name="yeni" placeholder="Yeni Şifreniz" type="text">
+                                                    <span class="field-validation-valid" data-valmsg-for="AccountInfo.Mobile" data-valmsg-replace="true"></span>
+                                                </label>
+
+                                            </fieldset>
+                                        </div>
+                          
+
+                                </div>
+                                <div class="row  mt-sm-1 mb-sm-1">
+                                    <div class="col-md-6">
+                                        <span id="spnLoginError" style="color:red"></span>
+                                        <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-check"></i> GÜNCELLE</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@Html.Action("Footer", "Home")
+@Html.Action("PartialSignUp", "Home")

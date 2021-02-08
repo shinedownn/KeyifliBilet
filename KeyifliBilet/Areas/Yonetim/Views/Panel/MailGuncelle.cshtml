@@ -1,0 +1,45 @@
+﻿@model KeyifliBilet.Areas.Yonetim.Models.IndexViewModel
+@foreach (var item in Model.mail)
+{
+    <form id="myForm" action="@Url.Action("MailGuncelle", "Panel",new { id = item.MailId })" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+        <div id="listOfCustomers" style="height: 400px; overflow: auto;">
+
+
+            <div class="form-group">
+                <label>MAİL</label>
+                <input class="form-control" type="text" name="mail" id="mail" value="@item.Mail" required="required">
+            </div>
+            <div class="form-group">
+                <label>MAİL BAŞLIĞI</label>
+                <input class="form-control" type="text" name="baslik" id="baslik" value="@item.Baslik" required="required">
+            </div>
+            <div class="form-group">
+                <label>MAİL İÇERİĞİ</label>
+                <input class="form-control" type="text" name="icerik" id="icerik" value="@item.Icerik" required="required">
+            </div>
+            <div class="form-group">
+                <label>SMTP ADRESİ</label>
+                <input class="form-control" type="text" name="adres" id="adres" value="@item.SMTPAdresi" required="required">
+            </div>
+            <div class="form-group">
+                <label>PORT</label>
+                <input class="form-control" type="text" name="port" id="port" value="@item.Port" required="required">
+            </div>
+            <div class="form-group">
+                <label>ŞİFRE</label>
+                <input class="form-control" type="text" name="sifre" id="sifre" value="@item.Sifre" required="required">
+            </div>
+
+
+            <div class="box-footer">
+                <button class="btn btn-xs btn-danger" id="btnSubmit" href="@Url.Action("MailGuncelle", "Panel",new { id = item.MailId })">
+                    <span> GÜNCELLE</span>
+                </button>
+            </div>
+
+
+        </div>
+
+
+    </form>
+}

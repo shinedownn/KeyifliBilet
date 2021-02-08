@@ -1,0 +1,10 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+@{
+    ViewBag.Title = "TicketError";
+    Layout = "~/Views/Shared/MasterPage.cshtml";
+}
+@Html.Action("HeaderIndex", "Home")
+<h2>Sistem Bilgisi</h2>
+<h1>@Model.Exception.Message</h1>
+@Html.Action("Footer", "Home")
+

@@ -1,0 +1,248 @@
+﻿@model KeyifliBilet.Areas.Yonetim.Models.IndexViewModel
+@{
+    ViewBag.Title = "Multimedia";
+    Layout = "~/Areas/Yonetim/Views/Shared/MasterPage.cshtml";
+}
+@section css{
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+
+    <style>
+        body {
+            margin: 1em;
+        }
+
+        .jstree-table-wrapper {
+            border: 1px solid #ccc;
+        }
+    </style>
+}
+<section id="main-content">
+    <section class="wrapper">
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <a class="delete btn btn-info" onclick="SayfaMultimediaEkle(@ViewBag.SayfaId)"> Multimedia Ekle</a>
+
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-9">
+
+                                        <div id="jstree">
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+
+                </div>
+                @if (Model.sayfaMultiMedia.Count() != 0)
+                {
+
+                    <div class="col-md-9">
+                        <div class="portfolio-content portfolio-1">
+
+                            <div id="js-grid-juicy-projects" class="cbp cbp-caption-active cbp-caption-overlayBottomReveal cbp-ready" style="height: 218px;">
+                                <div class="cbp-wrapper-outer">
+                                    <div class="cbp-wrapper">
+                                        @foreach (var item in Model.sayfaMultiMedia)
+                                        {
+                                            <div class="cbp-item  pb-3" id="photo-13" orderno="1" style="width: 288px; left: 0px; top: 0px;">
+                                                <div class="cbp-item-wrapper">
+                                                    <div class="cbp-caption">
+                                                        <div class="cbp-caption-defaultWrap">
+                                                            <img src="@item.Resim" alt="" width="200" height="200">
+                                                        </div>
+                                                        <div class="cbp-caption-activeWrap">
+                                                            <div class="cbp-l-caption-alignCenter">
+                                                                <div class="cbp-l-caption-body">
+                                                                    <table>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <a class="btn btn-xs btn-warning" href="@Url.Action("SayfaMultiMediaGuncelle", "Panel", new
+                                                                                            {
+                                                                                                MultiMediaId = @item.MultiMediaId
+                                                                                            })">Güncelle</a>
+                                                                            </td>
+                                                                            <td>
+                                                                                <a href="@item.Resim" class="btn btn-xs btn-info" data-title="Uçus öncesinde dikkat edilecek kurallar">
+                                                                                    <i class="fa fa-photo"></i>Görüntüle
+                                                                                </a>
+                                                                            </td>
+                                                                            <td>
+                                                                                <a class="btn btn-xs btn-danger" href="@Url.Action("SayfaMultiMediaSil", "Panel", new
+                                                                                            {
+                                                                                                MultiMediaId = @item.MultiMediaId
+                                                                                            })">Sil</a>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+
+                else
+                {
+                    <div class="alert alert-info">Sayfaya ait multimedia  bulunmamaktadır.</div>
+                }
+
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+
+        </div>
+    </section>
+</section>
+
+<div class="modal fade" id="myModal1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h3 class="modal-title">Multimedia Düzenleme</h3>
+            </div>
+            <div class="modal-body" id="myModalBodyDiv1">
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+<div class="modal fade" id="myModal2">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h3 class="modal-title">Multimedia Ekleme</h3>
+            </div>
+            <div class="modal-body" id="myModalBodyDiv2">
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+
+    var SayfaMultimediaEkle = function (SayfaId) {
+
+        var url = "/Yonetim/Panel/SayfaMultimediaEkle?SayfaId=" + SayfaId;
+
+        $("#myModalBodyDiv1").load(url, function () {
+            $("#myModal1").modal("show");
+
+        })
+
+    }
+</script>
+<script>
+
+
+    var SayfaMultiMediaGuncelle = function (MultiMediaId) {
+
+        var url = "/Yonetim/Panel/SayfaMultiMediaGuncelle?MultiMediaId=" + MultiMediaId;
+
+        $("#myModalBodyDiv1").load(url, function () {
+            $("#myModal1").modal("show");
+
+        })
+
+    }
+</script>
+
+@section js{
+
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="https://static.jstree.com/latest/assets/dist/jstree.min.js"></script>
+    <script src="https://rawgit.com/adamjimenez/jstree-table/master/jstreetable.js"></script>
+    <script src="~/Areas/Yonetim/Content/js/jstreegrid.js"></script>
+    <script>
+        // load jstree
+        var contentId=@Request.QueryString["SayfaId"];
+        $("div#jstree").jstree({
+            plugins: ["themes", "json",  "dnd"],
+            core: {
+                themes: {
+                    responsive: false
+                },
+                check_callback: true,
+                data: {
+                    url: '/Panel/Nodes'
+                }
+            },
+            types: {
+                default: {
+                    icon: "fa fa-folder icon-state-warning icon-lg"
+                },
+                file: {
+                    icon: "fa fa-file icon-state-warning icon-lg"
+                }
+            },
+            dnd: {
+                drop_finish: function () {
+                },
+                drag_finish: function () {
+                },
+                drag_check: function (data) {
+                    return {
+                        after: true,
+                        before: true,
+                        inside: true
+                    };
+                }
+            }
+        }).on('loaded.jstree', function () {
+            //$("div#jstree").jstree('open_all');
+            if (contentId > 0) {
+                $('div#jstree').jstree('select_node', @Request.QueryString["SayfaId"]);
+            }
+            }).on("select_node.jstree", function (e, data) {
+                var nodeId = parseInt(data.node.id);
+                if (nodeId != contentId)
+                    location.href = "/Yonetim/Panel/MultiMedia?SayfaId=" + nodeId;
+        });
+
+    </script>
+}
+
+
+
+
